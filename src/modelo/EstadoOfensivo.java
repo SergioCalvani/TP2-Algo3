@@ -1,6 +1,6 @@
 package modelo;
 
-public class EstadoOfensivo extends Estado {
+public class EstadoOfensivo implements Estado {
 	public boolean estaEnEstadoOfensivo() {
 		return true;
 	}
