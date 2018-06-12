@@ -13,6 +13,8 @@ class YugiohTest {
 	
 	@Test
 	void testColocarUnaCartaMonstruoEnPosicionDeDefensa() {
+	
+		CartaMagica cartaMagica = new CartaMagica();
 		
 	}
 	
