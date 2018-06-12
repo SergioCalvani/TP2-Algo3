@@ -6,6 +6,5 @@ public class Carta {
 	
 	public void  Carta() {
 		this.nombre = "";		
-	
 	}
 }
