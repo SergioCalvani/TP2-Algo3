@@ -14,4 +14,12 @@ public abstract class Carta {
 	public String getNombre() {
 		return this.nombre;
 	}
+	
+	public void asignarPosicion(Posicion unaPosicion) {
+		this.posicion = unaPosicion;
+	}
+	
+	public boolean estaBocaAbajo() {
+		return posicion.estaBocaAbajo();
+	}
 }
