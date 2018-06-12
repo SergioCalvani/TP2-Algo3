@@ -5,6 +5,7 @@ public class Carta {
 	private String nombre;
 	
 	public void  Carta() {
-		this.nombre = "";		
+
+		this.nombre = "Probando";		
 	}
 }
