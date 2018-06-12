@@ -10,11 +10,11 @@ public class CartaMonstruo extends Carta{
 		
 	}
 	
-	public estaEnEstadoOfensivo() {
+	public boolean estaEnEstadoOfensivo() {
 		return estado.estaEnEstadoOfensivo();
 	}
 	
-	public estaEnEstadoDefensivo() {
+	public boolean estaEnEstadoDefensivo() {
 		return estado.estaEnEstadoDefensivo();
 	}
 
