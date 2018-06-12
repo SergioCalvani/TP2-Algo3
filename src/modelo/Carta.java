@@ -1,7 +1,6 @@
 package modelo;
 
 public abstract class Carta {
-
 	
 	private String nombre;
 	
