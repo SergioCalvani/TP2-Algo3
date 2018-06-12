@@ -13,14 +13,16 @@ class YugiohTest {
 	
 	@Test
 	void testColocarUnaCartaMonstruoEnPosicionDeDefensa() {
-	
-		CartaMagica cartaMagica = new CartaMagica();
-		
+
 	}
 	
 	@Test
 	void testColocarUnaCartaMagicaBocaAbajo() {
+		CartaMagica cartaMagica = new CartaMagica();
+		Tablero tablero = new Tablero();
+		tablero.agregarBocaAbajo(cartaMagica);
 		
+		assertTrue(cartaMagica.estaBocaAbajo());
 	}
 	
 	@Test
