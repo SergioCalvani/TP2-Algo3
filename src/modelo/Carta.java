@@ -16,6 +16,5 @@ public class Carta {
 	public String getHola() {
 		return ("Hola");
 	}
-	}
 
 }
