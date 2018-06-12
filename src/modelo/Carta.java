@@ -1,6 +1,6 @@
 package modelo;
 // HOLA
-public class Carta {
+public abstract class Carta {
 	
 	private String nombre;
 	
