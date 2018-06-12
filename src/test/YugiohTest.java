@@ -10,5 +10,20 @@ class YugiohTest {
 	void testColocarUnaCartaMonstruoEnPosicionDeAtaque() {
 		fail("Not yet implemented");
 	}
+	
+	@Test
+	void testColocarUnaCartaMonstruoEnPosicionDeDefensa() {
+		
+	}
+	
+	@Test
+	void testColocarUnaCartaMagicaBocaAbajo() {
+		
+	}
+	
+	@Test
+	void testColocarUnaCartaTrampaBocaAbajo() {
+		
+	}
 
 }
