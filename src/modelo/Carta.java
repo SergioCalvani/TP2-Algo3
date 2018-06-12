@@ -12,5 +12,10 @@ public class Carta {
 	public String getNombre() {
 		return this.nombre;
 	}
+	
+	public String getHola() {
+		return ("Hola");
+	}
+	}
 
 }
