@@ -1,5 +1,5 @@
 package modelo;
-// HOLA
+
 public class Carta {
 	
 	private String nombre;
