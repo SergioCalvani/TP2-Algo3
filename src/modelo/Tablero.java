@@ -2,8 +2,8 @@ package modelo;
 
 public class Tablero {
 
-	public void agregarBocaAbajo(CartaMagica cartaMagica) {
+	public void agregarBocaAbajo(Carta carta) {
 		
-		cartaMagica.asignarPosicion(new BocaAbajo());
+		carta.asignarPosicion(new BocaAbajo());
 	}
 }
