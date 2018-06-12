@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class YugiohTest {
 
 	@Test
-	void test() {
+	void testColocarUnaCartaMonstruoEnPosicionDeAtaque() {
 		fail("Not yet implemented");
 	}
 
