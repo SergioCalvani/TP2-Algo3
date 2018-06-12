@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import modelo.CartaMagica;
+import modelo.CartaTrampa;
 import modelo.Tablero;
 
 class YugiohTest {
@@ -35,7 +36,11 @@ class YugiohTest {
 	
 	@Test
 	void testColocarUnaCartaTrampaBocaAbajo() {
+		CartaTrampa cartaTrampa = new CartaTrampa();
+		Tablero tablero = new Tablero();
+		tablero.agregarBocaAbajo(cartaTrampa);
 		
+		assertTrue(cartaTrampa.estaBocaAbajo());	
 	}
 
 }
