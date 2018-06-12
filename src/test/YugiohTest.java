@@ -12,17 +12,21 @@ import modelo.Tablero;
 class YugiohTest {
 
 	@Test
-	void testColocarUnaCartaMonstruoEnPosicionDeAtaque() {
-		fail("Not yet implemented");
+	void testColocarUnaCartaMonstruoEnEstadoOfensivo() {
+		Tablero tablero = new Tablero();
+		CartaMonstruo monstruo = new CartaMonstruo("bicho", 600, 900);//600 atk, 900 def
+		tablero.agregarMonstruoEnEstadoOfensivo(monstruo);
+		
+		assertTrue(monstruo.estaEnEstadoOfensivo());	
 	}
 	
 	@Test
-	void testColocarUnaCartaMonstruoEnPosicionDeDefensa() {
+	void testColocarUnaCartaMonstruoEnEstadoDefensivo() {
 		Tablero tablero = new Tablero();
 		CartaMonstruo monstruo = new CartaMonstruo("bicho", 600, 900);//600 atk, 900 def
-		tablero.agregarMonstruoEnPosicionDeDefensa(monstruo);
+		tablero.agregarMonstruoEnEstadoDefensivo(monstruo);
 		
-		assertTrue(!monstruo.EstaEnPosicionOfensiva());	
+		assertTrue(monstruo.estaEnEstadoDefensivo());	
 	}
 	
 	@Test
