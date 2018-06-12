@@ -4,7 +4,7 @@ public class Carta {
 	
 	String nombre;
 	
-	public void Carta() {
+	public Carta() {
 	
 		this.nombre = "";
 	}
@@ -12,9 +12,4 @@ public class Carta {
 	public String getNombre() {
 		return this.nombre;
 	}
-	
-	public String getHola() {
-		return ("Hola");
-	}
-
 }
