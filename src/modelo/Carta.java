@@ -2,7 +2,7 @@ package modelo;
 // HOLA
 public class Carta {
 	
-	private String nombre;
+	String nombre;
 	
 	public Carta() {
 	
