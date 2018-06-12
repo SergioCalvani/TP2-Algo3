@@ -10,7 +10,5 @@ class CartaTest {
 
 	@Test
 	void test() {
-		Carta carta = new Carta();
-		assertEquals(carta.getNombre(), "");
 	}
 }
