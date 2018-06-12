@@ -1,6 +1,6 @@
 package modelo;
 
-public abstract class Estado {
+public interface Estado {
 	public boolean estaEnEstadoOfensivo();
 	public boolean estaEnEstadoDefensivo();
 }
