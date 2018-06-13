@@ -17,7 +17,6 @@ class YugiohTest {
 		Tablero tablero = new Tablero();
 		CartaMonstruo monstruo = new CartaMonstruo("bicho", 600, 900);//600 atk, 900 def
 		tablero.agregarMonstruoEnEstadoOfensivo(monstruo);
-		System.out.println(monstruo.getNombre());
 		assertTrue(monstruo.estaEnEstadoOfensivo());	
 	}
 	
@@ -48,4 +47,13 @@ class YugiohTest {
 		assertTrue(cartaTrampa.estaBocaAbajo());	
 	}
 
+	@Test
+	void testMandarUnaCartaAlCementerio() {
+		Tablero tablero = new Tablero();
+		CartaMonstruo monstruo = new CartaMonstruo("bicho", 600, 900);//600 atk, 900 def
+		tablero.agregarMonstruoEnEstadoDefensivo(monstruo,0);
+		tablero.eliminarCarta(0);
+		
+		
+	}
 }
