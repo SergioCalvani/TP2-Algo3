@@ -1,10 +1,21 @@
 package modelo;
 
-public abstract class Zona {
-	public boolean estaOcupado(int pos) {
-		if(pos < 0 || pos > 4) {
-			throw new PosicionInvalidaException(); 
+
+public class Zona {
+	private Carta[] cartas;
+	
+	public Zona() {
+		this.cartas = new Carta[5];
+	}
+	
+	public void agregar(CartaMonstruo carta,int pos) {
+		try {
+			if(this.cartas[pos] != null){
+				throw new PosicionOcupadaException();
+			}
+		}catch(ArrayIndexOutOfBoundsException excepcion) {
+			throw(new PosicionInvalidaException());
 		}
-		return this.cartas.containsKey(pos);
+		this.cartas[pos] = carta;
 	}
 }

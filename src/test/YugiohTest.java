@@ -16,7 +16,7 @@ class YugiohTest {
 	void testColocarUnaCartaMonstruoEnEstadoOfensivo(){
 		Tablero tablero = new Tablero();
 		CartaMonstruo monstruo = new CartaMonstruo("bicho", 600, 900);//600 atk, 900 def
-		tablero.agregarMonstruoEnEstadoOfensivo(monstruo);
+		tablero.agregarMonstruoEnEstadoOfensivo(monstruo, 0);
 		assertTrue(monstruo.estaEnEstadoOfensivo());	
 	}
 	
@@ -24,7 +24,7 @@ class YugiohTest {
 	void testColocarUnaCartaMonstruoEnEstadoDefensivo() {
 		Tablero tablero = new Tablero();
 		CartaMonstruo monstruo = new CartaMonstruo("bicho", 600, 900);//600 atk, 900 def
-		tablero.agregarMonstruoEnEstadoDefensivo(monstruo);
+		tablero.agregarMonstruoEnEstadoDefensivo(monstruo, 2);
 		
 		assertTrue(monstruo.estaEnEstadoDefensivo());	
 	}
