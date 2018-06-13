@@ -4,6 +4,7 @@ public class CartaMonstruo extends Carta{
 	
 	private Estado estado;
 	private String nombre;
+	private int nivel;
 	private int puntosDeAtaque;
 	private int puntosDeDefensa;
 	
