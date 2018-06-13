@@ -16,8 +16,18 @@ public class Tablero {
 		this.cementerio = new ArrayList<Carta>();
 	}
 	
-	public void agregar(CartaMonstruo unaCartaMonstruo) {
+	/*public void agregar(CartaMonstruo unaCartaMonstruo) {
 		this.zonaDeMonstruos.add(unaCartaMonstruo);	
+	}*/
+	
+	public void agregarMonstruoEnEstadoOfensivo(CartaMonstruo unaCartaMonstruo){
+		unaCartaMonstruo.ponerEnEstadoOfensivo();
+		this.zonaDeMonstruos.add(unaCartaMonstruo);
+	}
+	
+	public void agregarMonstruoEnEstadoDefensivo(CartaMonstruo unaCartaMonstruo){
+		unaCartaMonstruo.ponerEnEstadoDefensivo();
+		this.zonaDeMonstruos.add(unaCartaMonstruo);
 	}
 	
 	public void agregar(CartaMagica unaCartaMagica) {

@@ -6,17 +6,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import modelo.CartaMagica;
+import modelo.CartaMonstruo;
 import modelo.CartaTrampa;
 import modelo.Tablero;
 
 class YugiohTest {
 
 	@Test
-	void testColocarUnaCartaMonstruoEnEstadoOfensivo() {
+	void testColocarUnaCartaMonstruoEnEstadoOfensivo(){
 		Tablero tablero = new Tablero();
 		CartaMonstruo monstruo = new CartaMonstruo("bicho", 600, 900);//600 atk, 900 def
 		tablero.agregarMonstruoEnEstadoOfensivo(monstruo);
-		
+		System.out.println(monstruo.getNombre());
 		assertTrue(monstruo.estaEnEstadoOfensivo());	
 	}
 	

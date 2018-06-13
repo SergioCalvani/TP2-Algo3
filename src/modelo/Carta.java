@@ -2,7 +2,7 @@ package modelo;
 
 public abstract class Carta {
 	
-	private String nombre;
+	protected String nombre;
 	private Efecto efecto;
 	private Posicion posicion;
 	
@@ -11,7 +11,7 @@ public abstract class Carta {
 		this.nombre = "";
 	}
 	
-	public String getNombre() {
+	public String obtenerNombre() {
 		return this.nombre;
 	}
 	
