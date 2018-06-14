@@ -137,6 +137,34 @@ class YugiohTest {
 	}
 	
 	@Test
+	void testAmbosMonstruosEnAtaqueYConMismoAtaque() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Jugador jugadorDos = yugioh.obtenerJugadorDos();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		Lado ladoDos = tablero.obtenerLadoDe(jugadorDos);
+
+		CartaMonstruo beautiful1 = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoUno.colocar(beautiful1, 0);
+		
+		CartaMonstruo beautiful2 = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoDos.colocar(beautiful2, 0);
+		
+
+		beautiful1.atacarA(beautiful2);
+		
+		// Verifico que se destruyeron ambas
+		assertTrue(ladoUno.cementerioContiene(beautiful1));
+		assertTrue(ladoDos.cementerioContiene(beautiful2));
+		
+		// diferencia de ataque = 0
+		// Ninguno de los jugadores recibio danio
+		assertEquals(7000, jugadorUno.obtenerVida());
+		assertEquals(7000, jugadorDos.obtenerVida());
+	}
+	
+	@Test
 	void testMiMonstruoEnAtaqueYElOtroEnDefensaPeroMiAtaqueEsMayorQueSuDefensa() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
