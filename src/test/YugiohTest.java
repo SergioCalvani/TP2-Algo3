@@ -89,6 +89,7 @@ class YugiohTest {
 	void testAmbosMonstruosEnAtaquePeroMiMonstruoTieneMenosAtaqueQueElOponente() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
+		// yo soy el jugador uno
 		Jugador jugadorUno = yugioh.obtenerJugadorUno();
 		Jugador jugadorDos = yugioh.obtenerJugadorDos();
 		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
@@ -133,5 +134,58 @@ class YugiohTest {
 		// diferencia de ataque = 300
 		// Se restan de jugadorDos y queda 6700.
 		assertEquals(6700, jugadorDos.obtenerVida());
+	}
+	
+	@Test
+	void testMiMonstruoEnAtaqueYElOtroEnDefensaPeroMiAtaqueEsMayorQueSuDefensa() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		// yo soy el jugador uno
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Jugador jugadorDos = yugioh.obtenerJugadorDos();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		Lado ladoDos = tablero.obtenerLadoDe(jugadorDos);
+
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		ladoUno.colocar(amazon, 0);
+
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoDos.colocar(beautiful, 0);
+		ladoDos.cambiarAPosicionDeDefensaMonstruo(0);
+
+		amazon.atacarA(beautiful);
+		
+		// Verifico que se destruyo beautiful
+		assertTrue(ladoDos.cementerioContiene(beautiful));
+		
+		// diferencia de puntos = 1300 - 800 = 500.
+		// Pero jugadorDos no recibe danio
+		assertEquals(7000, jugadorDos.obtenerVida());
+	}
+	
+	@Test
+	void testMiMonstruoEnAtaqueYElOtroEnDefensaPeroMiAtaqueEsMenorQueSuDefensa() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		// yo soy el jugador uno
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Jugador jugadorDos = yugioh.obtenerJugadorDos();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		Lado ladoDos = tablero.obtenerLadoDe(jugadorDos);
+
+		CartaMonstruo huevo = new CartaMonstruo("Huevo Monstruoso", 1600, 800, 4);
+		ladoUno.colocar(huevo, 0);
+		
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		ladoDos.colocar(amazon, 0);
+		ladoDos.cambiarAPosicionDeDefensaMonstruo(0);
+
+		huevo.atacarA(amazon);
+		
+		// Verifico que no se destruyo huevo
+		assertFalse(ladoUno.cementerioContiene(huevo));
+		
+		// Pero jugadorUno no recibe danio
+		assertEquals(7000, jugadorUno.obtenerVida());
 	}
 }

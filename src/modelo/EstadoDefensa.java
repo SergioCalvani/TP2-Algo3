@@ -12,10 +12,13 @@ public class EstadoDefensa extends Estado {
 	public boolean enPosicionDeAtaque() {
 		return false;
 	}
-	
-	@Override
-	public int calcularAtaque(int otrosPuntosDeAtaque) {
-		return this.puntosDeDefensa - otrosPuntosDeAtaque;
-	}
 
+	@Override
+	public void calcularAtaque(CartaMonstruo monstruo1, Jugador duenio1, int puntosDeAtaque2, CartaMonstruo monstruo2,
+			Jugador duenio2) {
+		int d = this.puntosDeDefensa - puntosDeAtaque2;
+		if (d <= 0) {
+			monstruo1.destruir();
+		}
+	}
 }
