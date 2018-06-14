@@ -1,6 +1,5 @@
 package modelo;
 
-import java.util.function.BooleanSupplier;
 
 public class CartaMonstruo extends Carta {
 
@@ -54,6 +53,21 @@ public class CartaMonstruo extends Carta {
 	public void destruir() {
 		Lado lado = this.duenio.obtenerLado();
 		lado.destruir(this);
+	}
+	
+	public int sacrificiosRequeridos() {
+		//ESTA FUNCION HAY QUE CAMBIARLA!!
+		//HAY QUE PONER UNA INTERFAZ PARA LOS NIVELES
+		if(this.nivel<5) {
+			return 0;
+		}
+		else if(this.nivel >= 5 && this.nivel < 7) {
+			return 1;
+		}
+		else if(this.nivel >= 7) {
+			return 2;
+		}
+		return -1;
 	}
 
 }

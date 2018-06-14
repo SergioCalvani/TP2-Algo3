@@ -250,4 +250,50 @@ class YugiohTest {
 		assertEquals(7000, jugadorUno.obtenerVida());
 		assertEquals(7000, jugadorDos.obtenerVida());
 	}
+
+	@Test
+	void testMonstruoRequiereUnSacreificio() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoUno.colocar(beautiful, 0);
+		
+		ladoUno.sacrificar(0);
+
+		CartaMonstruo magician = new CartaMonstruo("Dark Magician Girl", 2000, 1700, 6);
+		ladoUno.colocar(magician, 0);
+		
+		
+		assertTrue(ladoUno.cementerioContiene(beautiful));
+		assertTrue(ladoUno.estaEnCampoMonstruo(magician));
+	}
+	
+
+	@Test
+	void testMonstruoRequiereDosSacreificio() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoUno.colocar(beautiful, 0);
+		CartaMonstruo time = new CartaMonstruo("Time Wizard", 500, 400, 2);
+		ladoUno.colocar(time, 1);
+		
+		ladoUno.sacrificar(0);
+		ladoUno.sacrificar(1);
+		
+		CartaMonstruo magician= new CartaMonstruo("Dark Magician", 2500, 2100, 7);
+		ladoUno.colocar(magician, 0);
+		
+		assertTrue(ladoUno.cementerioContiene(beautiful));
+		assertTrue(ladoUno.cementerioContiene(time));
+		assertTrue(ladoUno.estaEnCampoMonstruo(magician));
+	}
 }
