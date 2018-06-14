@@ -250,4 +250,51 @@ class YugiohTest {
 		assertEquals(7000, jugadorUno.obtenerVida());
 		assertEquals(7000, jugadorDos.obtenerVida());
 	}
+	
+	@Test
+	void testSeBajaUnMonstruoDe5EstrellasAlCampoYTomaUnSacrificio() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoUno.colocar(beautiful, 0);
+		
+		CartaMonstruo darkWitch = new CartaMonstruo("Dark Witch", 1800, 1700, 5);
+		darkWitch.agregarSacrificio(beautiful);
+		ladoUno.colocar(darkWitch, 0);
+		
+		// verifico que esta darkWitch en la posicion 0
+		assertTrue(ladoUno.estaMonstruo(darkWitch, 0));
+		
+		// verifico que beautiful fue sacrificada
+		assertTrue(ladoUno.cementerioContiene(beautiful));
+	}
+	
+	@Test
+	void testSeBajaUnMonstruoDe7EstrellasAlCampoYTomaDosSacrificio() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoUno.colocar(beautiful, 0);
+		
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		ladoUno.colocar(amazon, 0);
+		
+		CartaMonstruo darkWitch = new CartaMonstruo("Dark Witch", 1800, 1700, 5);
+		darkWitch.agregarSacrificio(beautiful);
+		darkWitch.agregarSacrificio(amazon);
+		ladoUno.colocar(darkWitch, 0);
+		
+		// verifico que esta darkWitch en la posicion 0
+		assertTrue(ladoUno.estaMonstruo(darkWitch, 0));
+		
+		// verifico que beautiful fue sacrificada
+		assertTrue(ladoUno.cementerioContiene(beautiful));
+		assertTrue(ladoUno.cementerioContiene(amazon));
+	}
 }

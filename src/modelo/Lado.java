@@ -28,6 +28,7 @@ public class Lado {
 	}
 
 	public void colocar(CartaMonstruo monstruo, int i) {
+		monstruo.sacrificarSacricios();
 		this.zonaDeMonstruos[i] = monstruo;
 		monstruo.cambiarAPosicionDeAtaque();
 		monstruo.asignarDuenio(this.duenio);
@@ -79,11 +80,15 @@ public class Lado {
 	}
 
 	public void destruirTodosLosMonstruos() {
-		
 		for (CartaMonstruo monstruo: this.zonaDeMonstruos) {
 			if (monstruo != null) {
 				monstruo.destruir();
 			}
 		}
+	}
+
+	public boolean estaMonstruo(CartaMonstruo monstruoBuscado, int i) {
+		CartaMonstruo monstruo = this.zonaDeMonstruos[i];
+		return monstruoBuscado == monstruo;
 	}
 }
