@@ -1,34 +1,41 @@
 package modelo;
 
-public class CartaMonstruo extends Carta{
-	
-	private Estado estado;
-	private String nombre;
+import java.util.function.BooleanSupplier;
+
+public class CartaMonstruo extends Carta {
+
+	private int ataque;
+	private int defensa;
 	private int nivel;
-	private int puntosDeAtaque;
-	private int puntosDeDefensa;
+	private boolean posicionDeAtaque;
+	private Jugador duenio;
 	
-	
-	public CartaMonstruo(String unNombre,int atk,int def){
-		this.nombre = unNombre;
-		this.puntosDeAtaque = atk;
-		this.puntosDeDefensa = def;		
+	public CartaMonstruo(String nombre, int ataque, int defensa, int nivel) {
+		super(nombre);
+		this.ataque = ataque;
+		this.defensa = defensa;
+		this.nivel = nivel;
+		this.posicionDeAtaque = false;
 	}
-	
-	public void ponerEnEstadoOfensivo() {
-		this.estado = new EstadoOfensivo();
+
+	public void cambiarAPosicionDeAtaque() {
+		this.posicionDeAtaque = true;
 	}
-	
-	public void ponerEnEstadoDefensivo() {
-		this.estado = new EstadoDefensivo();
+
+	public boolean estaEnPosicionDeAtaque() {
+		return this.posicionDeAtaque;
 	}
-	
-	public boolean estaEnEstadoOfensivo() {
-		return estado.estaEnEstadoOfensivo();
+
+	public void cambiarAPosicionDeDefensa() {
+		this.posicionDeAtaque = false;
 	}
-	
-	public boolean estaEnEstadoDefensivo() {
-		return estado.estaEnEstadoDefensivo();
+
+	public boolean estaEnPosicionDeDefensa() {
+		return !this.estaEnPosicionDeAtaque();
+	}
+
+	public void asignarDuenio(Jugador duenio) {
+		this.duenio = duenio;
 	}
 
 }

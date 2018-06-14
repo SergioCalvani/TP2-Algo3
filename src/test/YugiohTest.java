@@ -1,59 +1,105 @@
 package test;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
+import modelo.AgujeroOscuro;
 import modelo.CartaMagica;
 import modelo.CartaMonstruo;
 import modelo.CartaTrampa;
+import modelo.CilindroMagico;
+import modelo.Jugador;
+import modelo.Lado;
 import modelo.Tablero;
+import modelo.Yugioh;
 
 class YugiohTest {
 
 	@Test
-	void testColocarUnaCartaMonstruoEnEstadoOfensivo(){
-		Tablero tablero = new Tablero();
-		CartaMonstruo monstruo = new CartaMonstruo("bicho", 600, 900);//600 atk, 900 def
-		tablero.agregarMonstruoEnEstadoOfensivo(monstruo, 0);
-		assertTrue(monstruo.estaEnEstadoOfensivo());	
+	void testColorCartaMonstruoEnPosicionDeAtaque() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugador = yugioh.obtenerJugadorUno();
+		Lado lado = tablero.obtenerLadoDe(jugador);
+		
+		CartaMonstruo monstruo = new CartaMonstruo("Huevo Monstruoso", 600, 900, 3);
+		lado.colocar(monstruo, 0);
+		
+		// Por defecto coloca una carta en posicion de ataque
+		assertTrue(monstruo.estaEnPosicionDeAtaque());
 	}
 	
 	@Test
-	void testColocarUnaCartaMonstruoEnEstadoDefensivo() {
-		Tablero tablero = new Tablero();
-		CartaMonstruo monstruo = new CartaMonstruo("bicho", 600, 900);//600 atk, 900 def
-		tablero.agregarMonstruoEnEstadoDefensivo(monstruo, 2);
+	void testColorCartaMonstruoEnPosicionDeDefensa() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugador = yugioh.obtenerJugadorUno();
+		Lado lado = tablero.obtenerLadoDe(jugador);
 		
-		assertTrue(monstruo.estaEnEstadoDefensivo());	
-	}
+		CartaMonstruo monstruo = new CartaMonstruo("Huevo Monstruoso", 600, 900, 3);
+		lado.colocar(monstruo, 0);
+		lado.cambiarAPosicionDeDefensaMonstruo(0);
+		
+		assertTrue(monstruo.estaEnPosicionDeDefensa());
+	}	
 	
 	@Test
-	void testColocarUnaCartaMagicaBocaAbajo() {
-		CartaMagica cartaMagica = new CartaMagica();
-		Tablero tablero = new Tablero();
-		tablero.agregarBocaAbajo(cartaMagica);
-		
-		assertTrue(cartaMagica.estaBocaAbajo());
-	}
-	
-	@Test
-	void testColocarUnaCartaTrampaBocaAbajo() {
-		CartaTrampa cartaTrampa = new CartaTrampa();
-		Tablero tablero = new Tablero();
-		tablero.agregarBocaAbajo(cartaTrampa);
-		
-		assertTrue(cartaTrampa.estaBocaAbajo());	
-	}
+	void testColocarUnaCartaMagicaEnElCampoBocaAbajo() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugador = yugioh.obtenerJugadorUno();
+		Lado lado = tablero.obtenerLadoDe(jugador);
 
+		CartaMagica magica = new AgujeroOscuro();
+		lado.colocar(magica, 0);
+
+		// Por defecto se agregan las cartas magicas boca abajo
+		assertTrue(magica.estaBocaAbajo());
+	}
+	
 	@Test
-	void testMandarUnaCartaAlCementerio() {
-		Tablero tablero = new Tablero();
-		CartaMonstruo monstruo = new CartaMonstruo("bicho", 600, 900);//600 atk, 900 def
-		tablero.agregarMonstruoEnEstadoDefensivo(monstruo,0);
-		tablero.eliminarCarta(0);
+	void testColocarUnaCartaTrampaEnElCampoBocaAbajo() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugador = yugioh.obtenerJugadorUno();
+		Lado lado = tablero.obtenerLadoDe(jugador);
+
+		CartaTrampa trampa = new CilindroMagico();
+		lado.colocar(trampa, 0);
+
+		// Por defecto se agregan las cartas trampa boca abajo 
+		assertTrue(trampa.estaBocaAbajo());
+	}
+	
+	@Test
+	void testMandarUnaCartaAlCementerioYVerificarQueEsteAhi() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugador = yugioh.obtenerJugadorUno();
+		Lado lado = tablero.obtenerLadoDe(jugador);
+
+		CartaMonstruo monstruo = new CartaMonstruo("Huevo Monstruoso", 600, 900, 3);
+		lado.colocar(monstruo, 0);
+		lado.destruirCartaMonstruo(0);
 		
+		assertTrue(lado.cementerioContiene(monstruo));	
+	}
+	
+	@Test
+	void testMonstruoEnPosiciónDeAtaqueYOponenteColocaOtroMonstruoEnAPosicionDeAtaque() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Jugador jugadorDos = yugioh.obtenerJugadorDos();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		Lado ladoDos = tablero.obtenerLadoDe(jugadorDos);
+
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		ladoUno.colocar(amazon, 0);
+
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoDos.colocar(beautiful, 0);
+
 		
 	}
 }

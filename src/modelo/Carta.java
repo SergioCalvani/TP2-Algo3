@@ -1,25 +1,17 @@
 package modelo;
 
-public abstract class Carta {
+public class Carta {
+
+	private String nombre;
+	private int nivel;
+	private boolean bocaArriba;
 	
-	protected String nombre;
-	private Efecto efecto;
-	private Posicion posicion;
-	
-	public Carta() {
-	
-		this.nombre = "";
-	}
-	
-	public String obtenerNombre() {
-		return this.nombre;
-	}
-	
-	public void asignarPosicion(Posicion unaPosicion) {
-		this.posicion = unaPosicion;
+	public Carta(String nombre) {
+		this.nombre = nombre;
+		this.bocaArriba = false;
 	}
 	
 	public boolean estaBocaAbajo() {
-		return posicion.estaBocaAbajo();
+		return !this.bocaArriba;
 	}
 }
