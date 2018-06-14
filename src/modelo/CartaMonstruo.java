@@ -65,6 +65,7 @@ public class CartaMonstruo extends Carta {
 
 	public void sacrificarSacricios() {
 		this.nivel.sacrificar(this.sacrificios);
+		this.sacrificios = new ArrayList<CartaMonstruo>();
 	}
 	
 
