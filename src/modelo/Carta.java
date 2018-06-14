@@ -14,4 +14,13 @@ public abstract class Carta {
 	public boolean estaBocaAbajo() {
 		return !this.bocaArriba;
 	}
+	
+	public void voltear() {
+		if (!bocaArriba) {
+			bocaArriba = false;
+		}
+		this.activar();
+	}
+	
+	public void activar() {};
 }

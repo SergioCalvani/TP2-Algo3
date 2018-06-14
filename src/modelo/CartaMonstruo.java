@@ -50,7 +50,7 @@ public class CartaMonstruo extends Carta {
 		this.estadoActual.calcularAtaque(this, this.duenio,
 										 puntosDeAtaque, otroMonstruo, otroDuenio);
 	}
-
+	
 	public void destruir() {
 		Lado lado = this.duenio.obtenerLado();
 		lado.destruir(this);

@@ -25,7 +25,7 @@ class YugiohTest {
 		CartaMonstruo monstruo = new CartaMonstruo("Huevo Monstruoso", 600, 900, 3);
 		lado.colocar(monstruo, 0);
 		
-		// Por defecto coloca una carta en posicion de ataque
+		// Por defecto coloca una carta monstruo en posicion de ataque
 		assertTrue(monstruo.estaEnPosicionDeAtaque());
 	}
 	
@@ -215,5 +215,39 @@ class YugiohTest {
 		
 		// Pero jugadorUno no recibe danio
 		assertEquals(7000, jugadorUno.obtenerVida());
+	}
+	
+	@Test
+	void testTodosSeDestruyenTrasActivarseAgujeroOscuro() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		// yo soy el jugador uno
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Jugador jugadorDos = yugioh.obtenerJugadorDos();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		Lado ladoDos = tablero.obtenerLadoDe(jugadorDos);
+		
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoUno.colocar(beautiful, 0);
+		
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		ladoDos.colocar(amazon, 0);
+		
+		CartaMagica agujeroOscuro = new AgujeroOscuro();
+		ladoUno.colocar(agujeroOscuro, 0);
+		
+		// No estoy seguro, en este modelo  primero se coloca una carta en 
+		// la zona y luego se da las opciones de dar vuelta o no. Tambien podria ser posible
+		// activar la carta desde la misma mano. Esta bien asi o es necesario un metodo 
+		// colocarCartaYDarVuelta(carta) ? 
+		ladoUno.voltearCartaMagicaEnPosicion(0);
+		
+		// Verifico que los monstruos esten en el cementerio.
+		assertTrue(ladoUno.cementerioContiene(beautiful));
+		assertTrue(ladoDos.cementerioContiene(amazon));
+		
+		// Verifico que nadie recibio danio
+		assertEquals(7000, jugadorUno.obtenerVida());
+		assertEquals(7000, jugadorDos.obtenerVida());
 	}
 }

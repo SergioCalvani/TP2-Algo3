@@ -6,8 +6,8 @@ public class Tablero {
 	Lado ladoDos;
 	
 	public Tablero(Jugador jugadorUno, Jugador jugadorDos) {
-		this.ladoUno = new Lado(jugadorUno);
-		this.ladoDos = new Lado(jugadorDos);
+		this.ladoUno = new Lado(jugadorUno, this);
+		this.ladoDos = new Lado(jugadorDos, this);
 	}
 
 	public Lado obtenerLadoDe(Jugador jugador) {
@@ -16,6 +16,11 @@ public class Tablero {
 		} else {
 			return ladoDos;
 		}
+	}
+
+	public void destruirTodosLosMonstruos() {
+		ladoUno.destruirTodosLosMonstruos();
+		ladoDos.destruirTodosLosMonstruos();
 	}
 
 }

@@ -6,19 +6,21 @@ import java.util.function.BooleanSupplier;
 public class Lado {
 
 	private int tamanio;
-	private Carta[] zonaDeMonstruos;
+	private CartaMonstruo[] zonaDeMonstruos;
 	private Carta[] zonaMagica;
 	private ArrayList<Carta> cementerio;
 	private Jugador duenio;
+	private Tablero tablero;
 	
-	public Lado(Jugador jugador) {
+	public Lado(Jugador jugador, Tablero tablero) {
 		
 		this.tamanio = 5;
-		this.zonaDeMonstruos = new Carta[tamanio];
+		this.zonaDeMonstruos = new CartaMonstruo[tamanio];
 		this.zonaMagica = new Carta[tamanio];
 		this.cementerio = new ArrayList<Carta>();
 		this.duenio = jugador;
 		this.duenio.asignarLado(this);
+		this.tablero = tablero;
 	}
 
 	public boolean esDuenio(Jugador jugador) {
@@ -38,6 +40,7 @@ public class Lado {
 
 	public void colocar(CartaMagica magica, int i) {
 		this.zonaMagica[i] = magica;
+		magica.asignarLado(this);
 	}
 
 	public void colocar(CartaTrampa trampa, int i) {
@@ -61,6 +64,25 @@ public class Lado {
 			if (this.zonaDeMonstruos[i] == cartaMonstruo) {
 				this.zonaDeMonstruos[i] = null;
 				return;
+			}
+		}
+	}
+
+	public void voltearCartaMagicaEnPosicion(int i) {
+
+		CartaMagica magica = (CartaMagica) this.zonaMagica[i];
+		magica.voltear();
+	}
+
+	public Tablero obtenerTablero() {
+		return this.tablero;
+	}
+
+	public void destruirTodosLosMonstruos() {
+		
+		for (CartaMonstruo monstruo: this.zonaDeMonstruos) {
+			if (monstruo != null) {
+				monstruo.destruir();
 			}
 		}
 	}
