@@ -86,7 +86,7 @@ class YugiohTest {
 	}
 	
 	@Test
-	void testMonstruoEnPosiciónDeAtaqueYOponenteColocaOtroMonstruoEnAPosicionDeAtaque() {
+	void testAmbosMonstruosEnAtaquePeroMiMonstruoTieneMenosAtaqueQueElOponente() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorUno = yugioh.obtenerJugadorUno();
@@ -100,6 +100,10 @@ class YugiohTest {
 		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
 		ladoDos.colocar(beautiful, 0);
 
+		amazon.atacarA(beautiful);
 		
+		// diferencia de ataque = 300
+		// Se restan de jugadorUno y queda 6700.
+		assertEquals(6700, jugadorUno.obtenerVida());
 	}
 }

@@ -18,6 +18,7 @@ public class Lado {
 		this.zonaMagica = new Carta[tamanio];
 		this.cementerio = new ArrayList<Carta>();
 		this.duenio = jugador;
+		this.duenio.asignarLado(this);
 	}
 
 	public boolean esDuenio(Jugador jugador) {
@@ -51,5 +52,16 @@ public class Lado {
 
 	public boolean cementerioContiene(CartaMonstruo monstruo) {
 		return this.cementerio.contains(monstruo);
+	}
+
+	public void destruir(CartaMonstruo cartaMonstruo) {
+		this.cementerio.add(cartaMonstruo);
+		
+		for (int i = 0; i < this.tamanio; i++) {
+			if (this.zonaDeMonstruos[i] == cartaMonstruo) {
+				this.zonaDeMonstruos[i] = null;
+				return;
+			}
+		}
 	}
 }
