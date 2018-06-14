@@ -1,7 +1,17 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+// JUNIT5
+//import static org.junit.jupiter.api.Assertions.*;
+//import org.junit.jupiter.api.Test;
+
+// JUNIT4
+
 
 import modelo.AgujeroOscuro;
 import modelo.CartaMagica;
@@ -13,10 +23,10 @@ import modelo.Lado;
 import modelo.Tablero;
 import modelo.Yugioh;
 
-class YugiohTest {
+public class YugiohTest {
 
 	@Test
-	void testColorCartaMonstruoEnPosicionDeAtaque() {
+	public void testColorCartaMonstruoEnPosicionDeAtaque() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugador = yugioh.obtenerJugadorUno();
@@ -30,7 +40,7 @@ class YugiohTest {
 	}
 	
 	@Test
-	void testColorCartaMonstruoEnPosicionDeDefensa() {
+	public void testColorCartaMonstruoEnPosicionDeDefensa() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugador = yugioh.obtenerJugadorUno();
@@ -44,7 +54,7 @@ class YugiohTest {
 	}	
 	
 	@Test
-	void testColocarUnaCartaMagicaEnElCampoBocaAbajo() {
+	public void testColocarUnaCartaMagicaEnElCampoBocaAbajo() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugador = yugioh.obtenerJugadorUno();
@@ -58,7 +68,7 @@ class YugiohTest {
 	}
 	
 	@Test
-	void testColocarUnaCartaTrampaEnElCampoBocaAbajo() {
+	public void testColocarUnaCartaTrampaEnElCampoBocaAbajo() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugador = yugioh.obtenerJugadorUno();
@@ -72,7 +82,7 @@ class YugiohTest {
 	}
 	
 	@Test
-	void testMandarUnaCartaAlCementerioYVerificarQueEsteAhi() {
+	public void testMandarUnaCartaAlCementerioYVerificarQueEsteAhi() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugador = yugioh.obtenerJugadorUno();
@@ -86,7 +96,7 @@ class YugiohTest {
 	}
 	
 	@Test
-	void testAmbosMonstruosEnAtaquePeroMiMonstruoTieneMenosAtaqueQueElOponente() {
+	public void testAmbosMonstruosEnAtaquePeroMiMonstruoTieneMenosAtaqueQueElOponente() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
 		// yo soy el jugador uno
@@ -112,7 +122,7 @@ class YugiohTest {
 	}
 	
 	@Test
-	void testAmbosMonstruosEnAtaquePeroMiMonstruoTieneMayorAtaqueQueElOponente() {
+	public void testAmbosMonstruosEnAtaquePeroMiMonstruoTieneMayorAtaqueQueElOponente() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorUno = yugioh.obtenerJugadorUno();
@@ -137,7 +147,7 @@ class YugiohTest {
 	}
 	
 	@Test
-	void testAmbosMonstruosEnAtaqueYConMismoAtaque() {
+	public void testAmbosMonstruosEnAtaqueYConMismoAtaque() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorUno = yugioh.obtenerJugadorUno();
@@ -165,7 +175,7 @@ class YugiohTest {
 	}
 	
 	@Test
-	void testMiMonstruoEnAtaqueYElOtroEnDefensaPeroMiAtaqueEsMayorQueSuDefensa() {
+	public void testMiMonstruoEnAtaqueYElOtroEnDefensaPeroMiAtaqueEsMayorQueSuDefensa() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
 		// yo soy el jugador uno
@@ -192,7 +202,7 @@ class YugiohTest {
 	}
 	
 	@Test
-	void testMiMonstruoEnAtaqueYElOtroEnDefensaPeroMiAtaqueEsMenorQueSuDefensa() {
+	public void testMiMonstruoEnAtaqueYElOtroEnDefensaPeroMiAtaqueEsMenorQueSuDefensa() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
 		// yo soy el jugador uno
@@ -218,7 +228,7 @@ class YugiohTest {
 	}
 	
 	@Test
-	void testTodosSeDestruyenTrasActivarseAgujeroOscuro() {
+	public void testTodosSeDestruyenTrasActivarseAgujeroOscuro() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
 		// yo soy el jugador uno
@@ -252,7 +262,7 @@ class YugiohTest {
 	}
 	
 	@Test
-	void testSeBajaUnMonstruoDe5EstrellasAlCampoYTomaUnSacrificio() {
+	public void testSeBajaUnMonstruoDe5EstrellasAlCampoYTomaUnSacrificio() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorUno = yugioh.obtenerJugadorUno();
@@ -273,7 +283,7 @@ class YugiohTest {
 	}
 	
 	@Test
-	void testSeBajaUnMonstruoDe7EstrellasAlCampoYTomaDosSacrificio() {
+	public void testSeBajaUnMonstruoDe7EstrellasAlCampoYTomaDosSacrificio() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorUno = yugioh.obtenerJugadorUno();
