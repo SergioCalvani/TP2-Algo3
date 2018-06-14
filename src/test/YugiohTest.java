@@ -102,8 +102,36 @@ class YugiohTest {
 
 		amazon.atacarA(beautiful);
 		
+		// Verifico que se destruyo amazon
+		assertTrue(ladoUno.cementerioContiene(amazon));
+		
 		// diferencia de ataque = 300
 		// Se restan de jugadorUno y queda 6700.
 		assertEquals(6700, jugadorUno.obtenerVida());
+	}
+	
+	@Test
+	void testAmbosMonstruosEnAtaquePeroMiMonstruoTieneMayorAtaqueQueElOponente() {
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Jugador jugadorDos = yugioh.obtenerJugadorDos();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		Lado ladoDos = tablero.obtenerLadoDe(jugadorDos);
+
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoUno.colocar(beautiful, 0);
+		
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		ladoDos.colocar(amazon, 0);
+
+		beautiful.atacarA(amazon);
+		
+		// Verifico que se destruyo amazon
+		assertTrue(ladoDos.cementerioContiene(amazon));
+		
+		// diferencia de ataque = 300
+		// Se restan de jugadorDos y queda 6700.
+		assertEquals(6700, jugadorDos.obtenerVida());
 	}
 }

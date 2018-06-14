@@ -22,7 +22,7 @@ public class EstadoAtaque extends Estado {
 			monstruo2.destruir();
 			duenio2.disminuirVidaEn(d);
 		} else {
-			duenio1.disminuirVidaEn(d);
+			duenio1.disminuirVidaEn(-d);
 			monstruo1.destruir();
 		}
 	}
