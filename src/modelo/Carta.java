@@ -2,8 +2,7 @@ package modelo;
 
 public abstract class Carta {
 
-	private String nombre;
-	private int nivel;
+	protected String nombre;
 	private boolean bocaArriba;
 	
 	public Carta(String nombre) {
