@@ -17,6 +17,17 @@ public class Tablero {
 			return ladoDos;
 		}
 	}
+	
+	public void aplicarEfectoDeCampo(Jugador duenio,CartaDeCampo cartaCampo){
+		if(ladoUno == this.obtenerLadoDe(duenio)){
+			cartaCampo.efectoDuenio(ladoUno);
+			cartaCampo.efectoEnemigo(ladoDos);
+		}
+		else{
+			cartaCampo.efectoDuenio(ladoDos);
+			cartaCampo.efectoEnemigo(ladoUno);
+		}
+	}
 
 	public void destruirTodosLosMonstruos() {
 		ladoUno.destruirTodosLosMonstruos();
