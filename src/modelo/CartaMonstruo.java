@@ -69,5 +69,21 @@ public class CartaMonstruo extends Carta {
 		}
 		return -1;
 	}
+	
+	public void aumentarAtaque(int aumento){
+		this.ataque = this.ataque + aumento;
+	}
+	
+	public void aumentarDefensa(int aumento){
+		this.defensa = this.defensa + aumento;
+	}
+	
+	public int extraerPuntosAtaque(){
+		return this.ataque;
+	}
+	
+	public int extraerPuntosDefensa(){
+		return this.defensa;
+	}
 
 }
