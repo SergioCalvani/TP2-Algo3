@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Lado {
 
 	private int tamanio;
+	private CartaDeCampo CartaCampo;
 	private CartaMonstruo[] zonaDeMonstruos;
 	private Carta[] zonaMagica;
 	private ArrayList<Carta> cementerio;
@@ -26,6 +27,11 @@ public class Lado {
 
 	public boolean esDuenio(Jugador jugador) {
 		return this.duenio == jugador;
+	}
+	
+	public void colocarCartaDeCampo(CartaDeCampo campo){
+		CartaCampo = campo;
+		campo.asignarTableroYDuenio(this.tablero,this.duenio);
 	}
 
 	public boolean estaEnCampoMonstruo(CartaMonstruo monstruo) {
@@ -92,6 +98,10 @@ public class Lado {
 		magica.voltear();
 	}
 	
+	public void voltearCartaDeCampo(){
+		CartaCampo.voltear();
+	}
+	
 	public void sacrificar(int i) {
 		this.destruirCartaMonstruo(i);
 		(this.sacrificios)++;
@@ -106,6 +116,22 @@ public class Lado {
 		for (CartaMonstruo monstruo: this.zonaDeMonstruos) {
 			if (monstruo != null) {
 				monstruo.destruir();
+			}
+		}
+	}
+	
+	public void aumentarPuntosAtaque(int aumento){
+		for (int i = 0; i < this.tamanio; i++) {
+			if(zonaDeMonstruos[i] != null){
+				this.zonaDeMonstruos[i].aumentarAtaque(aumento);
+			}
+		}
+	}
+	
+	public void aumentarPuntosDefensa(int aumento){
+		for (int i = 0; i < this.tamanio; i++) {
+			if(zonaDeMonstruos[i] != null){
+				this.zonaDeMonstruos[i].aumentarDefensa(aumento);
 			}
 		}
 	}
