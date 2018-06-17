@@ -14,8 +14,9 @@ public abstract class CartaDeCampo extends Carta{
 		this.duenio = unDuenio;
 	}
 	
-	@Override
-	public abstract void activar();
+	public void activar() {
+		this.tablero.aplicarEfectoDeCampo(this.duenio, this);
+	}
 	
 	public abstract void efectoDuenio(Lado unLado);
 	

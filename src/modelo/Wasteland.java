@@ -7,11 +7,6 @@ public class Wasteland extends CartaDeCampo{
 	}
 
 	@Override
-	public void activar() {
-		this.tablero.aplicarEfectoDeCampo(this.duenio, this);
-	}
-
-	@Override
 	public void efectoDuenio(Lado unLado) {
 		unLado.aumentarPuntosAtaque(200);
 	}

@@ -14,6 +14,7 @@ import modelo.Jugador;
 import modelo.Lado;
 import modelo.Tablero;
 import modelo.Yugioh;
+import modelo.Sogen;
 
 class YugiohTest {
 
@@ -310,17 +311,34 @@ class YugiohTest {
 		
 		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
 		ladoUno.colocar(beautiful, 0);
-		CartaMonstruo huevo = new CartaMonstruo("Huevo Monstruoso", 600, 900, 3);
-		ladoUno.colocar(huevo, 1);
 		CartaMonstruo time = new CartaMonstruo("Time Wizard", 500, 400, 2);
 		ladoDos.colocar(time, 0);
 		
 		CartaDeCampo wasteland = new Wasteland();
 		ladoUno.colocarCartaDeCampo(wasteland);
-		ladoUno.voltearCartaDeCampo();
 		
 		assertEquals(1800,beautiful.extraerPuntosAtaque());
-		assertEquals(800,huevo.extraerPuntosAtaque());
 		assertEquals(700,time.extraerPuntosDefensa());
+	}
+	
+	@Test
+	void testAgregoyActivoCartaDeCampoSogen(){
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Jugador jugadorDos = yugioh.obtenerJugadorDos();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		Lado ladoDos = tablero.obtenerLadoDe(jugadorDos);
+		
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoUno.colocar(beautiful, 0);
+		CartaMonstruo time = new CartaMonstruo("Time Wizard", 500, 400, 2);
+		ladoDos.colocar(time, 0);
+		
+		CartaDeCampo sogen = new Sogen();
+		ladoUno.colocarCartaDeCampo(sogen);
+		
+		assertEquals(1300,beautiful.extraerPuntosDefensa());
+		assertEquals(700,time.extraerPuntosAtaque());
 	}
 }
