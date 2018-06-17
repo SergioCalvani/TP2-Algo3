@@ -3,13 +3,13 @@ package modelo;
 
 public class CartaMonstruo extends Carta {
 
-	private int ataque;
-	private int defensa;
-	private int nivel;
-	private Jugador duenio;
-	private EstadoAtaque estadoAtaque;
-	private EstadoDefensa estadoDefensa;
-	private Estado estadoActual;
+	protected int ataque;
+	protected int defensa;
+	protected int nivel;
+	protected Jugador duenio;
+	protected EstadoAtaque estadoAtaque;
+	protected EstadoDefensa estadoDefensa;
+	protected Estado estadoActual;
 	
 	public CartaMonstruo(String nombre, int ataque, int defensa, int nivel) {
 		super(nombre);
