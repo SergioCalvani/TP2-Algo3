@@ -29,6 +29,10 @@ public class Lado {
 		return this.duenio == jugador;
 	}
 	
+	public CartaMonstruo[] obtenerZonaMonstruo(){
+		return zonaDeMonstruos;
+	}
+	
 	public void colocarCartaDeCampo(CartaDeCampo campo){
 		CartaCampo = campo;
 		campo.asignarTableroYDuenio(this.tablero,this.duenio);
@@ -94,9 +98,13 @@ public class Lado {
 	}
 
 	public void voltearCartaMagicaEnPosicion(int i) {
-
 		CartaMagica magica = (CartaMagica) this.zonaMagica[i];
 		magica.voltear();
+	}
+	
+	public void voltearCartaMostruoEnPosicion(int i) {
+		CartaMonstruo monstruo = (CartaMonstruo) this.zonaDeMonstruos[i];
+		monstruo.voltear();
 	}
 	
 	public void sacrificar(int i) {
@@ -106,6 +114,10 @@ public class Lado {
 	
 	public Tablero obtenerTablero() {
 		return this.tablero;
+	}
+	
+	public Jugador obtenerJugador(){
+		return this.duenio;
 	}
 
 	public void destruirTodosLosMonstruos() {
