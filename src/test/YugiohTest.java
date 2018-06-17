@@ -15,6 +15,8 @@ import modelo.Lado;
 import modelo.Tablero;
 import modelo.Yugioh;
 import modelo.Sogen;
+import modelo.Jinzo;
+import modelo.Fisura;
 
 class YugiohTest {
 
@@ -340,5 +342,47 @@ class YugiohTest {
 		
 		assertEquals(1300,beautiful.extraerPuntosDefensa());
 		assertEquals(700,time.extraerPuntosAtaque());
+	}
+	
+	@Test
+	void testAgregoJinzoYAtacoDirectamenteAlJugador(){
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Jugador jugadorDos = yugioh.obtenerJugadorDos();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		Lado ladoDos = tablero.obtenerLadoDe(jugadorDos);
+
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		ladoDos.colocar(amazon, 0);
+		CartaMonstruo jinzo = new Jinzo();
+		ladoUno.colocar(jinzo,0);
+		
+		ladoUno.voltearCartaMostruoEnPosicion(0);
+		
+		//Jinzo #7 ataca directamente al jugador enemigo
+		assertEquals(6500,jugadorDos.obtenerVida());
+	}
+	
+	@Test
+	void testAgregoYActivoCartaMagicaFisura(){
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Jugador jugadorDos = yugioh.obtenerJugadorDos();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		Lado ladoDos = tablero.obtenerLadoDe(jugadorDos);
+
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		ladoDos.colocar(amazon, 0);
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoDos.colocar(beautiful, 1);
+		CartaMagica fisura = new Fisura();
+		ladoUno.colocar(fisura,0);
+		
+		ladoUno.voltearCartaMagicaEnPosicion(0);
+		
+		//Destruye la carta enemiga de menor ataque
+		assertTrue(ladoDos.cementerioContiene(amazon));
 	}
 }
