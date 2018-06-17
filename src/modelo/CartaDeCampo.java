@@ -7,6 +7,7 @@ public abstract class CartaDeCampo extends Carta{
 	
 	public CartaDeCampo(String unNombre){
 		super(unNombre);
+		this.bocaArriba = true;
 	}
 	
 	public void asignarTableroYDuenio(Tablero unTablero,Jugador unDuenio) {

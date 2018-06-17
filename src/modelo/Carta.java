@@ -3,7 +3,7 @@ package modelo;
 public abstract class Carta {
 
 	protected String nombre;
-	private boolean bocaArriba;
+	protected boolean bocaArriba;
 	
 	public Carta(String nombre) {
 		this.nombre = nombre;
