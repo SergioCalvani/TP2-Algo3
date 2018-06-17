@@ -32,6 +32,7 @@ public class Lado {
 	public void colocarCartaDeCampo(CartaDeCampo campo){
 		CartaCampo = campo;
 		campo.asignarTableroYDuenio(this.tablero,this.duenio);
+		campo.activar();
 	}
 
 	public boolean estaEnCampoMonstruo(CartaMonstruo monstruo) {
@@ -96,10 +97,6 @@ public class Lado {
 
 		CartaMagica magica = (CartaMagica) this.zonaMagica[i];
 		magica.voltear();
-	}
-	
-	public void voltearCartaDeCampo(){
-		CartaCampo.voltear();
 	}
 	
 	public void sacrificar(int i) {
