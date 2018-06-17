@@ -2,8 +2,8 @@ package modelo;
 
 public class Tablero {
 
-	Lado ladoUno;
-	Lado ladoDos;
+	private Lado ladoUno;
+	private Lado ladoDos;
 	
 	public Tablero(Jugador jugadorUno, Jugador jugadorDos) {
 		this.ladoUno = new Lado(jugadorUno, this);
@@ -15,6 +15,24 @@ public class Tablero {
 			return ladoUno;
 		} else {
 			return ladoDos;
+		}
+	}
+	
+	public Lado obtenerLadoEnemigo(Lado lado){
+		if(ladoUno == lado){
+			return ladoDos;
+		}
+		else{
+			return ladoUno;
+		}
+	}
+	
+	public Jugador obtenerJugadorEnemigo(Jugador duenio){
+		if(ladoUno == this.obtenerLadoDe(duenio)){
+			return ladoDos.obtenerJugador();
+		}
+		else{
+			return ladoUno.obtenerJugador();
 		}
 	}
 	
