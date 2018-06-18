@@ -9,6 +9,8 @@ import modelo.CartaMagica;
 import modelo.CartaMonstruo;
 import modelo.CartaTrampa;
 import modelo.CilindroMagico;
+import modelo.DragonBlancoDeOjosAzules;
+import modelo.DragonDefinitivoDeOjosAzules;
 import modelo.Wasteland;
 import modelo.Jugador;
 import modelo.Lado;
@@ -429,4 +431,31 @@ class YugiohTest {
 		
 		assertTrue(ladoDos.cementerioContiene(amazon));
 	}
+
+	@Test
+	void testSeSacrificarTresDragonesBlancosParaBajarADragonDefinitivo() {
+		Yugioh yugioh = new Yugioh();
+		Jugador jugador = yugioh.obtenerJugadorUno();
+		Lado lado = jugador.obtenerLado();
+
+		DragonDefinitivoDeOjosAzules dragonDefinitivo = new DragonDefinitivoDeOjosAzules();
+		
+		for (int i = 0; i < 3; i++) {
+			DragonBlancoDeOjosAzules dragon = new DragonBlancoDeOjosAzules();
+			CartaMonstruo harpie1 = new CartaMonstruo("Harpie Girl", 500, 500, 2);
+			CartaMonstruo harpie2 = new CartaMonstruo("Harpie Girl", 500, 500, 2);
+			lado.colocar(harpie1, i);
+			lado.colocar(harpie2, i + 1);
+			dragon.agregarSacrificio(harpie1);
+			dragon.agregarSacrificio(harpie2);
+			lado.colocar(dragon, i);
+			dragonDefinitivo.agregarSacrificio(dragon);
+		}
+
+		lado.colocar(dragonDefinitivo, 0);
+		
+		//Verifico que se haya podido bajar.
+		assertTrue(lado.estaMonstruo(dragonDefinitivo, 0));
+	}
 }
+
