@@ -294,13 +294,13 @@ class YugiohTest {
 		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
 		ladoUno.colocar(amazon, 1);
 		
-		CartaMonstruo darkWitch = new CartaMonstruo("Dark Witch", 1800, 1700, 7);
-		darkWitch.agregarSacrificio(beautiful);
-		darkWitch.agregarSacrificio(amazon);
-		ladoUno.colocar(darkWitch, 2);
+		CartaMonstruo darkMagician = new CartaMonstruo("Dark Magician", 2500, 2100, 7);
+		darkMagician.agregarSacrificio(beautiful);
+		darkMagician.agregarSacrificio(amazon);
+		ladoUno.colocar(darkMagician, 2);
 		
 		// verifico que esta darkWitch en la posicion 0
-		assertTrue(ladoUno.estaMonstruo(darkWitch, 2));
+		assertTrue(ladoUno.estaMonstruo(darkMagician, 2));
 		
 		// verifico que beautiful fue sacrificada
 		assertTrue(ladoUno.cementerioContiene(beautiful));
