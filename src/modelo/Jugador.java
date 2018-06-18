@@ -4,9 +4,11 @@ public class Jugador {
 
 	private int puntosDeVida;
 	private Lado lado;
+	private Mano mano;
 	
 	public Jugador() {
 		this.puntosDeVida = 7000; 
+		this.mano = new Mano();
 	}
 	
 	public void disminuirVidaEn(int danio) {
@@ -24,5 +26,11 @@ public class Jugador {
 	public int obtenerVida() {
 		return this.puntosDeVida;
 	}
+
+	public Mano obtenerMano() {
+		return this.mano;
+	}
+
+
 
 }

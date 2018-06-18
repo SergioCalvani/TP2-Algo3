@@ -12,6 +12,7 @@ public class Lado {
 	private Jugador duenio;
 	private Tablero tablero;
 	private int sacrificios;
+	private Mazo mazo;
 	
 	public Lado(Jugador jugador, Tablero tablero) {
 		
@@ -23,6 +24,7 @@ public class Lado {
 		this.duenio.asignarLado(this);
 		this.tablero = tablero;
 		this.sacrificios = 0;
+		this.mazo = new Mazo();
 	}
 
 	public boolean esDuenio(Jugador jugador) {
@@ -143,5 +145,9 @@ public class Lado {
 				this.zonaDeMonstruos[i].aumentarDefensa(aumento);
 			}
 		}
+	}
+
+	public Mazo obtenerMazo() {
+		return this.mazo;
 	}
 }

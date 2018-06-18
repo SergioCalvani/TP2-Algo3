@@ -12,6 +12,9 @@ import modelo.CilindroMagico;
 import modelo.Wasteland;
 import modelo.Jugador;
 import modelo.Lado;
+import modelo.Mano;
+import modelo.Mazo;
+import modelo.OllaDeLaCodicia;
 import modelo.Tablero;
 import modelo.Yugioh;
 import modelo.Sogen;
@@ -385,4 +388,31 @@ class YugiohTest {
 		//Destruye la carta enemiga de menor ataque
 		assertTrue(ladoDos.cementerioContiene(amazon));
 	}
+	
+	@Test
+	void testActivarOllaDeLaCodiciaRobaDosCartasDelMazo() {
+		
+		Yugioh yugioh = new Yugioh();
+		Jugador jugador = yugioh.obtenerJugadorUno();
+		Lado lado = jugador.obtenerLado();
+		Mano mano = jugador.obtenerMano();
+		Mazo mazo = lado.obtenerMazo();
+		
+		OllaDeLaCodicia ollaDeLaCodicia = new OllaDeLaCodicia();
+		lado.colocar(ollaDeLaCodicia, 0);
+		lado.voltearCartaMagicaEnPosicion(0);
+		
+		// Se roban 2 cartas de un mazo de 40
+		assertEquals(38, mazo.obtenerTamanio());
+		// Se agregan 2 cartas a una mano vacia.
+		assertEquals(2, mano.obtenerTamanio());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
