@@ -69,6 +69,7 @@ public class Lado {
 
 	public void colocar(CartaTrampa trampa, int i) {
 		this.zonaMagica[i] = trampa;
+		trampa.asignarDuenio(this.duenio);
 	}
 
 	public void destruirCartaMonstruo(int i) {
@@ -150,11 +151,25 @@ public class Lado {
 	}
 	
 	public void atacarMonstruoEnPosicionCon(int posicionMonstruoAtacado,CartaMonstruo cartaParaAtacar){
+		boolean activoTrampa = false;
+		CartaTrampa cartaMagica;
 		CartaMonstruo cartaAtacada;
 		cartaAtacada = this.zonaDeMonstruos[posicionMonstruoAtacado];
-		cartaParaAtacar.atacarA(cartaAtacada);
+		//MUCHOS IF, REFACTORIZAR LUEGO
+		for(int i = 0; i < this.tamanio; i++){
+			if(this.zonaMagica[i] != null){
+				cartaMagica = (CartaTrampa) this.zonaMagica[i];
+				if((cartaMagica.obtenerNombre() == "Cilindro Magico") | (cartaMagica.obtenerNombre() == "Reinforcements")){
+					cartaMagica.activar(cartaAtacada,cartaParaAtacar);
+					activoTrampa = true;
+				} 
+			}
+		}
+		if(!activoTrampa){
+			cartaParaAtacar.atacarA(cartaAtacada);
+		}
 	}
-		
+	
 	public boolean estaMonstruo(CartaMonstruo monstruoBuscado, int i) {
 		CartaMonstruo monstruo = this.zonaDeMonstruos[i];
 		return monstruoBuscado == monstruo;
