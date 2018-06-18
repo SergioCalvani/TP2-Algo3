@@ -260,50 +260,52 @@ class YugiohTest {
 	}
 
 	@Test
-	void testMonstruoRequiereUnSacreificio() {
+	public void testSeBajaUnMonstruoDe5EstrellasAlCampoYTomaUnSacrificio() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
-		
 		Jugador jugadorUno = yugioh.obtenerJugadorUno();
 		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
 		
 		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
 		ladoUno.colocar(beautiful, 0);
 		
-		ladoUno.sacrificar(0);
-
-		CartaMonstruo magician = new CartaMonstruo("Dark Magician Girl", 2000, 1700, 6);
-		ladoUno.colocar(magician, 0);
+		CartaMonstruo darkWitch = new CartaMonstruo("Dark Witch", 1800, 1700, 5);
+		darkWitch.agregarSacrificio(beautiful);
+		ladoUno.colocar(darkWitch, 0);
 		
+		// verifico que esta darkWitch en la posicion 0
+		assertTrue(ladoUno.estaMonstruo(darkWitch, 0));
 		
+		// verifico que beautiful fue sacrificada
 		assertTrue(ladoUno.cementerioContiene(beautiful));
-		assertTrue(ladoUno.estaEnCampoMonstruo(magician));
 	}
 	
-
 	@Test
-	void testMonstruoRequiereDosSacreificio() {
+	public void testSeBajaUnMonstruoDe7EstrellasAlCampoYTomaDosSacrificio() {
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
-		
 		Jugador jugadorUno = yugioh.obtenerJugadorUno();
 		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
 		
 		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
 		ladoUno.colocar(beautiful, 0);
-		CartaMonstruo time = new CartaMonstruo("Time Wizard", 500, 400, 2);
-		ladoUno.colocar(time, 1);
 		
-		ladoUno.sacrificar(0);
-		ladoUno.sacrificar(1);
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		ladoUno.colocar(amazon, 1);
 		
-		CartaMonstruo magician= new CartaMonstruo("Dark Magician", 2500, 2100, 7);
-		ladoUno.colocar(magician, 0);
+		CartaMonstruo darkWitch = new CartaMonstruo("Dark Witch", 1800, 1700, 7);
+		darkWitch.agregarSacrificio(beautiful);
+		darkWitch.agregarSacrificio(amazon);
+		ladoUno.colocar(darkWitch, 2);
 		
+		// verifico que esta darkWitch en la posicion 0
+		assertTrue(ladoUno.estaMonstruo(darkWitch, 2));
+		
+		// verifico que beautiful fue sacrificada
 		assertTrue(ladoUno.cementerioContiene(beautiful));
-		assertTrue(ladoUno.cementerioContiene(time));
-		assertTrue(ladoUno.estaEnCampoMonstruo(magician));
+		assertTrue(ladoUno.cementerioContiene(amazon));
 	}
+	
 	
 	@Test
 	void testAgregoyActivoCartaDeCampoWasteland(){
@@ -407,12 +409,4 @@ class YugiohTest {
 		// Se agregan 2 cartas a una mano vacia.
 		assertEquals(2, mano.obtenerTamanio());
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }

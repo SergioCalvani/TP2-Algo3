@@ -51,15 +51,7 @@ public class Lado {
 	}
 	
 	public void colocar(CartaMonstruo monstruo, int i) {
-		if(monstruo.sacrificiosRequeridos() > this.sacrificios) {
-			try {
-				throw new SacrificiosInsuficientesException();
-			} catch (SacrificiosInsuficientesException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		this.sacrificios=this.sacrificios-monstruo.sacrificiosRequeridos();
+		monstruo.sacrificarSacricios();
 		this.zonaDeMonstruos[i] = monstruo;
 		monstruo.cambiarAPosicionDeAtaque();
 		monstruo.asignarDuenio(this.duenio);
@@ -149,5 +141,10 @@ public class Lado {
 
 	public Mazo obtenerMazo() {
 		return this.mazo;
+	}
+	
+	public boolean estaMonstruo(CartaMonstruo monstruoBuscado, int i) {
+		CartaMonstruo monstruo = this.zonaDeMonstruos[i];
+		return monstruoBuscado == monstruo;
 	}
 }
