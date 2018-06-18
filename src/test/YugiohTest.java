@@ -20,6 +20,7 @@ import modelo.Yugioh;
 import modelo.Sogen;
 import modelo.Jinzo;
 import modelo.Fisura;
+import modelo.InsectoComeHombres;
 
 class YugiohTest {
 
@@ -400,7 +401,7 @@ class YugiohTest {
 		Mano mano = jugador.obtenerMano();
 		Mazo mazo = lado.obtenerMazo();
 		
-		OllaDeLaCodicia ollaDeLaCodicia = new OllaDeLaCodicia();
+		CartaMagica ollaDeLaCodicia = new OllaDeLaCodicia();
 		lado.colocar(ollaDeLaCodicia, 0);
 		lado.voltearCartaMagicaEnPosicion(0);
 		
@@ -408,5 +409,25 @@ class YugiohTest {
 		assertEquals(38, mazo.obtenerTamanio());
 		// Se agregan 2 cartas a una mano vacia.
 		assertEquals(2, mano.obtenerTamanio());
+	}
+	
+	@Test
+	void testAtacoInsectoComeHombresYMeDestruyo(){
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Jugador jugadorDos = yugioh.obtenerJugadorDos();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		Lado ladoDos = tablero.obtenerLadoDe(jugadorDos);
+		
+		CartaMonstruo insecto = new InsectoComeHombres();
+		ladoUno.colocar(insecto,0);
+		ladoUno.cambiarAPosicionDeDefensaMonstruo(0);
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		ladoDos.colocar(amazon,0);
+		
+		amazon.atacarA(insecto);
+		
+		assertTrue(ladoDos.cementerioContiene(amazon));
 	}
 }
