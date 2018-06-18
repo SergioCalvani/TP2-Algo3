@@ -23,6 +23,7 @@ import modelo.Sogen;
 import modelo.Jinzo;
 import modelo.Fisura;
 import modelo.InsectoComeHombres;
+import modelo.Reinforcements;
 
 class YugiohTest {
 
@@ -429,7 +430,10 @@ class YugiohTest {
 		
 		ladoDos.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
 		
+		//Al atacar al Insecto, ese mostruo se destruye
 		assertTrue(ladoDos.cementerioContiene(amazon));
+		//Verifico que el Insecto queda en mi Zona
+		assertTrue(ladoUno.estaMonstruo(insecto,0));
 	}
 
 	@Test
@@ -455,7 +459,59 @@ class YugiohTest {
 		lado.colocar(dragonDefinitivo, 0);
 		
 		//Verifico que se haya podido bajar.
-		assertTrue(lado.estaMonstruo(dragonDefinitivo, 0));
+		assertTrue(lado.estaMonstruo(dragonDefinitivo,0));
+	}
+	
+	@Test
+	void testColocoCilindroMagicoYAlAtacarActivoTrampa(){
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Jugador jugadorDos = yugioh.obtenerJugadorDos();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		Lado ladoDos = tablero.obtenerLadoDe(jugadorDos);
+		
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		ladoUno.colocar(amazon, 0);
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoDos.colocar(beautiful, 0);
+		CartaTrampa cilindro = new CilindroMagico();
+		ladoUno.colocar(cilindro,0);
+		
+		ladoDos.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
+		
+		//Cilindro Magico niega el ataque y le disminuye la vida al jugador
+		assertEquals(5400,jugadorDos.obtenerVida());
+		//Verifico que el Monstruo atacado sigue en el campo
+		assertTrue(ladoUno.estaMonstruo(amazon,0));
+		//Verifico que el Monstruo que ataca siguen en el campo
+		assertTrue(ladoDos.estaMonstruo(beautiful,0));
+	}
+	
+	@Test
+	void testColocarReinforcementsYAlAtacarActivoTrampa(){
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Jugador jugadorDos = yugioh.obtenerJugadorDos();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		Lado ladoDos = tablero.obtenerLadoDe(jugadorDos);
+		
+		CartaMonstruo agresorOscuro = new CartaMonstruo("Agresor Oscuro",1200,1200,2);
+		ladoUno.colocar(agresorOscuro,0);
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoDos.colocar(beautiful, 0);
+		CartaTrampa reinforcements = new Reinforcements();
+		ladoUno.colocar(reinforcements,0);
+		
+		ladoDos.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
+		
+		//Aumenta los puntos de ataque en 500
+		assertEquals(1700,agresorOscuro.extraerPuntosAtaque());
+		//Con el efecto de la trampa, al aumentar, se le descuenta vida
+		assertEquals(6900,jugadorDos.obtenerVida());
+		//El monstruo que ataco, quedo destruido
+		assertTrue(ladoDos.cementerioContiene(beautiful));
 	}
 }
 
