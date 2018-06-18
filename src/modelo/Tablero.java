@@ -52,4 +52,12 @@ public class Tablero {
 		ladoDos.destruirTodosLosMonstruos();
 	}
 
+	public void atacarAEnemigoCon(Lado ladoQueAtaca,CartaMonstruo cartaParaAtacar,int posicionZonaContrario){
+		if(ladoQueAtaca == ladoUno){
+			ladoDos.atacarMonstruoEnPosicionCon(posicionZonaContrario,cartaParaAtacar);
+		}
+		else{
+			ladoUno.atacarMonstruoEnPosicionCon(posicionZonaContrario,cartaParaAtacar);
+		}
+	}
 }

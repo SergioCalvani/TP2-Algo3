@@ -110,7 +110,7 @@ class YugiohTest {
 		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
 		ladoDos.colocar(beautiful, 0);
 
-		amazon.atacarA(beautiful);
+		ladoUno.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
 		
 		// Verifico que se destruyo amazon
 		assertTrue(ladoUno.cementerioContiene(amazon));
@@ -135,7 +135,7 @@ class YugiohTest {
 		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
 		ladoDos.colocar(amazon, 0);
 
-		beautiful.atacarA(amazon);
+		ladoUno.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
 		
 		// Verifico que se destruyo amazon
 		assertTrue(ladoDos.cementerioContiene(amazon));
@@ -160,8 +160,7 @@ class YugiohTest {
 		CartaMonstruo beautiful2 = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
 		ladoDos.colocar(beautiful2, 0);
 		
-
-		beautiful1.atacarA(beautiful2);
+		ladoUno.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
 		
 		// Verifico que se destruyeron ambas
 		assertTrue(ladoUno.cementerioContiene(beautiful1));
@@ -190,7 +189,7 @@ class YugiohTest {
 		ladoDos.colocar(beautiful, 0);
 		ladoDos.cambiarAPosicionDeDefensaMonstruo(0);
 
-		amazon.atacarA(beautiful);
+		ladoUno.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
 		
 		// Verifico que se destruyo beautiful
 		assertTrue(ladoDos.cementerioContiene(beautiful));
@@ -217,7 +216,7 @@ class YugiohTest {
 		ladoDos.colocar(amazon, 0);
 		ladoDos.cambiarAPosicionDeDefensaMonstruo(0);
 
-		huevo.atacarA(amazon);
+		ladoUno.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
 		
 		// Verifico que no se destruyo huevo
 		assertFalse(ladoUno.cementerioContiene(huevo));
@@ -424,7 +423,7 @@ class YugiohTest {
 		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
 		ladoDos.colocar(amazon,0);
 		
-		amazon.atacarA(insecto);
+		ladoDos.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
 		
 		assertTrue(ladoDos.cementerioContiene(amazon));
 	}

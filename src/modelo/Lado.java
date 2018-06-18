@@ -150,4 +150,16 @@ public class Lado {
 	public Mazo obtenerMazo() {
 		return this.mazo;
 	}
+	
+	public void atacarConMonstruoEnPosicionAMonstruoEnPosicion(int posicionDeMiZona,int posicionZonaContrario){
+		CartaMonstruo cartaParaAtacar;
+		cartaParaAtacar = this.zonaDeMonstruos[posicionDeMiZona];
+		this.tablero.atacarAEnemigoCon(this,cartaParaAtacar,posicionZonaContrario);
+	}
+	
+	public void atacarMonstruoEnPosicionCon(int posicionMonstruoAtacado,CartaMonstruo cartaParaAtacar){
+		CartaMonstruo cartaAtacada;
+		cartaAtacada = this.zonaDeMonstruos[posicionMonstruoAtacado];
+		cartaParaAtacar.atacarA(cartaAtacada);
+	}
 }
