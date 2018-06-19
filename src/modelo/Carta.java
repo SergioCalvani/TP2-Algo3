@@ -21,5 +21,8 @@ public abstract class Carta {
 		this.activar();
 	}
 	
-	public void activar() {};
+	public void activar() {}
+
+	public void permitirInvocador(InvocadorDeExodia invocadorDeExodia) {		
+	};
 }

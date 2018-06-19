@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import modelo.AgujeroOscuro;
+import modelo.BrazoDerechoDeExodia;
+import modelo.BrazoIzquierdoDeExodia;
+import modelo.CabezaDeExodia;
 import modelo.CartaDeCampo;
 import modelo.CartaMagica;
 import modelo.CartaMonstruo;
@@ -17,6 +20,8 @@ import modelo.Lado;
 import modelo.Mano;
 import modelo.Mazo;
 import modelo.OllaDeLaCodicia;
+import modelo.PiernaDerechaDeExodia;
+import modelo.PiernaIzquierdaDeExodia;
 import modelo.Tablero;
 import modelo.Yugioh;
 import modelo.Sogen;
@@ -527,6 +532,22 @@ class YugiohTest {
 		
 		assertTrue(jugador.esPerdedor());
 		assertTrue(yugioh.estaTerminado());	
+	}
+	
+	@Test
+	void testJugadorTieneLasCincoPartesDeExodiaYGanaLaPartida() {
+		Yugioh yugioh = new Yugioh();
+		Jugador jugador = yugioh.obtenerJugadorUno();
+		Mano mano = jugador.obtenerMano();
+		
+		mano.agregar(new CabezaDeExodia());
+		mano.agregar(new BrazoDerechoDeExodia());
+		mano.agregar(new BrazoIzquierdoDeExodia());
+		mano.agregar(new PiernaDerechaDeExodia());
+		mano.agregar(new PiernaIzquierdaDeExodia());
+		
+		assertTrue(jugador.esGanador());
+		assertTrue(yugioh.estaTerminado());
 	}
 }
 

@@ -19,4 +19,10 @@ public class Mano {
 		return this.coleccionDeCartas.size();
 	}
 
+	public boolean contieneExodia() {
+		InvocadorDeExodia invocador = new InvocadorDeExodia();
+		return invocador.exodiaEstaInvocado(this.coleccionDeCartas);
+			  
+	}
+
 }

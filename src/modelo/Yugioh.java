@@ -29,6 +29,7 @@ public class Yugioh {
 	}
 	
 	public boolean estaTerminado() {
-		return this.jugadorUno.esPerdedor() || this.jugadorDos.esPerdedor();
+		return this.jugadorUno.esPerdedor() || this.jugadorDos.esPerdedor() 
+			   || this.jugadorUno.esGanador() || this.jugadorDos.esGanador();
 	}
 }
