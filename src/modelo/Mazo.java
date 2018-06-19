@@ -45,4 +45,8 @@ public class Mazo {
 	public Carta robar() {
 		return this.pila.pop();
 	}
+
+	public boolean estaVacio() {
+		return this.pila.isEmpty();
+	}
 }

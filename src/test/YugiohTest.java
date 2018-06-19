@@ -513,5 +513,20 @@ class YugiohTest {
 		//El monstruo que ataco, quedo destruido
 		assertTrue(ladoDos.cementerioContiene(beautiful));
 	}
+	
+	@Test 
+	void testJugadorExtraeTodasSusCartasPierdeYTerminaElJuego() {
+		Yugioh yugioh = new Yugioh();
+		Jugador jugador = yugioh.obtenerJugadorUno();
+		Lado lado = jugador.obtenerLado();
+		Mazo mazo = lado.obtenerMazo();
+		
+		while (!mazo.estaVacio()) {
+			mazo.robar();
+		}
+		
+		assertTrue(jugador.esPerdedor());
+		assertTrue(yugioh.estaTerminado());	
+	}
 }
 

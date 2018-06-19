@@ -1,14 +1,18 @@
 package modelo;
 
+import java.util.function.BooleanSupplier;
+
 public class Jugador {
 
 	private int puntosDeVida;
 	private Lado lado;
 	private Mano mano;
+	boolean perdedor;
 	
 	public Jugador() {
 		this.puntosDeVida = 7000; 
 		this.mano = new Mano();
+		this.perdedor = false;
 	}
 	
 	public void disminuirVidaEn(int danio) {
@@ -29,6 +33,10 @@ public class Jugador {
 
 	public Mano obtenerMano() {
 		return this.mano;
+	}
+
+	public boolean esPerdedor() {
+		return this.puntosDeVida == 0 || this.lado.obtenerMazo().estaVacio();
 	}
 
 
