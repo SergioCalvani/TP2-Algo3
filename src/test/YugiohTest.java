@@ -7,7 +7,7 @@ import modelo.CartaDeCampo;
 import modelo.CartaMagica;
 import modelo.CartaMonstruo;
 import modelo.CartaTrampa;
-import modelo.Wasteland;
+import modelo.cartas.Wasteland;
 import modelo.Jugador;
 import modelo.Lado;
 import modelo.Mano;

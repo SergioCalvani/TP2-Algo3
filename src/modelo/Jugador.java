@@ -22,6 +22,7 @@ public class Jugador {
 	public void asignarLado(Lado lado) {
 		this.lado = lado;
 	}
+	
 
 	public Lado obtenerLado() {
 		return this.lado;

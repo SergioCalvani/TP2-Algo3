@@ -1,4 +1,7 @@
-package modelo;
+package modelo.cartas;
+
+import modelo.CartaDeCampo;
+import modelo.Lado;
 
 public class Wasteland extends CartaDeCampo{
 	
