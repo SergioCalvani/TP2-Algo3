@@ -124,8 +124,8 @@ class YugiohTest {
 		assertTrue(ladoUno.cementerioContiene(amazon));
 		
 		// diferencia de ataque = 300
-		// Se restan de jugadorUno y queda 6700.
-		assertEquals(6700, jugadorUno.obtenerVida());
+		// Se restan de jugadorUno y queda 7700.
+		assertEquals(7700, jugadorUno.obtenerVida());
 	}
 	
 	@Test
@@ -150,7 +150,7 @@ class YugiohTest {
 		
 		// diferencia de ataque = 300
 		// Se restan de jugadorDos y queda 6700.
-		assertEquals(6700, jugadorDos.obtenerVida());
+		assertEquals(7700, jugadorDos.obtenerVida());
 	}
 	
 	@Test
@@ -176,8 +176,8 @@ class YugiohTest {
 		
 		// diferencia de ataque = 0
 		// Ninguno de los jugadores recibio danio
-		assertEquals(7000, jugadorUno.obtenerVida());
-		assertEquals(7000, jugadorDos.obtenerVida());
+		assertEquals(8000, jugadorUno.obtenerVida());
+		assertEquals(8000, jugadorDos.obtenerVida());
 	}
 	
 	@Test
@@ -204,7 +204,7 @@ class YugiohTest {
 		
 		// diferencia de puntos = 1300 - 800 = 500.
 		// Pero jugadorDos no recibe danio
-		assertEquals(7000, jugadorDos.obtenerVida());
+		assertEquals(8000, jugadorDos.obtenerVida());
 	}
 	
 	@Test
@@ -230,7 +230,7 @@ class YugiohTest {
 		assertFalse(ladoUno.cementerioContiene(huevo));
 		
 		// Pero jugadorUno no recibe danio
-		assertEquals(7000, jugadorUno.obtenerVida());
+		assertEquals(8000, jugadorUno.obtenerVida());
 	}
 	
 	@Test
@@ -263,8 +263,8 @@ class YugiohTest {
 		assertTrue(ladoDos.cementerioContiene(amazon));
 		
 		// Verifico que nadie recibio danio
-		assertEquals(7000, jugadorUno.obtenerVida());
-		assertEquals(7000, jugadorDos.obtenerVida());
+		assertEquals(8000, jugadorUno.obtenerVida());
+		assertEquals(8000, jugadorDos.obtenerVida());
 	}
 
 	@Test
@@ -374,7 +374,7 @@ class YugiohTest {
 		ladoUno.voltearCartaMostruoEnPosicion(0);
 		
 		//Jinzo #7 ataca directamente al jugador enemigo
-		assertEquals(6500,jugadorDos.obtenerVida());
+		assertEquals(7500,jugadorDos.obtenerVida());
 	}
 	
 	@Test
@@ -486,7 +486,7 @@ class YugiohTest {
 		ladoDos.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
 		
 		//Cilindro Magico niega el ataque y le disminuye la vida al jugador
-		assertEquals(5400,jugadorDos.obtenerVida());
+		assertEquals(6400,jugadorDos.obtenerVida());
 		//Verifico que el Monstruo atacado sigue en el campo
 		assertTrue(ladoUno.estaMonstruo(amazon,0));
 		//Verifico que el Monstruo que ataca siguen en el campo
@@ -514,7 +514,7 @@ class YugiohTest {
 		//Aumenta los puntos de ataque en 500
 		assertEquals(1700,agresorOscuro.extraerPuntosAtaque());
 		//Con el efecto de la trampa, al aumentar, se le descuenta vida
-		assertEquals(6900,jugadorDos.obtenerVida());
+		assertEquals(7900,jugadorDos.obtenerVida());
 		//El monstruo que ataco, quedo destruido
 		assertTrue(ladoDos.cementerioContiene(beautiful));
 	}

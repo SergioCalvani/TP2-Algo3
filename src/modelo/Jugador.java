@@ -10,7 +10,7 @@ public class Jugador {
 	boolean perdedor;
 	
 	public Jugador() {
-		this.puntosDeVida = 7000; 
+		this.puntosDeVida = 8000; 
 		this.mano = new Mano();
 		this.perdedor = false;
 	}
