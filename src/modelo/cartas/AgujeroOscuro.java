@@ -1,4 +1,7 @@
-package modelo;
+package modelo.cartas;
+
+import modelo.CartaMagica;
+import modelo.Tablero;
 
 public class AgujeroOscuro extends CartaMagica{
 

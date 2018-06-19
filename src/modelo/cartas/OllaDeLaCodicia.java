@@ -1,4 +1,8 @@
-package modelo;
+package modelo.cartas;
+
+import modelo.CartaMagica;
+import modelo.Mano;
+import modelo.Mazo;
 
 public class OllaDeLaCodicia extends CartaMagica {
 

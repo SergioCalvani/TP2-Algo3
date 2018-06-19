@@ -3,6 +3,10 @@ package modelo;
 import java.util.Collections;
 import java.util.Stack;
 
+import modelo.cartas.AgujeroOscuro;
+import modelo.cartas.CilindroMagico;
+import modelo.cartas.Fisura;
+
 public class Mazo {
 
 	private Stack<Carta> pila;

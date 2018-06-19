@@ -1,4 +1,7 @@
-package modelo;
+package modelo.cartas;
+
+import modelo.CartaMonstruo;
+import modelo.InvocadorDeExodia;
 
 public class CabezaDeExodia extends CartaMonstruo {
 

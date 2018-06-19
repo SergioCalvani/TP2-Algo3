@@ -3,32 +3,32 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-import modelo.AgujeroOscuro;
-import modelo.BrazoDerechoDeExodia;
-import modelo.BrazoIzquierdoDeExodia;
-import modelo.CabezaDeExodia;
 import modelo.CartaDeCampo;
 import modelo.CartaMagica;
 import modelo.CartaMonstruo;
 import modelo.CartaTrampa;
-import modelo.CilindroMagico;
-import modelo.DragonBlancoDeOjosAzules;
-import modelo.DragonDefinitivoDeOjosAzules;
 import modelo.Wasteland;
 import modelo.Jugador;
 import modelo.Lado;
 import modelo.Mano;
 import modelo.Mazo;
-import modelo.OllaDeLaCodicia;
-import modelo.PiernaDerechaDeExodia;
-import modelo.PiernaIzquierdaDeExodia;
 import modelo.Tablero;
 import modelo.Yugioh;
-import modelo.Sogen;
-import modelo.Jinzo;
-import modelo.Fisura;
-import modelo.InsectoComeHombres;
-import modelo.Reinforcements;
+import modelo.cartas.AgujeroOscuro;
+import modelo.cartas.BrazoDerechoDeExodia;
+import modelo.cartas.BrazoIzquierdoDeExodia;
+import modelo.cartas.CabezaDeExodia;
+import modelo.cartas.CilindroMagico;
+import modelo.cartas.DragonBlancoDeOjosAzules;
+import modelo.cartas.DragonDefinitivoDeOjosAzules;
+import modelo.cartas.Fisura;
+import modelo.cartas.InsectoComeHombres;
+import modelo.cartas.Jinzo;
+import modelo.cartas.OllaDeLaCodicia;
+import modelo.cartas.PiernaDerechaDeExodia;
+import modelo.cartas.PiernaIzquierdaDeExodia;
+import modelo.cartas.Reinforcements;
+import modelo.cartas.Sogen;
 
 class YugiohTest {
 

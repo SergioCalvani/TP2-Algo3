@@ -1,4 +1,9 @@
-package modelo;
+package modelo.cartas;
+
+import modelo.CartaMagica;
+import modelo.CartaMonstruo;
+import modelo.Lado;
+import modelo.Tablero;
 
 public class Fisura extends CartaMagica{
 

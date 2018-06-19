@@ -1,4 +1,8 @@
-package modelo;
+package modelo.cartas;
+
+import modelo.CartaMonstruo;
+import modelo.Jugador;
+import modelo.Lado;
 
 public class InsectoComeHombres extends CartaMonstruo{
 

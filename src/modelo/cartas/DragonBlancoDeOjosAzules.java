@@ -1,4 +1,6 @@
-package modelo;
+package modelo.cartas;
+
+import modelo.CartaMonstruo;
 
 public class DragonBlancoDeOjosAzules extends CartaMonstruo {
 

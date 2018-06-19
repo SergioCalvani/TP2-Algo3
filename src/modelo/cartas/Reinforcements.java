@@ -1,4 +1,7 @@
-package modelo;
+package modelo.cartas;
+
+import modelo.CartaMonstruo;
+import modelo.CartaTrampa;
 
 public class Reinforcements extends CartaTrampa{
 
