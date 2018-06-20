@@ -20,6 +20,7 @@ public class Lado {
 		this.zonaDeMonstruos = new CartaMonstruo[tamanio];
 		this.zonaMagica = new Carta[tamanio];
 		this.cementerio = new ArrayList<Carta>();
+		this.CartaCampo = null;
 		this.duenio = jugador;
 		this.duenio.asignarLado(this);
 		this.tablero = tablero;
@@ -37,6 +38,7 @@ public class Lado {
 	
 	public void colocarCartaDeCampo(CartaDeCampo campo){
 		CartaCampo = campo;
+		this.tablero.seAgregoCartaDeCampo();
 		campo.asignarTableroYDuenio(this.tablero,this.duenio);
 		campo.activar();
 	}
@@ -51,6 +53,12 @@ public class Lado {
 	}
 	
 	public void colocar(CartaMonstruo monstruo, int i) {
+		if(this.CartaCampo != null){
+			CartaCampo.aplicarEfectoCartaIndividualDuenio(monstruo);
+		}
+		else{
+			this.tablero.verificarCartaDeCampoLadoContrario(this,monstruo);
+		}
 		monstruo.sacrificarSacricios();
 		this.zonaDeMonstruos[i] = monstruo;
 		monstruo.cambiarAPosicionDeAtaque();
@@ -173,5 +181,9 @@ public class Lado {
 	public boolean estaMonstruo(CartaMonstruo monstruoBuscado, int i) {
 		CartaMonstruo monstruo = this.zonaDeMonstruos[i];
 		return monstruoBuscado == monstruo;
+	}
+	
+	public void aplicarEfectoCampoIndividualEnemigo(CartaMonstruo monstruo){
+		this.CartaCampo.aplicarEfectoCartaIndividualEnemigo(monstruo);
 	}
 }

@@ -4,10 +4,12 @@ public class Tablero {
 
 	private Lado ladoUno;
 	private Lado ladoDos;
+	private boolean hayCartaDeCampo;
 	
 	public Tablero(Jugador jugadorUno, Jugador jugadorDos) {
 		this.ladoUno = new Lado(jugadorUno, this);
 		this.ladoDos = new Lado(jugadorDos, this);
+		this.hayCartaDeCampo = false;
 	}
 
 	public Lado obtenerLadoDe(Jugador jugador) {
@@ -16,6 +18,10 @@ public class Tablero {
 		} else {
 			return ladoDos;
 		}
+	}
+	
+	public void seAgregoCartaDeCampo(){
+		this.hayCartaDeCampo = true;
 	}
 	
 	public Lado obtenerLadoEnemigo(Lado lado){
@@ -58,6 +64,17 @@ public class Tablero {
 		}
 		else{
 			ladoUno.atacarMonstruoEnPosicionCon(posicionZonaContrario,cartaParaAtacar);
+		}
+	}
+	
+	public void verificarCartaDeCampoLadoContrario(Lado ladoDuenio,CartaMonstruo monstruo){
+		if(this.hayCartaDeCampo){
+			if(this.ladoUno == ladoDuenio){
+				ladoDos.aplicarEfectoCampoIndividualEnemigo(monstruo);
+			}
+			else{
+				ladoUno.aplicarEfectoCampoIndividualEnemigo(monstruo);
+			}
 		}
 	}
 }
