@@ -1,6 +1,7 @@
 package modelo.cartas;
 
 import modelo.CartaDeCampo;
+import modelo.CartaMonstruo;
 import modelo.Lado;
 
 public class Sogen extends CartaDeCampo{
@@ -17,6 +18,16 @@ public class Sogen extends CartaDeCampo{
 	@Override
 	public void efectoEnemigo(Lado unLado) {
 		unLado.aumentarPuntosAtaque(200);
+	}
+
+	@Override
+	public void aplicarEfectoCartaIndividualDuenio(CartaMonstruo monstruo) {
+		monstruo.aumentarDefensa(500);
+	}
+
+	@Override
+	public void aplicarEfectoCartaIndividualEnemigo(CartaMonstruo monstruo) {
+		monstruo.aumentarAtaque(200);
 	}
 
 }

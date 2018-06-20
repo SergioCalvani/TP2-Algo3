@@ -19,6 +19,10 @@ public abstract class CartaDeCampo extends Carta{
 		this.tablero.aplicarEfectoDeCampo(this.duenio, this);
 	}
 	
+	public abstract void aplicarEfectoCartaIndividualDuenio(CartaMonstruo monstruo);
+	
+	public abstract void aplicarEfectoCartaIndividualEnemigo(CartaMonstruo monstruo);
+	
 	public abstract void efectoDuenio(Lado unLado);
 	
 	public abstract void efectoEnemigo(Lado unLado);
