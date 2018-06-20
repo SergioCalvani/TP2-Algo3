@@ -16,7 +16,7 @@ public abstract class Carta {
 	
 	public void voltear() {
 		if (!bocaArriba) {
-			bocaArriba = false;
+			bocaArriba = true;
 		}
 		this.activar();
 	}
