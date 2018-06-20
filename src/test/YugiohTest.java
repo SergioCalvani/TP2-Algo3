@@ -337,6 +337,26 @@ class YugiohTest {
 	}
 	
 	@Test
+	void testAgregoWastelandYLuegoCartaEnAmbosLados(){
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Jugador jugadorDos = yugioh.obtenerJugadorDos();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		Lado ladoDos = tablero.obtenerLadoDe(jugadorDos);
+		
+		CartaDeCampo wasteland = new Wasteland();
+		ladoUno.colocarCartaDeCampo(wasteland);
+		CartaMonstruo time = new CartaMonstruo("Time Wizard", 500, 400, 2);
+		ladoUno.colocar(time, 0);
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoDos.colocar(beautiful, 0);
+		
+		assertEquals(1100,beautiful.extraerPuntosDefensa());
+		assertEquals(700,time.extraerPuntosAtaque());
+	}
+	
+	@Test
 	void testAgregoyActivoCartaDeCampoSogen(){
 		Yugioh yugioh = new Yugioh();
 		Tablero tablero = yugioh.obtenerTablero();
@@ -355,6 +375,26 @@ class YugiohTest {
 		
 		assertEquals(1300,beautiful.extraerPuntosDefensa());
 		assertEquals(700,time.extraerPuntosAtaque());
+	}
+	
+	@Test
+	void testAgregoSogenYLuegoCartaEnAmbosLados(){
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorUno = yugioh.obtenerJugadorUno();
+		Jugador jugadorDos = yugioh.obtenerJugadorDos();
+		Lado ladoUno = tablero.obtenerLadoDe(jugadorUno);
+		Lado ladoDos = tablero.obtenerLadoDe(jugadorDos);
+		
+		CartaDeCampo sogen = new Sogen();
+		ladoUno.colocarCartaDeCampo(sogen);
+		CartaMonstruo time = new CartaMonstruo("Time Wizard", 500, 400, 2);
+		ladoUno.colocar(time, 0);
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoDos.colocar(beautiful, 0);
+		
+		assertEquals(1800,beautiful.extraerPuntosAtaque());
+		assertEquals(900,time.extraerPuntosDefensa());
 	}
 	
 	@Test
