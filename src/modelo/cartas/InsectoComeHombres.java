@@ -21,7 +21,7 @@ public class InsectoComeHombres extends CartaMonstruo{
 		ladoEnemigo.destruir(otroMonstruo);
 	}
 	
-	@Override
+	@Override 
 	public void enfrentarA(CartaMonstruo monstruoAtacante) {
 		monstruoAtacante.destruir();
 	}
