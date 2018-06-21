@@ -8,9 +8,7 @@ public class CartaMonstruo extends Carta {
 	protected int ataque;
 	protected int defensa;
 	protected Jugador duenio;
-	protected EstadoAtaque estadoAtaque;
-	protected EstadoDefensa estadoDefensa;
-	protected Estado estadoActual;
+	protected Estado estado;
 	protected Nivel nivel;
 	protected Collection<CartaMonstruo> sacrificios;
 	
@@ -19,26 +17,28 @@ public class CartaMonstruo extends Carta {
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.nivel = Nivel.crearNivel(nivel);
-		this.estadoAtaque = new EstadoAtaque(ataque);
-		this.estadoDefensa = new EstadoDefensa(defensa);
-		this.estadoActual = this.estadoDefensa;
+		this.estado = new EstadoAtaque();
 		this.sacrificios = new ArrayList<CartaMonstruo>();
 	}
 
+	public void asignarEstado(Estado estado) {
+		this.estado = estado;
+	}
+	
 	public void cambiarAPosicionDeAtaque() {
-		this.estadoActual = this.estadoAtaque;
+		this.estado = new EstadoAtaque();
 	}
 
 	public boolean estaEnPosicionDeAtaque() {
-		return this.estadoActual.enPosicionDeAtaque();
+		return this.estado.enPosicionDeAtaque();
 	}
 
 	public void cambiarAPosicionDeDefensa() {
-		this.estadoActual = this.estadoDefensa;
+		this.estado = new EstadoDefensa();
 	}
 
 	public boolean estaEnPosicionDeDefensa() {
-		return !this.estadoActual.enPosicionDeAtaque();
+		return !this.estado.enPosicionDeAtaque();
 	}
 
 	public void asignarDuenio(Jugador duenio) {
@@ -46,12 +46,7 @@ public class CartaMonstruo extends Carta {
 	}
 
 	public void atacarA(CartaMonstruo monstruoAtacado) {
-		this.estadoActual.atacarA(monstruoAtacado, this);
-	}
-
-	public void atacarCon(int puntosDeAtaque, CartaMonstruo otroMonstruo, Jugador otroDuenio) {
-		this.estadoActual.calcularAtaque(this, this.duenio,
-										 puntosDeAtaque, otroMonstruo, otroDuenio);
+		this.estado.atacarA(monstruoAtacado, this);
 	}
 	
 	public void destruir() {
@@ -85,7 +80,7 @@ public class CartaMonstruo extends Carta {
 	}
 
 	public void enfrentarA(CartaMonstruo monstruoAtacante) {
-		this.estadoActual.enfrentarA(monstruoAtacante, this);
+		this.estado.enfrentarA(monstruoAtacante, this);
 	}
 
 	public void recibirDanioAPuntosDeAtaque(int ataqueRecibido) {
