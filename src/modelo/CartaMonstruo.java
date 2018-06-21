@@ -88,7 +88,7 @@ public class CartaMonstruo extends Carta {
 		this.estadoActual.enfrentarA(monstruoAtacante, this);
 	}
 
-	public void recibirDanioEnOfensiva(int ataqueRecibido) {
+	public void recibirDanioAPuntosDeAtaque(int ataqueRecibido) {
 		int puntosResistidos = this.ataque - ataqueRecibido;
 		if (puntosResistidos <= 0) {
 			this.duenio.disminuirVidaEn(-puntosResistidos);
@@ -96,7 +96,7 @@ public class CartaMonstruo extends Carta {
 		}
 	}
 
-	public void recibirDanioEnDefensa(int ataqueRecibido) {
+	public void recibirDanioAPuntosDeDefensa(int ataqueRecibido) {
 		int puntosResistidos = this.defensa - ataqueRecibido;
 		if (puntosResistidos <= 0) {
 			this.destruir();

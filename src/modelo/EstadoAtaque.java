@@ -37,7 +37,7 @@ public class EstadoAtaque extends Estado {
 
 	@Override
 	public void enfrentarA(CartaMonstruo monstruoAtacante, CartaMonstruo monstruoAtacado) {
-		monstruoAtacado.recibirDanioEnOfensiva(monstruoAtacante.extraerPuntosAtaque());
-		monstruoAtacante.recibirDanioEnOfensiva(monstruoAtacado.extraerPuntosAtaque());
+		monstruoAtacado.recibirDanioAPuntosDeAtaque(monstruoAtacante.extraerPuntosAtaque());
+		monstruoAtacante.recibirDanioAPuntosDeAtaque(monstruoAtacado.extraerPuntosAtaque());
 	}
 }
