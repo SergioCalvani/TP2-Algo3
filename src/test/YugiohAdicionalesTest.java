@@ -10,7 +10,7 @@ import modelo.Yugioh;
 class YugiohAdicionalesTest {
 
 	@Test
-	void testEnElPrimerTurnoTengoAUnJugadorYEnElSiguienteTengoAlOponente() {
+	void testEnElPrimerTurnoTengoAUnJugadorYSuOponenteQueSonDistintos() {
 		Yugioh yugioh = new Yugioh();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();

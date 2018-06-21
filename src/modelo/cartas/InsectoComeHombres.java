@@ -20,4 +20,9 @@ public class InsectoComeHombres extends CartaMonstruo{
 		ladoEnemigo = otroDuenio.obtenerLado();
 		ladoEnemigo.destruir(otroMonstruo);
 	}
+	
+	@Override
+	public void enfrentarA(CartaMonstruo monstruoAtacante) {
+		monstruoAtacante.destruir();
+	}
 }

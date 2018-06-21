@@ -45,8 +45,8 @@ public class CartaMonstruo extends Carta {
 		this.duenio = duenio;
 	}
 
-	public void atacarA(CartaMonstruo otroMonstruo) {
-		otroMonstruo.atacarCon(this.ataque, this, this.duenio);
+	public void atacarA(CartaMonstruo monstruoAtacado) {
+		this.estadoActual.atacarA(monstruoAtacado, this);
 	}
 
 	public void atacarCon(int puntosDeAtaque, CartaMonstruo otroMonstruo, Jugador otroDuenio) {
@@ -82,6 +82,25 @@ public class CartaMonstruo extends Carta {
 	
 	public int extraerPuntosDefensa(){
 		return this.defensa;
+	}
+
+	public void enfrentarA(CartaMonstruo monstruoAtacante) {
+		this.estadoActual.enfrentarA(monstruoAtacante, this);
+	}
+
+	public void recibirDanioEnOfensiva(int ataqueRecibido) {
+		int puntosResistidos = this.ataque - ataqueRecibido;
+		if (puntosResistidos <= 0) {
+			this.duenio.disminuirVidaEn(-puntosResistidos);
+			this.destruir();
+		}
+	}
+
+	public void recibirDanioEnDefensa(int ataqueRecibido) {
+		int puntosResistidos = this.defensa - ataqueRecibido;
+		if (puntosResistidos <= 0) {
+			this.destruir();
+		}
 	}
 
 }

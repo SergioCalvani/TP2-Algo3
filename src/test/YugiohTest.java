@@ -118,7 +118,7 @@ class YugiohTest {
 		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
 		ladoOponente.colocar(beautiful, 0);
 
-		ladoDeTurno.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
+		amazon.atacarA(beautiful);
 		
 		// Verifico que se destruyo amazon
 		assertTrue(ladoDeTurno.cementerioContiene(amazon));
@@ -473,14 +473,14 @@ class YugiohTest {
 		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
 		ladoOponente.colocar(amazon,0);
 		
-		ladoOponente.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
+		amazon.atacarA(insecto);
 		
 		//Al atacar al Insecto, ese mostruo se destruye
 		assertTrue(ladoOponente.cementerioContiene(amazon));
 		//Verifico que el Insecto queda en mi Zona
 		assertTrue(ladoDeTurno.estaMonstruo(insecto,0));
 	}
-
+	
 	@Test
 	void testSeSacrificarTresDragonesBlancosParaBajarADragonDefinitivo() {
 		Yugioh yugioh = new Yugioh();

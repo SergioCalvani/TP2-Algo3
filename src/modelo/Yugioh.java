@@ -1,19 +1,16 @@
 package modelo;
 
-import java.util.function.BooleanSupplier;
 
 public class Yugioh {
 	
 	private Tablero tablero;
 	private Jugador jugadorDeTurno;
 	private Jugador jugadorOponente;
-	private boolean terminado;
 	
 	public Yugioh() {
 		this.jugadorDeTurno = new Jugador();
 		this.jugadorOponente = new Jugador();
 		this.tablero = new Tablero(jugadorDeTurno, jugadorOponente);
-		this.terminado = false;
 	}
 
 	public Tablero obtenerTablero() {

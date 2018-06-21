@@ -29,4 +29,15 @@ public class EstadoAtaque extends Estado {
 			monstruo1.destruir();
 		}
 	}
+
+	@Override
+	public void atacarA(CartaMonstruo monstruoAtacado, CartaMonstruo monstruoAtacante) {
+		monstruoAtacado.enfrentarA(monstruoAtacante);
+	}
+
+	@Override
+	public void enfrentarA(CartaMonstruo monstruoAtacante, CartaMonstruo monstruoAtacado) {
+		monstruoAtacado.recibirDanioEnOfensiva(monstruoAtacante.extraerPuntosAtaque());
+		monstruoAtacante.recibirDanioEnOfensiva(monstruoAtacado.extraerPuntosAtaque());
+	}
 }

@@ -1,5 +1,7 @@
 package modelo;
 
+import excepciones.ImposibleAtacarEnEstadoDeDefensaException;
+
 public class EstadoDefensa extends Estado {
 
 	private int puntosDeDefensa;
@@ -20,5 +22,15 @@ public class EstadoDefensa extends Estado {
 		if (d <= 0) {
 			monstruo1.destruir();
 		}
+	}
+
+	@Override
+	public void atacarA(CartaMonstruo monstruoAtacado, CartaMonstruo monstruoAtacante) {
+		throw new ImposibleAtacarEnEstadoDeDefensaException();
+	}
+
+	@Override
+	public void enfrentarA(CartaMonstruo monstruoAtacante, CartaMonstruo monstruoAtacado) {
+		monstruoAtacado.recibirDanioEnDefensa(monstruoAtacante.extraerPuntosAtaque());
 	}
 }
