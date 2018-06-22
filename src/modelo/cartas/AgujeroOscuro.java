@@ -4,7 +4,7 @@ import modelo.CartaMagica;
 import modelo.Tablero;
 
 public class AgujeroOscuro extends CartaMagica{
-
+	
 	
 	public AgujeroOscuro() {
 		super("Agujero Oscuro");
