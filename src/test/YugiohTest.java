@@ -473,12 +473,40 @@ class YugiohTest {
 		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
 		ladoOponente.colocar(amazon,0);
 		
-		amazon.atacarA(insecto);
+		ladoOponente.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
 		
 		//Al atacar al Insecto, ese mostruo se destruye
 		assertTrue(ladoOponente.cementerioContiene(amazon));
 		//Verifico que el Insecto queda en mi Zona
 		assertTrue(ladoDeTurno.estaMonstruo(insecto,0));
+	}
+	
+	@Test
+	void testAtacoInsectoComeHombresDespuesDeActivarEfectoYSeDestruye(){
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
+		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
+		Lado ladoDeTurno = tablero.obtenerLadoDe(jugadorDeTurno);
+		Lado ladoOponente = tablero.obtenerLadoDe(jugadorOponente);
+		
+		CartaMonstruo insecto = new InsectoComeHombres();
+		ladoDeTurno.colocar(insecto,0);
+		ladoDeTurno.cambiarAPosicionDeDefensaMonstruo(0);
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		ladoOponente.colocar(amazon,0);
+		CartaMonstruo huevo = new CartaMonstruo("Huevo Monstruoso", 600, 900, 3);
+		ladoOponente.colocar(huevo, 1);
+		
+		ladoOponente.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
+		ladoOponente.atacarConMonstruoEnPosicionAMonstruoEnPosicion(1,0);
+		
+		//Al atacar al Insecto, ese mostruo se destruye
+		assertTrue(ladoOponente.cementerioContiene(amazon));
+		//Verifico que el Insecto se destruyó luego del segundo ataque
+		assertTrue(ladoDeTurno.cementerioContiene(insecto));
+		//Verifico que el huevo sigue en el campo contrario
+		assertTrue(ladoOponente.estaMonstruo(huevo,1));
 	}
 	
 	@Test
