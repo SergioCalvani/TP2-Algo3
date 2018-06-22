@@ -8,8 +8,11 @@ public class CartaTrampa extends Carta {
 		super(nombre);
 	}
 	
-	public String obtenerNombre(){
-		return this.nombre;
+	public boolean verificarCarta(){
+		if((this.nombre == "Cilindro Magico") | (this.nombre == "Reinforcements")){
+			return true;
+		}
+		return false;
 	}
 	
 	public void asignarDuenio(Jugador nuevoDuenio){

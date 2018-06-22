@@ -163,11 +163,10 @@ public class Lado {
 		CartaTrampa cartaMagica;
 		CartaMonstruo cartaAtacada;
 		cartaAtacada = this.zonaDeMonstruos[posicionMonstruoAtacado];
-		//MUCHOS IF, REFACTORIZAR LUEGO
 		for(int i = 0; i < this.tamanio; i++){
 			if(this.zonaMagica[i] != null){
 				cartaMagica = (CartaTrampa) this.zonaMagica[i];
-				if((cartaMagica.obtenerNombre() == "Cilindro Magico") | (cartaMagica.obtenerNombre() == "Reinforcements")){
+				if(cartaMagica.verificarCarta()){
 					cartaMagica.activar(cartaAtacada,cartaParaAtacar);
 					activoTrampa = true;
 				} 
