@@ -587,6 +587,35 @@ class YugiohTest {
 		assertTrue(ladoOponente.cementerioContiene(beautiful));
 	}
 	
+	@Test
+	void testUsoReinforcementsLoDestruyoYDisminuyeLosPuntosDeAtaque(){
+		Yugioh yugioh = new Yugioh();
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
+		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
+		Lado ladoDeTurno = tablero.obtenerLadoDe(jugadorDeTurno);
+		Lado ladoOponente = tablero.obtenerLadoDe(jugadorOponente);
+		
+		CartaMonstruo agresorOscuro = new CartaMonstruo("Agresor Oscuro",1200,1200,2);
+		ladoDeTurno.colocar(agresorOscuro,0);
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoOponente.colocar(beautiful, 0);
+		CartaTrampa reinforcements = new Reinforcements();
+		ladoDeTurno.colocar(reinforcements,0);
+		
+		ladoOponente.atacarConMonstruoEnPosicionAMonstruoEnPosicion(0,0);
+		
+		//Aumenta los puntos de ataque en 500
+		assertEquals(1700,agresorOscuro.extraerPuntosAtaque());
+		
+		reinforcements.destruir();
+		
+		//Observo que la carta que tenía aumento, ahora no lo tiene
+		assertEquals(1200,agresorOscuro.extraerPuntosAtaque());
+		//Veo que reinforcements se encuentre en el cementeio
+		assertTrue(ladoDeTurno.cementerioContiene(reinforcements));
+	}
+	
 	@Test 
 	void testJugadorExtraeTodasSusCartasPierdeYTerminaElJuego() {
 		Yugioh yugioh = new Yugioh();
