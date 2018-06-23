@@ -3,6 +3,7 @@ package modelo.cartas;
 import modelo.CartaMagica;
 import modelo.Mano;
 import modelo.Mazo;
+import modelo.Lado;
 
 public class OllaDeLaCodicia extends CartaMagica {
 
@@ -12,8 +13,9 @@ public class OllaDeLaCodicia extends CartaMagica {
 
 	@Override
 	public void activar() {
-		Mazo mazo = this.lado.obtenerMazo();
-		Mano mano = this.lado.obtenerJugador().obtenerMano();
+		Lado lado = this.duenio.obtenerLado();
+		Mazo mazo = lado.obtenerMazo();
+		Mano mano = lado.obtenerJugador().obtenerMano();
 		
 		mano.agregar(mazo.robar());
 		mano.agregar(mazo.robar());

@@ -30,11 +30,13 @@ public class Fisura extends CartaMagica{
 	@Override
 	public void activar(){
 		CartaMonstruo cartaADestruir;
+		Lado ladoDuenio;
 		Lado ladoEnemigo;
 		Tablero tablero;
 		CartaMonstruo[] zonaMonstruoEnemiga;
-		tablero = this.lado.obtenerTablero();
-		ladoEnemigo = tablero.obtenerLadoEnemigo(this.lado);
+		ladoDuenio = this.duenio.obtenerLado();
+		tablero = ladoDuenio.obtenerTablero();
+		ladoEnemigo = tablero.obtenerLadoEnemigo(ladoDuenio);
 		zonaMonstruoEnemiga = ladoEnemigo.obtenerZonaMonstruo();
 		cartaADestruir = this.devolverMenor(zonaMonstruoEnemiga);
 		ladoEnemigo.destruir(cartaADestruir);
