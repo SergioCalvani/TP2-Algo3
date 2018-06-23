@@ -7,7 +7,6 @@ public class CartaMonstruo extends Carta {
 
 	protected int ataque;
 	protected int defensa;
-	protected Jugador duenio;
 	protected Estado estado;
 	protected Nivel nivel;
 	protected Collection<CartaMonstruo> sacrificios;
@@ -23,6 +22,11 @@ public class CartaMonstruo extends Carta {
 
 	public void asignarEstado(Estado estado) {
 		this.estado = estado;
+	}
+	
+	public void destruir() {
+		Lado lado = this.duenio.obtenerLado();
+		lado.destruir(this);
 	}
 	
 	public void cambiarAPosicionDeAtaque() {
@@ -41,17 +45,8 @@ public class CartaMonstruo extends Carta {
 		return !this.estado.enPosicionDeAtaque();
 	}
 
-	public void asignarDuenio(Jugador duenio) {
-		this.duenio = duenio;
-	}
-
 	public void atacarA(CartaMonstruo monstruoAtacado) {
 		this.estado.atacarA(monstruoAtacado, this);
-	}
-	
-	public void destruir() {
-		Lado lado = this.duenio.obtenerLado();
-		lado.destruir(this);
 	}
 	
 	public void agregarSacrificio(CartaMonstruo monstruo) {

@@ -3,6 +3,7 @@ package modelo;
 public abstract class Carta {
 
 	protected String nombre;
+	protected Jugador duenio;
 	protected boolean bocaArriba;
 	
 	public Carta(String nombre) {
@@ -19,6 +20,10 @@ public abstract class Carta {
 			bocaArriba = true;
 		}
 		this.activar();
+	}
+	
+	public void asignarDuenio(Jugador duenio) {
+		this.duenio = duenio;
 	}
 	
 	public void activar() {}
