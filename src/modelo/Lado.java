@@ -72,7 +72,7 @@ public class Lado {
 
 	public void colocar(CartaMagica magica, int i) {
 		this.zonaMagica[i] = magica;
-		magica.asignarLado(this);
+		magica.asignarDuenio(this.duenio);
 	}
 
 	public void colocar(CartaTrampa trampa, int i) {
@@ -86,8 +86,8 @@ public class Lado {
 		this.cementerio.add(carta);
 	}
 
-	public boolean cementerioContiene(CartaMonstruo monstruo) {
-		return this.cementerio.contains(monstruo);
+	public boolean cementerioContiene(Carta unaCarta) {
+		return this.cementerio.contains(unaCarta);
 	}
 
 	public void destruir(CartaMonstruo cartaMonstruo) {
@@ -95,6 +95,26 @@ public class Lado {
 			if (this.zonaDeMonstruos[i] == cartaMonstruo) {
 				this.zonaDeMonstruos[i] = null;
 				this.cementerio.add(cartaMonstruo);
+				return;
+			}
+		}
+	}
+	
+	public void destruir(CartaMagica cartaMagica) {
+		for (int i = 0; i < this.tamanio; i++) {
+			if (this.zonaMagica[i] == cartaMagica) {
+				this.zonaMagica[i] = null;
+				this.cementerio.add(cartaMagica);
+				return;
+			}
+		}
+	}
+	
+	public void destruir(CartaTrampa cartaTrampa) {
+		for (int i = 0; i < this.tamanio; i++) {
+			if (this.zonaMagica[i] == cartaTrampa) {
+				this.zonaMagica[i] = null;
+				this.cementerio.add(cartaTrampa);
 				return;
 			}
 		}
