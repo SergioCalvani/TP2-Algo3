@@ -34,7 +34,7 @@ class YugiohTest {
 
 	@Test
 	void testColorCartaMonstruoEnPosicionDeAtaque() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugador = yugioh.obtenerJugadorDeTurno();
 		Lado lado = tablero.obtenerLadoDe(jugador);
@@ -48,7 +48,7 @@ class YugiohTest {
 	
 	@Test
 	void testColorCartaMonstruoEnPosicionDeDefensa() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugador = yugioh.obtenerJugadorDeTurno();
 		Lado lado = tablero.obtenerLadoDe(jugador);
@@ -62,7 +62,7 @@ class YugiohTest {
 	
 	@Test
 	void testColocarUnaCartaMagicaEnElCampoBocaAbajo() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugador = yugioh.obtenerJugadorDeTurno();
 		Lado lado = tablero.obtenerLadoDe(jugador);
@@ -76,7 +76,7 @@ class YugiohTest {
 	
 	@Test
 	void testColocarUnaCartaTrampaEnElCampoBocaAbajo() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugador = yugioh.obtenerJugadorDeTurno();
 		Lado lado = tablero.obtenerLadoDe(jugador);
@@ -90,7 +90,7 @@ class YugiohTest {
 	
 	@Test
 	void testMandarUnaCartaAlCementerioYVerificarQueEsteAhi() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugador = yugioh.obtenerJugadorDeTurno();
 		Lado lado = tablero.obtenerLadoDe(jugador);
@@ -104,7 +104,7 @@ class YugiohTest {
 	
 	@Test
 	void testAmbosMonstruosEnAtaquePeroMiMonstruoTieneMenosAtaqueQueElOponente() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		// yo soy el jugador de turno
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
@@ -130,7 +130,7 @@ class YugiohTest {
 	
 	@Test
 	void testAmbosMonstruosEnAtaquePeroMiMonstruoTieneMayorAtaqueQueElOponente() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
@@ -155,7 +155,7 @@ class YugiohTest {
 	
 	@Test
 	void testAmbosMonstruosEnAtaqueYConMismoAtaque() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
@@ -182,7 +182,7 @@ class YugiohTest {
 	
 	@Test
 	void testMiMonstruoEnAtaqueYElOtroEnDefensaPeroMiAtaqueEsMayorQueSuDefensa() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		// yo soy el jugador uno
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
@@ -209,7 +209,7 @@ class YugiohTest {
 	
 	@Test
 	void testMiMonstruoEnAtaqueYElOtroEnDefensaPeroMiAtaqueEsMenorQueSuDefensa() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		// yo soy el jugador uno
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
@@ -235,7 +235,7 @@ class YugiohTest {
 	
 	@Test
 	void testTodosSeDestruyenTrasActivarseAgujeroOscuro() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		// yo soy el jugador uno
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
@@ -269,7 +269,7 @@ class YugiohTest {
 
 	@Test
 	public void testSeBajaUnMonstruoDe5EstrellasAlCampoYTomaUnSacrificio() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Lado ladoDeTurno = tablero.obtenerLadoDe(jugadorDeTurno);
@@ -290,7 +290,7 @@ class YugiohTest {
 	
 	@Test
 	public void testSeBajaUnMonstruoDe7EstrellasAlCampoYTomaDosSacrificio() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Lado ladoDeTurno = tablero.obtenerLadoDe(jugadorDeTurno);
@@ -317,7 +317,7 @@ class YugiohTest {
 	
 	@Test
 	void testAgregoyActivoCartaDeCampoWasteland(){
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
@@ -338,7 +338,7 @@ class YugiohTest {
 	
 	@Test
 	void testAgregoWastelandYLuegoCartaEnAmbosLados(){
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
@@ -358,7 +358,7 @@ class YugiohTest {
 	
 	@Test
 	void testAgregoyActivoCartaDeCampoSogen(){
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
@@ -379,7 +379,7 @@ class YugiohTest {
 	
 	@Test
 	void testAgregoSogenYLuegoCartaEnAmbosLados(){
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
@@ -399,7 +399,7 @@ class YugiohTest {
 	
 	@Test
 	void testAgregoJinzoYAtacoDirectamenteAlJugador(){
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
@@ -419,7 +419,7 @@ class YugiohTest {
 	
 	@Test
 	void testAgregoYActivoCartaMagicaFisura(){
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
@@ -442,7 +442,7 @@ class YugiohTest {
 	@Test
 	void testActivarOllaDeLaCodiciaRobaDosCartasDelMazo() {
 		
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Jugador jugador = yugioh.obtenerJugadorDeTurno();
 		Lado lado = jugador.obtenerLado();
 		Mano mano = jugador.obtenerMano();
@@ -460,7 +460,7 @@ class YugiohTest {
 	
 	@Test
 	void testAtacoInsectoComeHombresYMeDestruyo(){
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
@@ -483,7 +483,7 @@ class YugiohTest {
 	
 	@Test
 	void testAtacoInsectoComeHombresDespuesDeActivarEfectoYSeDestruye(){
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
@@ -511,7 +511,7 @@ class YugiohTest {
 	
 	@Test
 	void testSeSacrificarTresDragonesBlancosParaBajarADragonDefinitivo() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Jugador jugador = yugioh.obtenerJugadorDeTurno();
 		Lado lado = jugador.obtenerLado();
 
@@ -537,7 +537,7 @@ class YugiohTest {
 	
 	@Test
 	void testColocoCilindroMagicoYAlAtacarActivoTrampa(){
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
@@ -563,7 +563,7 @@ class YugiohTest {
 	
 	@Test
 	void testColocarReinforcementsYAlAtacarActivoTrampa(){
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
@@ -589,7 +589,7 @@ class YugiohTest {
 	
 	@Test
 	void testUsoReinforcementsLoDestruyoYDisminuyeLosPuntosDeAtaque(){
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
@@ -618,7 +618,7 @@ class YugiohTest {
 	
 	@Test 
 	void testJugadorExtraeTodasSusCartasPierdeYTerminaElJuego() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Jugador jugador = yugioh.obtenerJugadorDeTurno();
 		Lado lado = jugador.obtenerLado();
 		Mazo mazo = lado.obtenerMazo();
@@ -633,7 +633,7 @@ class YugiohTest {
 	
 	@Test
 	void testJugadorTieneLasCincoPartesDeExodiaYGanaLaPartida() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Jugador jugador = yugioh.obtenerJugadorDeTurno();
 		Mano mano = jugador.obtenerMano();
 		

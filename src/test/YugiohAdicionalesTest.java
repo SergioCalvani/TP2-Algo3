@@ -11,7 +11,7 @@ class YugiohAdicionalesTest {
 
 	@Test
 	void testEnElPrimerTurnoTengoAUnJugadorYSuOponenteQueSonDistintos() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
 		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
 		assertNotEquals(jugadorDeTurno, jugadorOponente);
@@ -19,7 +19,7 @@ class YugiohAdicionalesTest {
 	
 	@Test
 	void testEnElPrimerTurnoTengoAUnJugadorDeTurnoYEnElSiguienteEsOtro() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Jugador jugadorDeTurno1 = yugioh.obtenerJugadorDeTurno();
 		yugioh.siguienteTurno();
 		Jugador jugadorDeTurno2 = yugioh.obtenerJugadorDeTurno();
@@ -28,7 +28,7 @@ class YugiohAdicionalesTest {
 
 	@Test
 	void testEnElPrimerTurnoTengoAUnJugadorYDosTurnosDespuesTengoAlMismo() {
-		Yugioh yugioh = new Yugioh();
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Jugador jugadorDeTurno1 = yugioh.obtenerJugadorDeTurno();
 		yugioh.siguienteTurno();
 		yugioh.siguienteTurno();
