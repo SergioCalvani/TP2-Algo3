@@ -98,12 +98,16 @@ public class Aplicacion extends Application{
         //LABEL INGRESE NOMBRES
         Label etiquetaIngreseNombres = new Label();
         etiquetaIngreseNombres.setText("Ingrese Nombre de los Jugadores");
-        etiquetaIngreseNombres.setStyle("-fx-font-weight: bold");
+        etiquetaIngreseNombres.setFont(new Font("Arial",20));
+        etiquetaIngreseNombres.setTextFill(Color.web("#E0F8E6"));
         
         
         //jugador 1
         Label etiquetaJugador1 = new Label();
         etiquetaJugador1.setText("Jugador 1:");
+        etiquetaJugador1.setFont(new Font("Arial",20));
+        etiquetaJugador1.setTextFill(Color.web("#E0F8E6"));
+        
         
         TextField textoJugador1 = new TextField();
         textoJugador1.setPromptText("Jugador 1");      
@@ -112,6 +116,8 @@ public class Aplicacion extends Application{
         //jugador 2
         Label etiquetaJugador2 = new Label();
         etiquetaJugador2.setText("Jugador 2:");
+        etiquetaJugador2.setFont(new Font("Arial",20));
+        etiquetaJugador2.setTextFill(Color.web("#E0F8E6"));
         
         TextField textoJugador2 = new TextField();
         textoJugador2.setPromptText("Jugador 2");
