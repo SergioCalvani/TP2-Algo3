@@ -84,8 +84,8 @@ public class Aplicacion extends Application{
 		contenedorVertical.setSpacing(20);
 		contenedorVertical.setPadding(new Insets(240,0,0,50));
 		visualizador.setImage(this.fondo);
-		visualizador.setFitHeight(this.resolucionAlto);
 		visualizador.setFitWidth(this.resolucionAncho);
+		visualizador.setFitHeight(this.resolucionAlto);		
 		layout.getChildren().addAll(titulo,integrantes,contenedorVertical);
 		layout.setPadding(new Insets(10));
 		layout2.getChildren().addAll(visualizador,layout);
@@ -177,8 +177,8 @@ public class Aplicacion extends Application{
         botonAceptar.setOnAction(botonAceptarEventHandler);       
 
 		visualizador.setImage(this.fondo);
-		visualizador.setFitHeight(this.resolucionAlto);
 		visualizador.setFitWidth(this.resolucionAncho);
+		visualizador.setFitHeight(this.resolucionAlto);		
 		layout.getChildren().addAll(visualizador,layout2);
 		StackPane.setAlignment(layout2, Pos.CENTER );
 	    
@@ -192,12 +192,12 @@ public class Aplicacion extends Application{
 		this.yugioh = new Yugioh(nombre1,nombre2);
 		
 		ImageView visualizador = new ImageView();
-		Image imagen = new Image("aplicacion/Imagenes/fondo_tablero.jpg");
+		Image imagen = new Image("aplicacion/Imagenes/fondo_tablero.png");
 		StackPane layout = new StackPane();
 		
 		visualizador.setImage(imagen);
-		visualizador.setFitHeight(this.resolucionAlto);
 		visualizador.setFitWidth(this.resolucionAncho);
+		visualizador.setFitHeight(this.resolucionAlto);
 		layout.getChildren().addAll(visualizador);
 		
 		Scene escena = new Scene(layout);
