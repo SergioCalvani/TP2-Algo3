@@ -26,7 +26,7 @@ public class BotonSalirEventHandler implements EventHandler<ActionEvent> {
 		VBox contenedor = new VBox();
 		
 		
-		mensaje.setText("Â¿Esta seguro que desea salir?");
+		mensaje.setText("¿Esta seguro que desea salir?");
 		mensaje.setFont(new Font("Arial",14));
 		aceptar.setFont(new Font("Arial",14));
 		cancelar.setFont(new Font("Arial",14));
@@ -43,7 +43,7 @@ public class BotonSalirEventHandler implements EventHandler<ActionEvent> {
 		
 		Scene salir = new Scene(contenedor,250,150);
 		
-		ventanaSalida.setTitle("Â¿Esta Seguro?");
+		ventanaSalida.setTitle("¿Esta Seguro?");
 		ventanaSalida.setScene(salir);
 		ventanaSalida.show();
 	}

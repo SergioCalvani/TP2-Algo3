@@ -3,6 +3,7 @@ package aplicacion.App;
 import aplicacion.Eventos.BotonSalirEventHandler;
 import aplicacion.Eventos.BotonTutorialEventHandler;
 import aplicacion.Eventos.PantallaCompletaButtonHandler;
+import aplicacion.Eventos.BotonComenzarEventHandler;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,7 +20,11 @@ import javafx.stage.Stage;
 
 public class Aplicacion extends Application{
 
+	private int resolucionAlto = 720;
+	private int resolucionAncho = 1280;
+	
 	public static void main(String []args){
+
 		launch(args);
 	}
 	
@@ -30,7 +35,7 @@ public class Aplicacion extends Application{
 		Label titulo = new Label();
 		Label integrantes = new Label();
 		ImageView visualizador = new ImageView();
-		Image imagen = new Image("file:aplicacion/Imagenes/principal.png");
+		Image imagen = new Image("aplicacion/Imagenes/principal.png");
 		Button comenzar = new Button("Comenzar");
 		Button tutorial = new Button("Tutorial");
 		Button pantallaCompleta = new Button("Pantalla Completa");
@@ -60,12 +65,15 @@ public class Aplicacion extends Application{
 		BotonSalirEventHandler botonSalirEventHandler = new BotonSalirEventHandler();
 		salir.setOnAction(botonSalirEventHandler);
 		
-		contenedorVertical.getChildren().addAll(comenzar,tutorial,pantallaCompleta,salir);
+		BotonComenzarEventHandler botonComenzarEventHandler = new BotonComenzarEventHandler(stage);
+		comenzar.setOnAction(botonComenzarEventHandler);
+		
+		contenedorVertical.getChildren().addAll(comenzar,salir);//tutorial,pantallaCompleta,salir);
 		contenedorVertical.setSpacing(20);
 		contenedorVertical.setPadding(new Insets(240,0,0,50));
 		visualizador.setImage(imagen);
-		visualizador.setFitHeight(1020);
-		visualizador.setFitWidth(1980);
+		visualizador.setFitHeight(this.resolucionAlto);
+		visualizador.setFitWidth(this.resolucionAncho);
 		layout.getChildren().addAll(visualizador,titulo,integrantes,contenedorVertical);
 		
 		Scene escena = new Scene(layout);
