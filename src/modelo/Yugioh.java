@@ -7,9 +7,9 @@ public class Yugioh {
 	private Jugador jugadorDeTurno;
 	private Jugador jugadorOponente;
 	
-	public Yugioh() {
-		this.jugadorDeTurno = new Jugador();
-		this.jugadorOponente = new Jugador();
+	public Yugioh(String nombre1, String nombre2) {
+		this.jugadorDeTurno = new Jugador(nombre1);
+		this.jugadorOponente = new Jugador(nombre2);
 		this.tablero = new Tablero(jugadorDeTurno, jugadorOponente);
 	}
 

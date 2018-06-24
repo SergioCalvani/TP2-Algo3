@@ -1,18 +1,18 @@
 package modelo;
 
-import java.util.function.BooleanSupplier;
-
 public class Jugador {
 
 	private int puntosDeVida;
 	private Lado lado;
 	private Mano mano;
 	boolean perdedor;
+	private String nombre;
 	
-	public Jugador() {
+	public Jugador(String nombre) {
 		this.puntosDeVida = 8000; 
 		this.mano = new Mano();
 		this.perdedor = false;
+		this.nombre = nombre;
 	}
 	
 	public void disminuirVidaEn(int danio) {
@@ -23,7 +23,10 @@ public class Jugador {
 		this.lado = lado;
 	}
 	
-
+	public String obtenerNombre() {
+		return this.nombre;
+	}
+	
 	public Lado obtenerLado() {
 		return this.lado;
 	}
@@ -43,7 +46,4 @@ public class Jugador {
 	public boolean esGanador() {
 		return this.mano.contieneExodia();
 	}
-
-
-
 }

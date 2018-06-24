@@ -39,9 +39,9 @@ public class BotonAceptarNombresEventHandler implements EventHandler<ActionEvent
             this.label.setTextFill(Color.web("#FF0000"));
         }        
         else {
-        	this.textField1.clear();
-        	this.textField2.clear();
-        	this.app.iniciarJuego();
+        	/*this.textField1.clear();
+        	this.textField2.clear();*/
+        	this.app.iniciarJuego(this.textField1.getText(),this.textField2.getText());
         }
     }
 }

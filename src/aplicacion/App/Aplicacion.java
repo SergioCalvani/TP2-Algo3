@@ -22,15 +22,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import modelo.Yugioh;
 
 public class Aplicacion extends Application{
 
 	private int resolucionAlto = 720;
 	private int resolucionAncho = 1280;
 	private Stage stage;
+	private Yugioh yugioh;
 	
 	public static void main(String []args){
-
 		launch(args);
 	}
 	
@@ -161,7 +162,9 @@ public class Aplicacion extends Application{
 	}
 
 
-	public void iniciarJuego() {
+	public void iniciarJuego(String nombre1,String nombre2) {
+		this.yugioh = new Yugioh(nombre1,nombre2);
+		
 		ImageView visualizador = new ImageView();
 		Image imagen = new Image("aplicacion/Imagenes/principal.png");
 		StackPane layout = new StackPane();
