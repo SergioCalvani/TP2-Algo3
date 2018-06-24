@@ -172,7 +172,7 @@ public class Aplicacion extends Application{
 		this.yugioh = new Yugioh(nombre1,nombre2);
 		
 		ImageView visualizador = new ImageView();
-		Image imagen = new Image("aplicacion/Imagenes/principal.png");
+		Image imagen = new Image("aplicacion/Imagenes/fondo_tablero.jpg");
 		StackPane layout = new StackPane();
 		
 		visualizador.setImage(imagen);
