@@ -43,6 +43,7 @@ public class Aplicacion extends Application{
 		
 		stage.setTitle("Al-Go-Oh!- FIUBA");
 		StackPane layout = new StackPane();
+		StackPane layout2 = new StackPane();
 		Label titulo = new Label();
 		Label integrantes = new Label();
 		ImageView visualizador = new ImageView();
@@ -85,9 +86,11 @@ public class Aplicacion extends Application{
 		visualizador.setImage(this.fondo);
 		visualizador.setFitHeight(this.resolucionAlto);
 		visualizador.setFitWidth(this.resolucionAncho);
-		layout.getChildren().addAll(visualizador,titulo,integrantes,contenedorVertical);
+		layout.getChildren().addAll(titulo,integrantes,contenedorVertical);
+		layout.setPadding(new Insets(10));
+		layout2.getChildren().addAll(visualizador,layout);
 		
-		Scene escena = new Scene(layout);
+		Scene escena = new Scene(layout2);
 		this.stage.setFullScreen(false);
 		this.stage.setScene(escena);
 		this.stage.show();
@@ -174,10 +177,10 @@ public class Aplicacion extends Application{
         botonAceptar.setOnAction(botonAceptarEventHandler);       
 
 		visualizador.setImage(this.fondo);
-		visualizador.setFitHeight(720);
-		visualizador.setFitWidth(1280);
+		visualizador.setFitHeight(this.resolucionAlto);
+		visualizador.setFitWidth(this.resolucionAncho);
 		layout.getChildren().addAll(visualizador,layout2);
-		layout.setAlignment(layout2, Pos.CENTER );
+		StackPane.setAlignment(layout2, Pos.CENTER );
 	    
 		Scene escena = new Scene(layout);
 		this.stage.setScene(escena);
@@ -193,8 +196,8 @@ public class Aplicacion extends Application{
 		StackPane layout = new StackPane();
 		
 		visualizador.setImage(imagen);
-		visualizador.setFitHeight(720);
-		visualizador.setFitWidth(1280);
+		visualizador.setFitHeight(this.resolucionAlto);
+		visualizador.setFitWidth(this.resolucionAncho);
 		layout.getChildren().addAll(visualizador);
 		
 		Scene escena = new Scene(layout);

@@ -30,13 +30,13 @@ public class BotonAceptarNombresEventHandler implements EventHandler<ActionEvent
         		|| this.textField2.getText().trim().equals("")  ) {
 
             this.label.setText("Debe ingresar un texto");
-            this.label.setTextFill(Color.web("#FF0000"));
+            this.label.setTextFill(Color.web("#FFFF00"));
 
         } 
         else if (this.textField2.getText().equals( this.textField1.getText())){
 
             this.label.setText("Los nombres no pueden coincidir");
-            this.label.setTextFill(Color.web("#FF0000"));
+            this.label.setTextFill(Color.web("#FFFF00"));
         }        
         else {
         	/*this.textField1.clear();
