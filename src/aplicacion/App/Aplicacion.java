@@ -30,6 +30,7 @@ public class Aplicacion extends Application{
 	private int resolucionAncho = 1280;
 	private Stage stage;
 	private Yugioh yugioh;
+	private Image fondo; 
 	
 	public static void main(String []args){
 		launch(args);
@@ -37,13 +38,15 @@ public class Aplicacion extends Application{
 	
 	@Override
 	public void start(Stage stage){
+		this.fondo = new Image("aplicacion/Imagenes/principal.png");
 		this.stage = stage;
+		
 		stage.setTitle("Al-Go-Oh!- FIUBA");
 		StackPane layout = new StackPane();
 		Label titulo = new Label();
 		Label integrantes = new Label();
 		ImageView visualizador = new ImageView();
-		Image imagen = new Image("aplicacion/Imagenes/principal.png");
+		
 		Button comenzar = new Button("Comenzar");
 		//Button tutorial = new Button("Tutorial");
 		//Button pantallaCompleta = new Button("Pantalla Completa");
@@ -79,7 +82,7 @@ public class Aplicacion extends Application{
 		contenedorVertical.getChildren().addAll(comenzar,salir);//tutorial,pantallaCompleta,salir);
 		contenedorVertical.setSpacing(20);
 		contenedorVertical.setPadding(new Insets(240,0,0,50));
-		visualizador.setImage(imagen);
+		visualizador.setImage(this.fondo);
 		visualizador.setFitHeight(this.resolucionAlto);
 		visualizador.setFitWidth(this.resolucionAncho);
 		layout.getChildren().addAll(visualizador,titulo,integrantes,contenedorVertical);
@@ -92,22 +95,26 @@ public class Aplicacion extends Application{
 	
 	public void ingresarNombre() {
 		ImageView visualizador = new ImageView();
-		Image imagen = new Image("aplicacion/Imagenes/principal.png");
+		Image blanco = new Image("aplicacion/Imagenes/frame.jpg");
 		StackPane layout = new StackPane();
+		StackPane layout2 = new StackPane();
+		ImageView visualizador2 = new ImageView();
 		
         //LABEL INGRESE NOMBRES
         Label etiquetaIngreseNombres = new Label();
-        etiquetaIngreseNombres.setText("Ingrese Nombre de los Jugadores");
-        etiquetaIngreseNombres.setFont(new Font("Arial",20));
+        etiquetaIngreseNombres.setText("Ingrese Nombres de los Jugadores");
+        etiquetaIngreseNombres.setStyle("-fx-font-weight: bold");
         etiquetaIngreseNombres.setTextFill(Color.web("#E0F8E6"));
-        
+        etiquetaIngreseNombres.getStyleClass().add("outline");
+        etiquetaIngreseNombres.setFont(new Font("Arial",15));
         
         //jugador 1
         Label etiquetaJugador1 = new Label();
         etiquetaJugador1.setText("Jugador 1:");
-        etiquetaJugador1.setFont(new Font("Arial",20));
         etiquetaJugador1.setTextFill(Color.web("#E0F8E6"));
-        
+        etiquetaJugador1.setStyle("-fx-font-weight: bold;");
+        etiquetaJugador1.getStyleClass().add("outline");
+        etiquetaJugador1.setFont(new Font("Arial",12));
         
         TextField textoJugador1 = new TextField();
         textoJugador1.setPromptText("Jugador 1");      
@@ -116,8 +123,10 @@ public class Aplicacion extends Application{
         //jugador 2
         Label etiquetaJugador2 = new Label();
         etiquetaJugador2.setText("Jugador 2:");
-        etiquetaJugador2.setFont(new Font("Arial",20));
         etiquetaJugador2.setTextFill(Color.web("#E0F8E6"));
+        etiquetaJugador2.setStyle("-fx-font-weight: bold");
+        etiquetaJugador2.getStyleClass().add("outline");
+        etiquetaJugador2.setFont(new Font("Arial",12));
         
         TextField textoJugador2 = new TextField();
         textoJugador2.setPromptText("Jugador 2");
@@ -131,7 +140,6 @@ public class Aplicacion extends Application{
         //label error
         Label etiquetaError= new Label();
         etiquetaError.setText("");
-        
         
         
         //VBOX1
@@ -153,19 +161,28 @@ public class Aplicacion extends Application{
         VBox contenedorPrincipal = new VBox(etiquetaIngreseNombres,contenedorJugador1, contenedorJugador2,contenedorBoton);//etiquetaJugador1, texto, contenedorHorizontal, etiquetaJugador2);
         contenedorPrincipal.setSpacing(15);
         contenedorPrincipal.setPadding(new Insets(20));
+        contenedorPrincipal.setMaxHeight(200);
+        contenedorPrincipal.setMaxWidth(300);
+        
+        visualizador2.setImage(blanco);
+		visualizador2.setFitHeight(200);
+		visualizador2.setFitWidth(300);
+        layout2.getChildren().addAll(visualizador2,contenedorPrincipal);
         
         //evento
         BotonAceptarNombresEventHandler botonAceptarEventHandler = new BotonAceptarNombresEventHandler(textoJugador1,textoJugador2,etiquetaError,this);
         botonAceptar.setOnAction(botonAceptarEventHandler);       
 
-		visualizador.setImage(imagen);
+		visualizador.setImage(this.fondo);
 		visualizador.setFitHeight(720);
 		visualizador.setFitWidth(1280);
-		layout.getChildren().addAll(visualizador,contenedorPrincipal);
-		
+		layout.getChildren().addAll(visualizador,layout2);
+		layout.setAlignment(layout2, Pos.CENTER );
+	    
 		Scene escena = new Scene(layout);
 		this.stage.setScene(escena);
 	}
+
 
 
 	public void iniciarJuego(String nombre1,String nombre2) {
