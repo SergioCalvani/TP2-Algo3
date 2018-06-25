@@ -49,9 +49,11 @@ public class Aplicacion extends Application{
 		ImageView visualizador = new ImageView();
 		
 		Button comenzar = new Button("Comenzar");
+		comenzar.setId("button-grey");
 		//Button tutorial = new Button("Tutorial");
 		//Button pantallaCompleta = new Button("Pantalla Completa");
 		Button salir = new Button("Salir");
+		salir.setId("button-grey");
 		VBox contenedorVertical = new VBox();
 		
 		comenzar.setFont(new Font("Arial",20));
@@ -92,6 +94,7 @@ public class Aplicacion extends Application{
 		
 		Scene escena = new Scene(layout2);
 		this.stage.setFullScreen(false);
+		escena.getStylesheets().add("aplicacion/css/name-screen.css");
 		this.stage.setScene(escena);
 		this.stage.show();
 	}
@@ -106,18 +109,12 @@ public class Aplicacion extends Application{
         //LABEL INGRESE NOMBRES
         Label etiquetaIngreseNombres = new Label();
         etiquetaIngreseNombres.setText("Ingrese Nombres de los Jugadores");
-        etiquetaIngreseNombres.setStyle("-fx-font-weight: bold");
-        etiquetaIngreseNombres.setTextFill(Color.web("#E0F8E6"));
-        etiquetaIngreseNombres.getStyleClass().add("outline");
-        etiquetaIngreseNombres.setFont(new Font("Arial",15));
-        
+        etiquetaIngreseNombres.setId("ingrese-label");
+
         //jugador 1
         Label etiquetaJugador1 = new Label();
         etiquetaJugador1.setText("Jugador 1:");
-        etiquetaJugador1.setTextFill(Color.web("#E0F8E6"));
-        etiquetaJugador1.setStyle("-fx-font-weight: bold;");
-        etiquetaJugador1.getStyleClass().add("outline");
-        etiquetaJugador1.setFont(new Font("Arial",12));
+        etiquetaJugador1.setId("nombre-label");      
         
         TextField textoJugador1 = new TextField();
         textoJugador1.setPromptText("Jugador 1");      
@@ -126,24 +123,20 @@ public class Aplicacion extends Application{
         //jugador 2
         Label etiquetaJugador2 = new Label();
         etiquetaJugador2.setText("Jugador 2:");
-        etiquetaJugador2.setTextFill(Color.web("#E0F8E6"));
-        etiquetaJugador2.setStyle("-fx-font-weight: bold");
-        etiquetaJugador2.getStyleClass().add("outline");
-        etiquetaJugador2.setFont(new Font("Arial",12));
+        etiquetaJugador2.setId("nombre-label");
         
         TextField textoJugador2 = new TextField();
         textoJugador2.setPromptText("Jugador 2");
         
+        //label error
+        Label etiquetaError= new Label();
+        etiquetaError.setText("");
+        etiquetaError.setId("error-label");  
         
         //boton
         Button botonAceptar = new Button();
         botonAceptar.setText("Aceptar");
-        
-        
-        //label error
-        Label etiquetaError= new Label();
-        etiquetaError.setText("");
-        
+        botonAceptar.setId("lion");
         
         //VBOX1
         VBox contenedorJugador1 = new VBox(etiquetaJugador1,textoJugador1);
@@ -166,23 +159,21 @@ public class Aplicacion extends Application{
         contenedorPrincipal.setPadding(new Insets(20));
         contenedorPrincipal.setMaxHeight(200);
         contenedorPrincipal.setMaxWidth(300);
-        
-        visualizador2.setImage(blanco);
-		visualizador2.setFitHeight(200);
-		visualizador2.setFitWidth(300);
-        layout2.getChildren().addAll(visualizador2,contenedorPrincipal);
+        contenedorPrincipal.setId("hbox");
+  
+        layout2.getChildren().addAll(contenedorPrincipal);
         
         //evento
         BotonAceptarNombresEventHandler botonAceptarEventHandler = new BotonAceptarNombresEventHandler(textoJugador1,textoJugador2,etiquetaError,this);
         botonAceptar.setOnAction(botonAceptarEventHandler);       
 
-		visualizador.setImage(this.fondo);
-		visualizador.setFitWidth(this.resolucionAncho);
-		visualizador.setFitHeight(this.resolucionAlto);		
-		layout.getChildren().addAll(visualizador,layout2);
 		StackPane.setAlignment(layout2, Pos.CENTER );
-	    
-		Scene escena = new Scene(layout);
+	
+	    layout2.setPrefWidth(this.resolucionAncho);
+		layout2.setPrefHeight(this.resolucionAlto);	
+		
+		Scene escena = new Scene(layout2);
+		escena.getStylesheets().add("aplicacion/css/name-screen.css");
 		this.stage.setScene(escena);
 	}
 
