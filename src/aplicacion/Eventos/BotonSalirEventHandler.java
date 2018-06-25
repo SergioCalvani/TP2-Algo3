@@ -10,11 +10,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class BotonSalirEventHandler implements EventHandler<ActionEvent> {
-	
-	
-	public BotonSalirEventHandler() {}
 
 	@Override
 	public void handle(ActionEvent actionEvent) {
@@ -25,8 +23,6 @@ public class BotonSalirEventHandler implements EventHandler<ActionEvent> {
 		HBox botonera = new HBox(aceptar,cancelar);
 		VBox contenedor = new VBox();
 		
-		//aceptar.setId("lion");
-		//cancelar.setId("lion");
 		mensaje.setId("texto");
 		
 		mensaje.setText("¿Esta seguro que desea salir?");
@@ -55,7 +51,7 @@ public class BotonSalirEventHandler implements EventHandler<ActionEvent> {
 		
 		ventanaSalida.setTitle("¿Esta Seguro?");
 		ventanaSalida.setScene(salir);
-		
+		ventanaSalida.initStyle(StageStyle.UNDECORATED);
 		ventanaSalida.show();
 		aceptar.requestFocus();
 	}

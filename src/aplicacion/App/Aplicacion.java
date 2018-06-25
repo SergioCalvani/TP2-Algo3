@@ -1,6 +1,8 @@
 package aplicacion.App;
 
 import aplicacion.Eventos.BotonSalirEventHandler;
+import aplicacion.Eventos.PantallaNombresBotonAtrasEventHandler;
+import aplicacion.Eventos.PantallaNombresEnterEventHandler;
 import aplicacion.Eventos.BotonAceptarNombresEventHandler;
 import aplicacion.Eventos.BotonComenzarEventHandler;
 import javafx.application.Application;
@@ -19,6 +21,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Yugioh;
+import javafx.stage.StageStyle;
 
 public class Aplicacion extends Application{
 
@@ -26,22 +29,24 @@ public class Aplicacion extends Application{
 	private int resolucionAncho = 1280;
 	private Stage stage;
 	private Yugioh yugioh;
-	private Image fondo; 
 	
 	public static void main(String []args){
 		launch(args);
 	}
 	
+	public Stage getStage() {
+		return this.stage;
+	}
+	
 	@Override
-	public void start(Stage stage){
-		this.fondo = new Image("aplicacion/Imagenes/principal.png");
+	public void start(Stage stage){	
 		this.stage = stage;
 		
 		stage.setTitle("Al-Go-Oh!- FIUBA");
 		StackPane layout = new StackPane();
 		Label titulo = new Label();
 		Label integrantes = new Label();
-		ImageView visualizador = new ImageView();		
+				
 		Button comenzar = new Button("Comenzar");
 		Button salir = new Button("Salir");
 		VBox contenedorVertical = new VBox();
@@ -66,7 +71,7 @@ public class Aplicacion extends Application{
 		contenedorVertical.getChildren().addAll(comenzar,salir);
 		contenedorVertical.setSpacing(20);
 		contenedorVertical.setPadding(new Insets(240,0,0,50));
-		visualizador.setImage(this.fondo);
+		
 		layout.setPrefWidth(this.resolucionAncho);
 		layout.setPrefHeight(this.resolucionAlto);		
 		layout.getChildren().addAll(titulo,integrantes,contenedorVertical);
@@ -77,6 +82,8 @@ public class Aplicacion extends Application{
 		this.stage.setFullScreen(false);
 		escena.getStylesheets().add("aplicacion/css/start-screen.css");
 		this.stage.setScene(escena);
+		this.stage.resizableProperty().setValue(Boolean.FALSE);
+		this.stage.initStyle(StageStyle.UTILITY);
 		this.stage.show();
 		comenzar.requestFocus();
 	}
@@ -90,6 +97,7 @@ public class Aplicacion extends Application{
 		Label etiquetaJugador2 = new Label();
 		TextField textoJugador2 = new TextField();
 		Label etiquetaError= new Label();
+		Button botonAtras = new Button("Atras");
 		
 		//LABEL INGRESE NOMBRES
         etiquetaIngreseNombres.setText("Ingrese Nombres de los Jugadores");
@@ -138,15 +146,23 @@ public class Aplicacion extends Application{
         contenedorPrincipal.setMaxWidth(350);
         contenedorPrincipal.setId("hbox");
   
-        layout.getChildren().addAll(contenedorPrincipal);
+        layout.getChildren().addAll(contenedorPrincipal,botonAtras);
+        layout.setPadding(new Insets(10));
         
-        //evento
+        //eventos
         BotonAceptarNombresEventHandler botonAceptarEventHandler = new BotonAceptarNombresEventHandler(textoJugador1,textoJugador2,etiquetaError,this);
         botonAceptar.setOnAction(botonAceptarEventHandler);       
         botonAceptar.defaultButtonProperty().bind(botonAceptar.focusedProperty());
+        PantallaNombresBotonAtrasEventHandler eh = new PantallaNombresBotonAtrasEventHandler(this);
+        botonAtras.setOnAction(eh);       
+        botonAtras.defaultButtonProperty().bind(botonAtras.focusedProperty());
+        PantallaNombresEnterEventHandler textoEventHandler = new PantallaNombresEnterEventHandler(botonAceptar);
+        textoJugador1.setOnKeyPressed(textoEventHandler);
+        textoJugador2.setOnKeyPressed(textoEventHandler);
         
 		StackPane.setAlignment(layout, Pos.CENTER );
-	
+		StackPane.setAlignment(botonAtras,Pos.BOTTOM_LEFT);
+		
 	    layout.setPrefWidth(this.resolucionAncho);
 		layout.setPrefHeight(this.resolucionAlto);	
 		
