@@ -25,15 +25,22 @@ public class BotonSalirEventHandler implements EventHandler<ActionEvent> {
 		HBox botonera = new HBox(aceptar,cancelar);
 		VBox contenedor = new VBox();
 		
+		//aceptar.setId("lion");
+		//cancelar.setId("lion");
+		mensaje.setId("texto");
 		
 		mensaje.setText("¿Esta seguro que desea salir?");
 		mensaje.setFont(new Font("Arial",14));
 		aceptar.setFont(new Font("Arial",14));
 		cancelar.setFont(new Font("Arial",14));
-		botonera.setSpacing(10);
+		botonera.setSpacing(20);
+		aceptar.defaultButtonProperty().bind(aceptar.focusedProperty());
+		cancelar.defaultButtonProperty().bind(cancelar.focusedProperty());
+		
 		contenedor.getChildren().addAll(mensaje,botonera);
 		botonera.setAlignment(Pos.CENTER);
 		contenedor.setAlignment(Pos.CENTER);
+		contenedor.setSpacing(20);
 		
 		BotonAceptarEventHandler botonAceptarEventHandler = new BotonAceptarEventHandler();
 		aceptar.setOnAction(botonAceptarEventHandler);
@@ -41,10 +48,15 @@ public class BotonSalirEventHandler implements EventHandler<ActionEvent> {
 		BotonCancelarEventHandler botonCancelarEventHandler = new BotonCancelarEventHandler(ventanaSalida);
 		cancelar.setOnAction(botonCancelarEventHandler);
 		
-		Scene salir = new Scene(contenedor,250,150);
+		
+		
+		Scene salir = new Scene(contenedor,250, 150);
+		salir.getStylesheets().add("aplicacion/css/exit-window.css");
 		
 		ventanaSalida.setTitle("¿Esta Seguro?");
 		ventanaSalida.setScene(salir);
+		
 		ventanaSalida.show();
+		aceptar.requestFocus();
 	}
 }

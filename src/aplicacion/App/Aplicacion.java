@@ -1,8 +1,6 @@
 package aplicacion.App;
 
 import aplicacion.Eventos.BotonSalirEventHandler;
-import aplicacion.Eventos.BotonTutorialEventHandler;
-import aplicacion.Eventos.PantallaCompletaButtonHandler;
 import aplicacion.Eventos.BotonAceptarNombresEventHandler;
 import aplicacion.Eventos.BotonComenzarEventHandler;
 import javafx.application.Application;
@@ -19,14 +17,12 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import modelo.Yugioh;
 
 public class Aplicacion extends Application{
 
-	private int resolucionAlto = 720;
+	private int resolucionAlto = 700;
 	private int resolucionAncho = 1280;
 	private Stage stage;
 	private Yugioh yugioh;
@@ -43,100 +39,81 @@ public class Aplicacion extends Application{
 		
 		stage.setTitle("Al-Go-Oh!- FIUBA");
 		StackPane layout = new StackPane();
-		StackPane layout2 = new StackPane();
 		Label titulo = new Label();
 		Label integrantes = new Label();
-		ImageView visualizador = new ImageView();
-		
+		ImageView visualizador = new ImageView();		
 		Button comenzar = new Button("Comenzar");
-		comenzar.setId("button-grey");
-		//Button tutorial = new Button("Tutorial");
-		//Button pantallaCompleta = new Button("Pantalla Completa");
 		Button salir = new Button("Salir");
-		salir.setId("button-grey");
 		VBox contenedorVertical = new VBox();
 		
-		comenzar.setFont(new Font("Arial",20));
-		//tutorial.setFont(new Font("Arial",20));
-		//pantallaCompleta.setFont(new Font("Arial",20));
-		salir.setFont(new Font("Arial",20));
+		comenzar.defaultButtonProperty().bind(comenzar.focusedProperty());
+		salir.defaultButtonProperty().bind(salir.focusedProperty());
+		
+
 		titulo.setText("Al-Go-Oh!\n" + "Trabajo Practico Nro. 2 \n" +  "Algoritmos y Programacion III - FIUBA");
 		integrantes.setText("Integrantes: \n" + "\t- Bravo Arroyo, Victor Manuel\n" + "\t- Botter Brun, Juan Bautista\n" + "\t- Calvani, Sergio Alejandro\n" + "\t- Rack, Lucas Alexis");
-		titulo.setFont(new Font("Arial",34));
-		titulo.setTextFill(Color.web("#E0F8E6"));
-		integrantes.setFont(new Font("Arial",34));
-		integrantes.setTextFill(Color.web("#E0F8E6"));
 		
 		StackPane.setAlignment(titulo,Pos.TOP_LEFT);
 		StackPane.setAlignment(integrantes,Pos.BOTTOM_LEFT);
 		
-		//PantallaCompletaButtonHandler pantallaCompletaButtonHandler = new PantallaCompletaButtonHandler(stage);
-		//pantallaCompleta.setOnAction(pantallaCompletaButtonHandler);
-		
-		//BotonTutorialEventHandler botonTutorialEventHandler = new BotonTutorialEventHandler();
-		//tutorial.setOnAction(botonTutorialEventHandler);
-		
+
 		BotonSalirEventHandler botonSalirEventHandler = new BotonSalirEventHandler();
 		salir.setOnAction(botonSalirEventHandler);
 		
 		BotonComenzarEventHandler botonComenzarEventHandler = new BotonComenzarEventHandler(this);
 		comenzar.setOnAction(botonComenzarEventHandler);
 		
-		contenedorVertical.getChildren().addAll(comenzar,salir);//tutorial,pantallaCompleta,salir);
+		contenedorVertical.getChildren().addAll(comenzar,salir);
 		contenedorVertical.setSpacing(20);
 		contenedorVertical.setPadding(new Insets(240,0,0,50));
 		visualizador.setImage(this.fondo);
-		visualizador.setFitWidth(this.resolucionAncho);
-		visualizador.setFitHeight(this.resolucionAlto);		
+		layout.setPrefWidth(this.resolucionAncho);
+		layout.setPrefHeight(this.resolucionAlto);		
 		layout.getChildren().addAll(titulo,integrantes,contenedorVertical);
 		layout.setPadding(new Insets(10));
-		layout2.getChildren().addAll(visualizador,layout);
 		
-		Scene escena = new Scene(layout2);
+		
+		Scene escena = new Scene(layout);
 		this.stage.setFullScreen(false);
-		escena.getStylesheets().add("aplicacion/css/name-screen.css");
+		escena.getStylesheets().add("aplicacion/css/start-screen.css");
 		this.stage.setScene(escena);
 		this.stage.show();
+		comenzar.requestFocus();
 	}
 	
 	public void ingresarNombre() {
-		ImageView visualizador = new ImageView();
-		Image blanco = new Image("aplicacion/Imagenes/frame.jpg");
 		StackPane layout = new StackPane();
-		StackPane layout2 = new StackPane();
-		ImageView visualizador2 = new ImageView();
+		Button botonAceptar = new Button();
+		Label etiquetaIngreseNombres = new Label();
+		Label etiquetaJugador1 = new Label();
+		TextField textoJugador1 = new TextField();
+		Label etiquetaJugador2 = new Label();
+		TextField textoJugador2 = new TextField();
+		Label etiquetaError= new Label();
 		
-        //LABEL INGRESE NOMBRES
-        Label etiquetaIngreseNombres = new Label();
+		//LABEL INGRESE NOMBRES
         etiquetaIngreseNombres.setText("Ingrese Nombres de los Jugadores");
         etiquetaIngreseNombres.setId("ingrese-label");
 
-        //jugador 1
-        Label etiquetaJugador1 = new Label();
+        //jugador 1        
         etiquetaJugador1.setText("Jugador 1:");
         etiquetaJugador1.setId("nombre-label");      
-        
-        TextField textoJugador1 = new TextField();
+                
         textoJugador1.setPromptText("Jugador 1");      
         
         
-        //jugador 2
-        Label etiquetaJugador2 = new Label();
+        //jugador 2       
         etiquetaJugador2.setText("Jugador 2:");
         etiquetaJugador2.setId("nombre-label");
-        
-        TextField textoJugador2 = new TextField();
+                
         textoJugador2.setPromptText("Jugador 2");
         
         //label error
-        Label etiquetaError= new Label();
         etiquetaError.setText("");
         etiquetaError.setId("error-label");  
         
         //boton
-        Button botonAceptar = new Button();
         botonAceptar.setText("Aceptar");
-        botonAceptar.setId("lion");
         
         //VBOX1
         VBox contenedorJugador1 = new VBox(etiquetaJugador1,textoJugador1);
@@ -154,25 +131,26 @@ public class Aplicacion extends Application{
         contenedorBoton.setSpacing(0);
         
         //VBOX PRINCIPAL
-        VBox contenedorPrincipal = new VBox(etiquetaIngreseNombres,contenedorJugador1, contenedorJugador2,contenedorBoton);//etiquetaJugador1, texto, contenedorHorizontal, etiquetaJugador2);
+        VBox contenedorPrincipal = new VBox(etiquetaIngreseNombres,contenedorJugador1, contenedorJugador2,contenedorBoton);
         contenedorPrincipal.setSpacing(15);
         contenedorPrincipal.setPadding(new Insets(20));
         contenedorPrincipal.setMaxHeight(200);
-        contenedorPrincipal.setMaxWidth(300);
+        contenedorPrincipal.setMaxWidth(350);
         contenedorPrincipal.setId("hbox");
   
-        layout2.getChildren().addAll(contenedorPrincipal);
+        layout.getChildren().addAll(contenedorPrincipal);
         
         //evento
         BotonAceptarNombresEventHandler botonAceptarEventHandler = new BotonAceptarNombresEventHandler(textoJugador1,textoJugador2,etiquetaError,this);
         botonAceptar.setOnAction(botonAceptarEventHandler);       
-
-		StackPane.setAlignment(layout2, Pos.CENTER );
+        botonAceptar.defaultButtonProperty().bind(botonAceptar.focusedProperty());
+        
+		StackPane.setAlignment(layout, Pos.CENTER );
 	
-	    layout2.setPrefWidth(this.resolucionAncho);
-		layout2.setPrefHeight(this.resolucionAlto);	
+	    layout.setPrefWidth(this.resolucionAncho);
+		layout.setPrefHeight(this.resolucionAlto);	
 		
-		Scene escena = new Scene(layout2);
+		Scene escena = new Scene(layout);
 		escena.getStylesheets().add("aplicacion/css/name-screen.css");
 		this.stage.setScene(escena);
 	}
@@ -190,6 +168,10 @@ public class Aplicacion extends Application{
 		visualizador.setFitWidth(this.resolucionAncho);
 		visualizador.setFitHeight(this.resolucionAlto);
 		layout.getChildren().addAll(visualizador);
+		
+		if(this.yugioh.estaTerminado()) {
+			System.out.println("FIN");
+		}
 		
 		Scene escena = new Scene(layout);
 		this.stage.setScene(escena);
