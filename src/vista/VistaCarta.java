@@ -20,7 +20,7 @@ public class VistaCarta {
 	
 	public void crearFigura(){
 		this.figura = new Rectangle(80,110);
-		Image imagen = new Image("file:///home/sergio/Escritorio/Java/Yuhioh/TP2-Algo3/src/vista/imagenCarta/carta.jpg");
+		Image imagen = new Image("vista/imagenCarta/carta.jpg");
 		this.figura.setFill(new ImagePattern(imagen));
 		
 		InsertarEvent insertar = new InsertarEvent(this,this.tablero);

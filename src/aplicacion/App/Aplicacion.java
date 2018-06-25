@@ -12,8 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -29,6 +27,7 @@ public class Aplicacion extends Application{
 	private int resolucionAncho = 1280;
 	private Stage stage;
 	private Yugioh yugioh;
+	private TableroVista tablero;
 	private boolean firstRun = true;
 	
 	public static void main(String []args){
@@ -171,7 +170,7 @@ public class Aplicacion extends Application{
 		StackPane.setAlignment(layout, Pos.CENTER );
 		StackPane.setAlignment(botonAtras,Pos.BOTTOM_LEFT);
 		
-	    layout.setPrefWidth(this.resolucionAncho);
+		layout.setPrefWidth(this.resolucionAncho);
 		layout.setPrefHeight(this.resolucionAlto);	
 		
 		Scene escena = new Scene(layout);
@@ -182,22 +181,11 @@ public class Aplicacion extends Application{
 
 
 	public void iniciarJuego(String nombre1,String nombre2) {
-		this.yugioh = new Yugioh(nombre1,nombre2);
+		this.yugioh = new Yugioh(nombre1,nombre2);	
+		this.tablero = new TableroVista();
 		
-		ImageView visualizador = new ImageView();
-		Image imagen = new Image("aplicacion/Imagenes/fondo_tablero.png");
-		StackPane layout = new StackPane();
-		
-		visualizador.setImage(imagen);
-		visualizador.setFitWidth(this.resolucionAncho);
-		visualizador.setFitHeight(this.resolucionAlto);
-		layout.getChildren().addAll(visualizador);
-		
-		if(this.yugioh.estaTerminado()) {
-			System.out.println("FIN");
-		}
-		
-		Scene escena = new Scene(layout);
+		Scene escena = this.tablero.dibujar(this.yugioh); 
+		escena.getStylesheets().add("aplicacion/css/game-screen.css");
 		this.stage.setScene(escena);
 	}
 	
