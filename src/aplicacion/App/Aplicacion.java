@@ -29,6 +29,7 @@ public class Aplicacion extends Application{
 	private int resolucionAncho = 1280;
 	private Stage stage;
 	private Yugioh yugioh;
+	private boolean firstRun = true;
 	
 	public static void main(String []args){
 		launch(args);
@@ -41,6 +42,7 @@ public class Aplicacion extends Application{
 	@Override
 	public void start(Stage stage){	
 		this.stage = stage;
+		
 		
 		stage.setTitle("Al-Go-Oh!- FIUBA");
 		StackPane layout = new StackPane();
@@ -82,9 +84,15 @@ public class Aplicacion extends Application{
 		this.stage.setFullScreen(false);
 		escena.getStylesheets().add("aplicacion/css/start-screen.css");
 		this.stage.setScene(escena);
-		this.stage.resizableProperty().setValue(Boolean.FALSE);
-		this.stage.initStyle(StageStyle.UTILITY);
+		
+		if(this.firstRun == true) {
+			this.stage.initStyle(StageStyle.UTILITY);
+			this.stage.resizableProperty().setValue(Boolean.FALSE);
+			this.firstRun = false;
+		}
+		
 		this.stage.show();
+		
 		comenzar.requestFocus();
 	}
 	

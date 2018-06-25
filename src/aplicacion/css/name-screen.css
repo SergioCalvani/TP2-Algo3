@@ -3,6 +3,7 @@
     -fx-background-repeat: stretch;   
     -fx-background-size: 1280 700;
     -fx-background-position: center center;
+    
 }
 
 #hbox{
@@ -10,6 +11,7 @@
     -fx-background-repeat: stretch;   
     -fx-background-size: 350 200;
     -fx-background-position: center center;
+    -fx-effect: dropshadow(  gaussian, rgba(0,0,0,0.5) , 2,2,2,2 );
 }
 
 #nombre-label{
@@ -17,7 +19,7 @@
     -fx-font-weight: bold;
     -fx-font-family: "arial";
     -fx-text-fill: #E0F8E6;
-     -fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 2,2,2,2 );
+    -fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 2,2,2,2 );
     -fx-stroke: green;
     -fx-stroke-width: 5px;
 }
