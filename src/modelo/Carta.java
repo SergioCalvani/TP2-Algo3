@@ -11,6 +11,10 @@ public abstract class Carta {
 		this.bocaArriba = false;
 	}
 	
+	public String extraerNombre(){
+		return this.nombre;
+	}	
+	
 	public boolean estaBocaAbajo() {
 		return !this.bocaArriba;
 	}
