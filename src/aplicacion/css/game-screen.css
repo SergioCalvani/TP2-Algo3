@@ -6,17 +6,7 @@
     -fx-pref-width: 1280px;
     -fx-background-position: center center;
 }
-.GridPane{
-	-fx-alignment: center;
-}
-.button{
-    -fx-background-repeat: stretch;   
-    -fx-background-size: 80 100;
-    -fx-pref-height: 100px;
-    -fx-pref-width: 80px;
-    -fx-background-position: center center;
-    -fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 1,1,1,1 );
-}
+
 
 #cartaMonstruo {
 	-fx-background-image: url("Imagenes/DorsoCartas/carta_monstruo.png");
@@ -85,6 +75,10 @@
 }
 
 #cartaMazo {
+	-fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "arial";
+    -fx-text-fill: #E0F8E6;
 	-fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 1,1,1,1 );
 	-fx-background-image: url("Imagenes/DorsoCartas/carta_mazo.png");
     -fx-background-repeat: stretch;   
@@ -92,6 +86,11 @@
     -fx-pref-height: 100px;
     -fx-pref-width: 80px;
     -fx-background-position: center center;	
+}
+
+#cartaMazo:pressed, #cartaMazo:default:hover:pressed {
+  -fx-background-color: white;
+  -fx-text-fill: #1d1d1d;
 }
 
 #cartaMazoVacia {
