@@ -3,6 +3,9 @@ package aplicacion.App;
 import aplicacion.Eventos.BotonSalirEventHandler;
 import aplicacion.Eventos.PantallaNombresBotonAtrasEventHandler;
 import aplicacion.Eventos.PantallaNombresEnterEventHandler;
+
+import java.io.File;
+import java.util.Random;
 import aplicacion.Eventos.BotonAceptarNombresEventHandler;
 import aplicacion.Eventos.BotonComenzarEventHandler;
 import javafx.application.Application;
@@ -17,6 +20,8 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import modelo.Yugioh;
 import javafx.stage.StageStyle;
@@ -41,7 +46,6 @@ public class Aplicacion extends Application{
 	@Override
 	public void start(Stage stage){	
 		this.stage = stage;
-		
 		
 		stage.setTitle("Al-Go-Oh!- FIUBA");
 		StackPane layout = new StackPane();
@@ -89,6 +93,18 @@ public class Aplicacion extends Application{
 			this.stage.resizableProperty().setValue(Boolean.FALSE);
 			this.firstRun = false;
 		}
+		Random rand = new Random();
+		int i = rand.nextInt(2);
+		File song; 
+		if(i==0) {
+			song= new File( "src/vista/sonidos/main_song1.mp3");
+		}
+		else {
+			song = new File( "src/vista/sonidos/main_song2.mp3");
+		}
+        Media media = new Media(song.toURI().toString());
+        MediaPlayer player = new MediaPlayer(media);
+        player.setAutoPlay(true);
 		
 		this.stage.show();
 		
