@@ -15,10 +15,14 @@ public class RobarCartaEventHandler  implements EventHandler<ActionEvent>{
 
 	@Override
 	public void handle(ActionEvent arg0) {
-		this.lado.robarCartaDelMazo();
-		this.ladoVista.dibujarConTurno();
 		
-		
+		if( this.lado.cantitadDeCartasEnMano() < 10) {
+			this.lado.robarCartaDelMazo();
+			this.ladoVista.dibujarConTurno();
+		}
+		else {
+			
+		}
 	}
 	
 

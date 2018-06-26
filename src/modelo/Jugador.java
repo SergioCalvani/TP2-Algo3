@@ -15,6 +15,10 @@ public class Jugador {
 		this.nombre = nombre;
 	}
 	
+	public int cantidadDeCartasEnMano() {
+		return this.mano.obtenerTamanio();
+	}
+	
 	public void disminuirVidaEn(int danio) {
 		this.puntosDeVida -= danio;
 	}

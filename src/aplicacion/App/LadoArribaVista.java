@@ -22,6 +22,7 @@ public class LadoArribaVista extends LadoVista {
 	private Lado lado;
 	
 	public LadoArribaVista(Lado lado) {
+		//dibuja el tablero inicial
 		this.lado = lado;
 		this.mano = new HBox();
 		this.mano.setSpacing(10);
@@ -85,13 +86,18 @@ public class LadoArribaVista extends LadoVista {
 	
 	public void dibujarConTurno() {
 	    //mazo
-        Button mazo = new Button();
+        Button mazo = new Button("ROBAR");
         mazo.setId("cartaMazo");
         this.ladoArriba.add(mazo, 0,1);
         RobarCartaEventHandler robarCartaEH = new RobarCartaEventHandler(this.lado,this);
         mazo.setOnAction(robarCartaEH);
 		dibujarMano();
 	}
+	
+	public void dibujarSinTurno() {
+		dibujarManoOculta();
+	}
+	
 	
 	public void dibujarManoOculta() {
 		//dibuja dorso de cartas
