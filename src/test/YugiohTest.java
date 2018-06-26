@@ -452,10 +452,10 @@ class YugiohTest {
 		lado.colocar(ollaDeLaCodicia, 0);
 		lado.voltearCartaMagicaEnPosicion(0);
 		
-		// Se roban 7 cartas de un mazo de 40
-		assertEquals(33, mazo.obtenerTamanio());
+		// Se roban 2 cartas de un mazo de 40
+		assertEquals(38, mazo.obtenerTamanio());
 		// Se agregan 2 cartas a una mano de 5
-		assertEquals(7, mano.obtenerTamanio());
+		assertEquals(2, mano.obtenerTamanio());
 	}
 	
 	@Test

@@ -43,6 +43,7 @@ public class Aplicacion extends Application{
 		return this.stage;
 	}
 	
+	/*
 	@Override
 	public void start(Stage stage){	
 		this.stage = stage;
@@ -111,6 +112,7 @@ public class Aplicacion extends Application{
 		comenzar.requestFocus();
 	}
 	
+	*/
 	public void ingresarNombre() {
 		StackPane layout = new StackPane();
 		Button botonAceptar = new Button();
@@ -130,8 +132,7 @@ public class Aplicacion extends Application{
         etiquetaJugador1.setText("Jugador 1:");
         etiquetaJugador1.setId("nombre-label");      
                 
-        textoJugador1.setPromptText("Jugador 1");      
-        
+        textoJugador1.setPromptText("Jugador 1");           
         
         //jugador 2       
         etiquetaJugador2.setText("Jugador 2:");
@@ -168,7 +169,7 @@ public class Aplicacion extends Application{
         contenedorPrincipal.setMaxHeight(200);
         contenedorPrincipal.setMaxWidth(350);
         contenedorPrincipal.setId("hbox");
-  
+        
         layout.getChildren().addAll(contenedorPrincipal,botonAtras);
         layout.setPadding(new Insets(10));
         
@@ -193,18 +194,20 @@ public class Aplicacion extends Application{
 		escena.getStylesheets().add("aplicacion/css/name-screen.css");
 		this.stage.setScene(escena);
 	}
-
-
-
-	public void iniciarJuego(String nombre1,String nombre2) {
-		this.yugioh = new Yugioh(nombre1,nombre2);	
+                                                            
+	//public void iniciarJuego(String nombre1,String nombre2) {
+	@Override
+	public void start(Stage stage) {
+		this.stage = stage;
+		this.yugioh = new Yugioh("Messi","Higuaín");	
 		this.tablero = new TableroVista(this.yugioh);
 		
-		Scene escena = this.tablero.dibujar();
-		escena = this.tablero.dibujarMano();
+		
+		
+		Scene escena = this.tablero.dibujarTurnoAbajo();
+		
 		escena.getStylesheets().add("aplicacion/css/game-screen.css");
 		this.stage.setScene(escena);
-	}
-	
-	
+		this.stage.show();
+	}	
 }
