@@ -1,14 +1,59 @@
 package modelo;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public abstract class Carta {
 
 	protected String nombre;
+	private int id;
 	protected Jugador duenio;
 	protected boolean bocaArriba;
 	
 	public Carta(String nombre) {
 		this.nombre = nombre;
 		this.bocaArriba = false;
+		this.id=obtenerId(this.nombre);
+	}
+	
+	public int obtenerId(String nombre) {
+		FileInputStream fstream = null;
+		try {
+			fstream = new FileInputStream("id.txt");
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+		}
+		BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+
+		String strLine;
+
+		try {
+			while ((strLine = br.readLine()) != null)   {
+				String[] parts = strLine.split("|");
+				if(parts[0]==nombre){
+					br.close();
+					return Integer.parseInt(parts[1]);
+				}
+			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return -1;	
+	}
+	
+	public int obtenerId() {
+		return this.id;
 	}
 	
 	public String extraerNombre(){

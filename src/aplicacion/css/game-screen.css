@@ -6,7 +6,9 @@
     -fx-pref-width: 1280px;
     -fx-background-position: center center;
 }
-
+.GridPane{
+	-fx-alignment: center;
+}
 
 #cartaMonstruo {
 	-fx-background-image: url("Imagenes/DorsoCartas/carta_monstruo.png");
