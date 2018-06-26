@@ -11,6 +11,15 @@ public class Tablero {
 		this.ladoDos = new Lado(jugadorDos, this);
 		this.hayCartaDeCampo = false;
 	}
+	
+	public Lado obtenerLadoUno() {
+		return this.ladoUno;
+	}
+	
+	public Lado obtenerLadoDos() {
+		return this.ladoDos;
+	}
+	
 
 	public Lado obtenerLadoDe(Jugador jugador) {
 		if (ladoUno.esDuenio(jugador)) {

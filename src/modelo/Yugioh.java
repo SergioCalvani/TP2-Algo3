@@ -12,7 +12,15 @@ public class Yugioh {
 		this.jugadorOponente = new Jugador(nombre2);
 		this.tablero = new Tablero(jugadorDeTurno, jugadorOponente);
 	}
-
+	
+	public Lado obtenerLadoUno() {
+		return this.tablero.obtenerLadoUno();
+	}
+	
+	public Lado obtenerLadoDos() {
+		return this.tablero.obtenerLadoDos();
+	}
+	
 	public Tablero obtenerTablero() {
 		return this.tablero;
 	}

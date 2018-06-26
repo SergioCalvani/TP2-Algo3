@@ -182,9 +182,9 @@ public class Aplicacion extends Application{
 
 	public void iniciarJuego(String nombre1,String nombre2) {
 		this.yugioh = new Yugioh(nombre1,nombre2);	
-		this.tablero = new TableroVista();
+		this.tablero = new TableroVista(this.yugioh);
 		
-		Scene escena = this.tablero.dibujar(this.yugioh); 
+		Scene escena = this.tablero.dibujar();
 		escena.getStylesheets().add("aplicacion/css/game-screen.css");
 		this.stage.setScene(escena);
 	}

@@ -8,9 +8,6 @@
     
 }
 
-#layout{
-	-fx-alignment: center;
-}
 
 #cartaMonstruo {
 	-fx-background-image: url("Imagenes/DorsoCartas/carta_monstruo.png");
@@ -19,9 +16,23 @@
     -fx-pref-height: 100px;
     -fx-pref-width: 80px;
     -fx-background-position: center center;
+    -fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 1,1,1,1 );
+}
+
+#cartaMonstruoVacia {
+	-fx-background-color: "TRANSPARENT";
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 80 100;
+    -fx-pref-height: 100px;
+    -fx-pref-width: 80px;
+    -fx-background-position: center center;
+    -fx-border-color: #8b4513;
+    -fx-border-width: 3;
+    -fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 1,1,1,1 );
 }
 
 #cartaCampo {
+	-fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 1,1,1,1 );
 	-fx-background-image: url("Imagenes/DorsoCartas/carta_campo.png");
     -fx-background-repeat: stretch;   
     -fx-background-size: 80 100;
@@ -30,7 +41,20 @@
     -fx-background-position: center center;
 }
 
+#cartaCampoVacia {
+	-fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 1,1,1,1 );
+	-fx-background-color: "TRANSPARENT";
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 80 100;
+    -fx-pref-height: 100px;
+    -fx-pref-width: 80px;
+    -fx-background-position: center center;
+    -fx-border-color: #7cfc00;
+    -fx-border-width: 2;
+}
+
 #cartaCementerio {
+	-fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 1,1,1,1 );
 	-fx-background-image: url("Imagenes/DorsoCartas/carta_cementerio.png");
     -fx-background-repeat: stretch;   
     -fx-background-size: 80 100;
@@ -39,7 +63,20 @@
     -fx-background-position: center center;	
 }
 
+#cartaCementerioVacia {
+	-fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 1,1,1,1 );
+	-fx-background-color: "TRANSPARENT";
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 80 100;
+    -fx-pref-height: 100px;
+    -fx-pref-width: 80px;
+    -fx-background-position: center center;
+    -fx-border-color: #d3d3d3;
+    -fx-border-width: 2;
+}
+
 #cartaMazo {
+	-fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 1,1,1,1 );
 	-fx-background-image: url("Imagenes/DorsoCartas/carta_mazo.png");
     -fx-background-repeat: stretch;   
     -fx-background-size: 80 100;
@@ -48,11 +85,36 @@
     -fx-background-position: center center;	
 }
 
+#cartaMazoVacia {
+	-fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 1,1,1,1 );
+	-fx-background-color: "TRANSPARENT";
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 80 100;
+    -fx-pref-height: 100px;
+    -fx-pref-width: 80px;
+    -fx-background-position: center center;
+    -fx-border-color:  #8b0000;
+    -fx-border-width: 2;
+}
+
 #cartaMagicaTrampa {
+	-fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 1,1,1,1 );
 	-fx-background-image: url("Imagenes/DorsoCartas/carta_magica_trampa.png");
     -fx-background-repeat: stretch;   
     -fx-background-size: 80 100;
     -fx-pref-height: 100px;
     -fx-pref-width: 80px;
     -fx-background-position: center center;	
+}
+
+#cartaMagicaTrampaVacia {
+	-fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 1,1,1,1 );
+	-fx-background-color: "TRANSPARENT";
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 80 100;
+    -fx-pref-height: 100px;
+    -fx-pref-width: 80px;
+    -fx-background-position: center center;
+    -fx-border-color: #3cb371;
+    -fx-border-width: 2;
 }
