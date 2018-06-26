@@ -24,31 +24,33 @@ public abstract class Carta {
 		try {
 			fstream = new FileInputStream("id.txt");
 		} catch (FileNotFoundException e) {
-			
 			e.printStackTrace();
 		}
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-
 		String strLine;
 
+		
 		try {
 			while ((strLine = br.readLine()) != null)   {
-				String[] parts = strLine.split("|");
-				if(parts[0]==nombre){
+				
+				String[] parts = strLine.split("-");
+				
+				if(nombre.equals(parts[0])){					
 					br.close();
 					return Integer.parseInt(parts[1]);
 				}
 			}
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	
+		
 		try {
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}		
 		return -1;	
 	}
 	
