@@ -12,9 +12,21 @@ public class Yugioh {
 		this.jugadorDeTurno = new Jugador(nombre1);
 		this.jugadorOponente = new Jugador(nombre2);
 		this.tablero = new Tablero(jugadorDeTurno, jugadorOponente);
-		this.fase = new FaseInicial(this);
+		this.fase = new FaseInicial(this);	
+		
+		this.rellenarMano(this.jugadorDeTurno);
+		this.rellenarMano(this.jugadorOponente);
 	}
 	
+	private void rellenarMano(Jugador jugador) {
+		Mano mano = jugador.obtenerMano();
+		Mazo mazo = jugador.obtenerLado().obtenerMazo();
+		
+		for (int i = 0; i < 5; i++) {
+			mano.agregar(mazo.robar());
+		}
+	}
+
 	public Lado obtenerLadoUno() {
 		return this.tablero.obtenerLadoUno();
 	}
