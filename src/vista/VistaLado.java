@@ -1,11 +1,18 @@
 package vista;
 
+import excepciones.PosicionOcupadaException;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import modelo.Lado;
+import vista.eventos.SalirEventHandler;
 
 public class VistaLado {
 	
@@ -71,24 +78,58 @@ public class VistaLado {
 		this.prepararSombras(sombraCarta13, zonaEspecial,Color.GREY);
 		
 		ladoPrincipal.setAlignment(Pos.BOTTOM_CENTER);
-		lado.setSpacing(30);
-		zonaMonstruo.setSpacing(30);
-		zonaMagica.setSpacing(30);
-		zonaEspecial.setSpacing(30);
+		lado.setSpacing(50);
+		zonaMonstruo.setSpacing(50);
+		zonaMagica.setSpacing(50);
+		zonaEspecial.setSpacing(50);
 		zonaMonstruo.setAlignment(Pos.BOTTOM_CENTER);
 		zonaMagica.setAlignment(Pos.BOTTOM_CENTER);
 		zonaEspecial.setAlignment(Pos.BOTTOM_CENTER);
-		ladoPrincipal.setSpacing(30);
+		ladoPrincipal.setSpacing(50);
 		ladoPrincipal.getChildren().addAll(zonaMonstruo,zonaMagica);
 		lado.getChildren().addAll(ladoPrincipal,zonaEspecial);
 		
 		this.figura = lado;
 	}
 	
-	public void insertarFigura(VistaCarta figura){
-		this.zonaMonstruo.getChildren().remove(2);
-		this.zonaMonstruo.getChildren().add(2,figura.obtenerFigura());
-		figura.seInserto();
+	public void mensajeOcupado(){
+		Stage nuevaVentana = new Stage();
+		Label mensaje = new Label("Casillero Ocupado");
+		Button aceptar = new Button("Aceptar");
+		mensaje.setFont(new Font("Arial",12));
+		
+		SalirEventHandler salir = new SalirEventHandler(nuevaVentana);
+		aceptar.setOnAction(salir);
+		
+		VBox layout = new VBox(mensaje,aceptar);
+		layout.setAlignment(Pos.CENTER);
+		layout.setSpacing(10);
+		Scene escena = new Scene(layout,150,150);
+		nuevaVentana.setScene(escena);
+		nuevaVentana.show();
+		
+	}
+	
+	public void insertarFigura(VistaMonstruo figura,int posicion){
+		try{
+			this.lado.colocar(figura.obtenerCarta(),posicion);
+			this.zonaMonstruo.getChildren().remove(posicion);
+			this.zonaMonstruo.getChildren().add(posicion,figura.obtenerFigura());
+			figura.seInserto();
+		}catch(PosicionOcupadaException e){
+			this.mensajeOcupado();
+		}
+	}
+	
+	public void insertarFigura(VistaMagica figura,int posicion){
+		try{
+			this.lado.colocar(figura.obtenerCarta(),posicion);
+			this.zonaMagica.getChildren().remove(posicion);
+			this.zonaMagica.getChildren().add(posicion,figura.obtenerFigura());
+			figura.seInserto();
+		}catch(PosicionOcupadaException e){
+			this.mensajeOcupado();
+		}
 	}
 
 	public HBox obtenerFigura(){

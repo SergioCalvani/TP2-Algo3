@@ -3,7 +3,6 @@ package vista;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import modelo.CartaMonstruo;
 import modelo.Mano;
 
 public class VistaMano {
@@ -14,6 +13,7 @@ public class VistaMano {
 	public VistaMano(Mano unaMano){
 		this.mano = unaMano;
 		this.figura = new VBox();
+		this.figura.setSpacing(10);
 	}
 	
 	public void prepararSombras(Rectangle unRectangulo,VBox zona,Color color){

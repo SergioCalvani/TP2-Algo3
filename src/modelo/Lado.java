@@ -2,6 +2,8 @@ package modelo;
 
 import java.util.ArrayList;
 
+import excepciones.PosicionOcupadaException;
+
 public class Lado {
 
 	private int tamanio;
@@ -60,6 +62,9 @@ public class Lado {
 			this.tablero.verificarCartaDeCampoLadoContrario(this,monstruo);
 		}
 		monstruo.sacrificarSacricios();
+		if(this.zonaDeMonstruos[i] != null){
+			throw new PosicionOcupadaException();
+		}
 		this.zonaDeMonstruos[i] = monstruo;
 		monstruo.cambiarAPosicionDeAtaque();
 		monstruo.asignarDuenio(this.duenio);
@@ -71,11 +76,17 @@ public class Lado {
 	}
 
 	public void colocar(CartaMagica magica, int i) {
+		if(this.zonaMagica[i] != null){
+			throw new PosicionOcupadaException();
+		}
 		this.zonaMagica[i] = magica;
 		magica.asignarDuenio(this.duenio);
 	}
 
 	public void colocar(CartaTrampa trampa, int i) {
+		if(this.zonaMagica[i] != null){
+			throw new PosicionOcupadaException();
+		}
 		this.zonaMagica[i] = trampa;
 		trampa.asignarDuenio(this.duenio);
 	}
