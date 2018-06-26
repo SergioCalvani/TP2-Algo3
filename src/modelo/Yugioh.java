@@ -35,11 +35,11 @@ public class Yugioh {
 		return this.jugadorOponente;
 	}
 	
-	// Borrar
 	public void siguienteTurno() {
-		Jugador temporal = this.jugadorDeTurno;
-		this.jugadorDeTurno = this.jugadorOponente;
-		this.jugadorOponente = temporal;
+		this.fase.siguiente();
+		this.fase.siguiente();
+		this.fase.siguiente();
+		this.fase.siguiente();
 	}
 	
 	public void intercambiarJugadores() {
