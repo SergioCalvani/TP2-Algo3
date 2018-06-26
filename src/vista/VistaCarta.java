@@ -3,7 +3,6 @@ package vista;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
-import vista.eventos.*;
 import modelo.Carta;
 
 public class VistaCarta {

@@ -2,11 +2,14 @@ package aplicacion.App;
 
 
 import javafx.scene.layout.RowConstraints;
+
+import java.util.ArrayList;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import modelo.Carta;
 import modelo.Lado;
+import modelo.Mano;
 
 
 public class LadoArribaVista {
@@ -67,5 +70,19 @@ public class LadoArribaVista {
 	
 	public GridPane getGrid() {
 		return this.ladoArriba;
+	}
+	
+	public void dibujarMano() {
+		Mano mano = this.lado.obtenerJugador().obtenerMano();
+		ArrayList<Carta> coleccionDeCartas = mano.obtenerCartas();
+		int size = mano.obtenerTamanio();
+		for (int i = 0; i <size; i++) {
+			Carta carta = coleccionDeCartas.get(i);
+			CartaVista cv = new CartaVista(carta);
+			Button button =cv.obtenerFigura();
+			button.setMinSize(80,100);
+			button.setMaxSize(80,100);
+			this.ladoArriba.add(button,i+1,0);
+		}
 	}
 }

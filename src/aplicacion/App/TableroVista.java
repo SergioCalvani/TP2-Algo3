@@ -4,7 +4,6 @@ package aplicacion.App;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import modelo.Yugioh;
 
@@ -31,5 +30,23 @@ public class TableroVista {
 		this.escena = new Scene(contenedor);
 		
 		return this.escena;
-	}	
+	}
+	
+	public Scene dibujarMano() {
+		this.ladoArriba.dibujarMano();
+		this.ladoAbajo.dibujarMano();
+		
+		GridPane pane1 = this.ladoArriba.getGrid();
+		GridPane pane2 = this.ladoAbajo.getGrid();
+		VBox contenedor = new VBox(pane1,pane2);
+		
+	    contenedor.setSpacing(20);
+
+	    pane1.setAlignment(Pos.CENTER );
+	    pane2.setAlignment( Pos.CENTER );
+	    
+		this.escena = new Scene(contenedor);
+		
+		return this.escena;
+	}
 }

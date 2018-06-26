@@ -185,6 +185,7 @@ public class Aplicacion extends Application{
 		this.tablero = new TableroVista(this.yugioh);
 		
 		Scene escena = this.tablero.dibujar();
+		escena = this.tablero.dibujarMano();
 		escena.getStylesheets().add("aplicacion/css/game-screen.css");
 		this.stage.setScene(escena);
 	}

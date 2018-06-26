@@ -1,21 +1,21 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Collection;
+
 
 public class Mano {
 	
-	private Collection<Carta> coleccionDeCartas;
+	private ArrayList<Carta> coleccionDeCartas;
 	
 	public Mano() {
-		this.coleccionDeCartas = new ArrayList();
+		this.coleccionDeCartas = new ArrayList<Carta>();
 	}
 	
 	public void agregar(Carta unaCarta) {
 		this.coleccionDeCartas.add(unaCarta);
 	}
 
-	public Object obtenerTamanio() {
+	public int obtenerTamanio() {
 		return this.coleccionDeCartas.size();
 	}
 
@@ -23,6 +23,14 @@ public class Mano {
 		InvocadorDeExodia invocador = new InvocadorDeExodia();
 		return invocador.exodiaEstaInvocado(this.coleccionDeCartas);
 			  
+	}
+	
+	public Carta obtenerCarta(int i) {
+		return this.coleccionDeCartas.get(i);
+	}
+	
+	public ArrayList<Carta> obtenerCartas() {
+		return this.coleccionDeCartas;
 	}
 
 }

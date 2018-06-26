@@ -46,4 +46,8 @@ public class Jugador {
 	public boolean esGanador() {
 		return this.mano.contieneExodia();
 	}
+	
+	public void agregarCartaAMano(Carta carta) {
+		this.mano.agregar(carta);
+	}
 }

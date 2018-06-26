@@ -28,6 +28,11 @@ public class Lado {
 		this.tablero = tablero;
 		this.sacrificios = 0;
 		this.mazo = new Mazo();
+		
+		for(int i =0;i<this.tamanio;i++) {
+			this.duenio.agregarCartaAMano(this.mazo.robar());
+		}
+		
 	}
 
 	public boolean esDuenio(Jugador jugador) {
