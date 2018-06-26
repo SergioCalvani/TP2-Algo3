@@ -34,6 +34,7 @@ class YugiohAdicionalesTest {
 		yugioh.siguienteTurno();
 		yugioh.siguienteTurno();
 		Jugador jugadorDeTurno3 = yugioh.obtenerJugadorDeTurno();
+		
 		assertEquals(jugadorDeTurno1, jugadorDeTurno3);
 	}
 	
@@ -42,6 +43,7 @@ class YugiohAdicionalesTest {
 		Yugioh yugioh = new Yugioh("JugadorUno", "JugadorDos");
 		Jugador jugador = yugioh.obtenerJugadorDeTurno();
 		Mano mano = jugador.obtenerMano();
+		
 		assertEquals(5, mano.obtenerTamanio());	
 	}
 	
