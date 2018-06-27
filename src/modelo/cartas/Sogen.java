@@ -30,4 +30,10 @@ public class Sogen extends CartaDeCampo{
 		monstruo.aumentarAtaque(200);
 	}
 
+	@Override
+	public void posicionarEn(Lado lado) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

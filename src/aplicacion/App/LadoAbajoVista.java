@@ -341,4 +341,11 @@ public class LadoAbajoVista extends LadoVista {
 	    }
 	}
 
+
+	@Override
+	public void insertarMonstruo(CartaVista figura, int posicion) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

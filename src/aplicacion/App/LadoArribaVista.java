@@ -6,6 +6,7 @@ import javafx.scene.layout.RowConstraints;
 import java.util.ArrayList;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import aplicacion.Eventos.InsertarEvent;
 import aplicacion.Eventos.MostrarCartaEventHandler;
 import aplicacion.Eventos.RobarCartaEventHandler;
 import javafx.geometry.Pos;
@@ -173,7 +174,7 @@ public class LadoArribaVista extends LadoVista {
 			button.setMaxSize(80,100);
 			
 			//CAMBIAR EH
-			MostrarCartaEventHandler eh = new MostrarCartaEventHandler(carta);
+			InsertarEvent eh = new InsertarEvent(cv,this);
 			button.setOnAction(eh);
 			
 			this.mano.getChildren().add(button);
@@ -337,6 +338,13 @@ public class LadoArribaVista extends LadoVista {
 		for(int i = 0;i<2;i++) {
 	    	this.campo.getRowConstraints().add(new RowConstraints(100));
 	    }
+	}
+	
+	public void insertarMonstruo(CartaVista figura,int posicion){
+		Button boton = figura.obtenerBoton(80,100);
+		this.lado.colocar((CartaMonstruo) figura.obtenerCarta(),posicion-1);
+		//figura.seInserto(this);
+		this.campo.add(boton,posicion,1);	
 	}
 
 }

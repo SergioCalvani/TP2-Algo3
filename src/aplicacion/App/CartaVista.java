@@ -27,4 +27,8 @@ public class CartaVista {
 	public Image obtenerImagen(int ancho, int largo){
 		return new Image(this.imagePath,ancho, largo, false, false);
 	}
+	
+	public Carta obtenerCarta(){
+		return this.carta;
+	}
 }

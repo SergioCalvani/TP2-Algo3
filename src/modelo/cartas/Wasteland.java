@@ -29,4 +29,10 @@ public class Wasteland extends CartaDeCampo{
 	public void aplicarEfectoCartaIndividualEnemigo(CartaMonstruo monstruo) {
 		monstruo.aumentarDefensa(300);
 	}
+
+	@Override
+	public void posicionarEn(Lado lado) {
+		// TODO Auto-generated method stub
+		
+	}
 }
