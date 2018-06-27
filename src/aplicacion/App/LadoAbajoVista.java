@@ -2,6 +2,7 @@ package aplicacion.App;
 
 import java.util.ArrayList;
 
+import aplicacion.Eventos.InsertarEvent;
 import aplicacion.Eventos.MostrarCartaEventHandler;
 import aplicacion.Eventos.RobarCartaEventHandler;
 import javafx.geometry.Pos;
@@ -174,8 +175,7 @@ public class LadoAbajoVista extends LadoVista {
 			button.setMinSize(80,100);
 			button.setMaxSize(80,100);
 			
-			//CAMBIAR EH
-			MostrarCartaEventHandler eh = new MostrarCartaEventHandler(carta);
+			InsertarEvent eh = new InsertarEvent(carta,this.lado,this);
 			button.setOnAction(eh);
 			
 			this.mano.getChildren().add(button);

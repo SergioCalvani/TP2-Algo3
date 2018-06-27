@@ -15,6 +15,10 @@ public class Jugador {
 		this.nombre = nombre;
 	}
 	
+	public void sacarCartaDeMano(Carta carta) {
+		this.mano.sacarCarta(carta);
+	}
+	
 	public int cantidadDeCartasEnMano() {
 		return this.mano.obtenerTamanio();
 	}

@@ -174,7 +174,7 @@ public class LadoArribaVista extends LadoVista {
 			button.setMaxSize(80,100);
 			
 			//CAMBIAR EH
-			InsertarEvent eh = new InsertarEvent(cv,this);
+			InsertarEvent eh = new InsertarEvent(carta,this.lado,this);
 			button.setOnAction(eh);
 			
 			this.mano.getChildren().add(button);

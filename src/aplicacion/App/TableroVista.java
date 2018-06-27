@@ -36,10 +36,9 @@ public class TableroVista {
 		this.info.setMaxWidth(150);
 		this.info.setId("INFO");
 		this.botonAvanzar = new Button("Pasar a \nFase De Preparación");
-		//this.botonAvanzar.setMaxWidth(150);
+		this.botonAvanzar.requestFocus(); 
 		this.botonAvanzar.setId("AVANZAR");
-		
-		
+				
 		AvanzarDeFaseEventHandler eh = new  AvanzarDeFaseEventHandler(this);
 		this.botonAvanzar.setOnAction(eh);
 		
@@ -151,6 +150,7 @@ public class TableroVista {
 	    contenedor.setAlignment( Pos.CENTER);
 	    this.info.setAlignment( Pos.CENTER);
 	    this.botonAvanzar.setAlignment( Pos.CENTER);
+	    this.botonAvanzar.requestFocus();
 	    HBox.setHgrow(contenedor, Priority.ALWAYS);
 		this.escena = new Scene(hb);
 	}

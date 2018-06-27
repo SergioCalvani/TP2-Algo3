@@ -70,15 +70,20 @@ public class Lado {
 	
 	public void colocarCartaDeCampo(CartaDeCampo campo){
 		this.cartaCampo = campo;
+		sacarCartaDeMano(campo);
 		this.tablero.seAgregoCartaDeCampo();
 		campo.asignarTableroYDuenio(this.tablero,this.duenio);
-		campo.activar();
+		campo.activar();		
 	}
 	
 	public CartaDeCampo obtenerCartaCampo() {
 		return this.cartaCampo;
 	}
 
+	public void sacarCartaDeMano(Carta carta) {
+		this.duenio.sacarCartaDeMano(carta);
+	}
+	
 	public boolean estaEnCampoMonstruo(CartaMonstruo monstruo) {
 		for(int i=0;i < this.tamanio; i++) {
 			if (this.zonaDeMonstruos[i] == monstruo) {
@@ -258,16 +263,19 @@ public class Lado {
 	public void colocar(CartaMonstruo monstruo) {
 		int pos = this.posicionDisponible(this.zonaDeMonstruos);
 		this.colocar(monstruo, pos);
+		sacarCartaDeMano(monstruo);
 	}
 	
 	public void colocar(CartaMagica magica) {
 		int pos = this.posicionDisponible(this.zonaMagica);
 		this.colocar(magica, pos);
+		sacarCartaDeMano(magica);
 	}
 	
 	public void colocar(CartaTrampa trampa) {
 		int pos = this.posicionDisponible(this.zonaMagica);
 		this.colocar(trampa, pos);
+		sacarCartaDeMano(trampa);
 	}
 	
 	private int posicionDisponible(Carta[] zona) {

@@ -48,7 +48,6 @@ public class MostrarCartaEventHandler implements EventHandler<ActionEvent>{
 		btn.setOnAction(botonCancelarEventHandler);
 		
 		escena.getStylesheets().add("aplicacion/css/card-window.css");
-		ventanaCarta.setTitle(this.carta.obtenerNombre());
 		ventanaCarta.setScene(escena);		
 		ventanaCarta.initStyle(StageStyle.UNDECORATED);
 		ventanaCarta.show();	

@@ -14,6 +14,14 @@ public class Mano {
 	public void agregar(Carta unaCarta) {
 		this.coleccionDeCartas.add(unaCarta);
 	}
+	
+	public void sacarCarta(Carta carta) {
+		for(int i =0; i < this.coleccionDeCartas.size();i++) {
+			if( this.coleccionDeCartas.get(i) == carta) {
+				this.coleccionDeCartas.remove(i);
+			}
+		}
+	}
 
 	public int obtenerTamanio() {
 		return this.coleccionDeCartas.size();
