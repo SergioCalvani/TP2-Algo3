@@ -5,7 +5,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-
+import aplicacion.App.Turno;
+import aplicacion.App.Fase;
 
 import modelo.Yugioh;
 
@@ -15,8 +16,12 @@ public class TableroVista {
 	private Scene escena;
 	private Label info;
 	private Button botonAvanzar;
+	private Turno turno;
+	private Fase fase;
 	
 	public TableroVista(Yugioh yugioh) {
+		this.turno = Turno.TURNOABAJO;
+		this.fase = Fase.INICIAL;
 		this.ladoArriba = new LadoArribaVista (yugioh.obtenerLadoDos());
 		this.ladoAbajo = new LadoAbajoVista (yugioh.obtenerLadoUno());
 		this.info = new Label("                                  ");
@@ -25,14 +30,49 @@ public class TableroVista {
 		this.botonAvanzar.setMaxWidth(150);
 		this.botonAvanzar.setId("BOTON");
 	}
+
 	
-	public Scene iniciarJuego() {
-		return turnoArriba();
+	public Scene juego(){
+		switch (this.turno) {
+			case TURNOARRIBA: 
+				switch(this.fase) {
+				case INICIAL:
+					faseInicialArriba();
+				case PREPARACION:
+
+				case ATAQUE:
+
+				case TRAMPAS:
+
+				case FINAL:
+
+				default:
+					break;
+				}				
+			case TURNOABAJO:
+				switch(this.fase) {
+				case INICIAL:
+					faseInicialAbajo();
+				case PREPARACION:
+
+				case ATAQUE:
+
+				case TRAMPAS:
+
+				case FINAL:
+
+				default:
+					break;					
+				}	
+			default:
+				break;
+		}
+		return this.escena;
 	}
 	
-	public Scene turnoAbajo() {
+	public void faseInicialAbajo() {
 		this.ladoArriba.dibujarSinTurno();
-		this.ladoAbajo.dibujarConTurno() ;
+		this.ladoAbajo.faseInicial() ;
 		
 		VBox pane1 = this.ladoArriba.getGrid();
 		VBox pane2 = this.ladoAbajo.getGrid();
@@ -50,10 +90,9 @@ public class TableroVista {
 	    this.botonAvanzar.setAlignment( Pos.CENTER_RIGHT);
 	    HBox.setHgrow(contenedor, Priority.ALWAYS);
 		this.escena = new Scene(hb);
-		return this.escena;
 	}
 	
-	public Scene turnoArriba() {
+	public void faseInicialArriba() {
 		this.ladoArriba.faseInicial();
 		this.ladoAbajo.dibujarSinTurno() ;
 		
@@ -73,7 +112,6 @@ public class TableroVista {
 	    this.botonAvanzar.setAlignment( Pos.CENTER_RIGHT);
 	    HBox.setHgrow(contenedor, Priority.ALWAYS);
 		this.escena = new Scene(hb);
-		return this.escena;
 	}
 	
 	

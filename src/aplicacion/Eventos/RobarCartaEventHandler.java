@@ -18,7 +18,7 @@ public class RobarCartaEventHandler  implements EventHandler<ActionEvent>{
 		
 		if( this.lado.cantitadDeCartasEnMano() < 10) {
 			this.lado.robarCartaDelMazo();
-			this.ladoVista.dibujarConTurno();
+			this.ladoVista.faseInicial();
 		}
 		else {
 			

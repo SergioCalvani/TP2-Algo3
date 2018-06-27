@@ -204,7 +204,7 @@ public class Aplicacion extends Application{
 		
 		
 		
-		Scene escena = this.tablero.iniciarJuego();
+		Scene escena = this.tablero.juego();
 		
 		escena.getStylesheets().add("aplicacion/css/game-screen.css");
 		this.stage.setScene(escena);

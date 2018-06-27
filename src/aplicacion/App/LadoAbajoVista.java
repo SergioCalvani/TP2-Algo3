@@ -2,6 +2,7 @@ package aplicacion.App;
 
 import java.util.ArrayList;
 
+import aplicacion.Eventos.MostrarCartaEventHandler;
 import aplicacion.Eventos.RobarCartaEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -74,6 +75,34 @@ public class LadoAbajoVista extends LadoVista {
 	    this.mano.setAlignment( Pos.TOP_CENTER );
 	    vb.setSpacing(10);
 		return vb;
+	}
+	
+	public void faseInicial() {
+	    //mazo
+        Button mazo = new Button("ROBAR");
+        mazo.setId("cartaMazo");
+        this.ladoAbajo.add(mazo, 6,1);
+        RobarCartaEventHandler robarCartaEH = new RobarCartaEventHandler(this.lado,this);
+        mazo.setOnAction(robarCartaEH);
+		dibujarMano();
+		this.mano.getChildren().clear();
+		
+		//dibuja mano
+		Mano mano = this.lado.obtenerJugador().obtenerMano();
+		ArrayList<Carta> coleccionDeCartas = mano.obtenerCartas();
+		int size = mano.obtenerTamanio();
+		for (int i = 0; i <size; i++) {
+			Carta carta = coleccionDeCartas.get(i);
+			CartaVista cv = new CartaVista(carta);
+			Button button =cv.obtenerBoton(80,100);
+			button.setMinSize(80,100);
+			button.setMaxSize(80,100);
+			
+			MostrarCartaEventHandler eh = new MostrarCartaEventHandler(carta);
+			button.setOnAction(eh);
+			
+			this.mano.getChildren().add(button);
+		}
 	}
 	
 	public void dibujarConTurno() {
