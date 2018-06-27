@@ -7,6 +7,15 @@
     -fx-background-position: center center;
 }
 
+#INFO{
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-font-family: "arial";
+    -fx-text-fill: #E0F8E6;
+    -fx-effect: dropshadow(  three-pass-box, rgba(0,0,0,1) , 2,2,2,2 );
+    -fx-stroke: green;
+    -fx-stroke-width: 5px;
+}
 
 #cartaMonstruo {
 	-fx-background-image: url("Imagenes/DorsoCartas/carta_monstruo.png");

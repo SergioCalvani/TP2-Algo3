@@ -7,10 +7,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import aplicacion.App.Turno;
 import aplicacion.App.Fase;
-
+import modelo.Jugador;
 import modelo.Yugioh;
 
 public class TableroVista {
+	private Jugador jugador1;
+	private Jugador jugador2;
 	private LadoArribaVista ladoArriba;
 	private LadoAbajoVista ladoAbajo;
 	private Scene escena;
@@ -20,15 +22,20 @@ public class TableroVista {
 	private Fase fase;
 	
 	public TableroVista(Yugioh yugioh) {
+		this.jugador1 = yugioh.obtenerJugadorDeTurno();
+		this.jugador2 = yugioh.obtenerJugadorOponente();
 		this.turno = Turno.TURNOABAJO;
 		this.fase = Fase.INICIAL;
 		this.ladoArriba = new LadoArribaVista (yugioh.obtenerLadoDos());
 		this.ladoAbajo = new LadoAbajoVista (yugioh.obtenerLadoUno());
 		this.info = new Label("                                  ");
 		this.info.setMaxWidth(150);
+		this.info.setId("INFO");
 		this.botonAvanzar = new Button("Fase De Preparación");
 		this.botonAvanzar.setMaxWidth(150);
 		this.botonAvanzar.setId("BOTON");
+		
+		obtenerInformacion();
 	}
 
 	
@@ -114,7 +121,13 @@ public class TableroVista {
 		this.escena = new Scene(hb);
 	}
 	
-	
-	
-	
+	public void obtenerInformacion() {
+		String info = this.jugador2.obtenerNombre() + "\n"
+				+"Vida:"+String.valueOf(this.jugador2.obtenerVida())+ "\n "
+				+"                             \n"
+				+this.jugador1.obtenerNombre() +"\n"
+				+"Vida:" +String.valueOf(this.jugador1.obtenerVida())+ "\n";
+		this.info.setText(info);
+				
+	}	
 }

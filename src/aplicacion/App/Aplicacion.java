@@ -195,11 +195,13 @@ public class Aplicacion extends Application{
 		this.stage.setScene(escena);
 	}
                                                             
-	//public void iniciarJuego(String nombre1,String nombre2) {
+	/*public void iniciarJuego(String nombre1,String nombre2) {
+		this.yugioh = new Yugioh(nombre1,nombre2);*/
 	@Override
 	public void start(Stage stage) {
 		this.stage = stage;
-		this.yugioh = new Yugioh("Messi","Higuaín");	
+		this.yugioh = new Yugioh("Messi","Higuaín");
+		
 		this.tablero = new TableroVista(this.yugioh);
 		
 		

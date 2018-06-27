@@ -4,11 +4,15 @@ package modelo;
 public class Yugioh {
 	
 	private Tablero tablero;
+	private String nombreJugador1;
+	private String nombreJugador2;
 	private Jugador jugadorDeTurno;
 	private Jugador jugadorOponente;
 	private Fase fase;
 	
 	public Yugioh(String nombre1, String nombre2) {
+		this.nombreJugador1=nombre1;
+		this.nombreJugador2=nombre2;
 		this.jugadorDeTurno = new Jugador(nombre1);
 		this.jugadorOponente = new Jugador(nombre2);
 		this.tablero = new Tablero(jugadorDeTurno, jugadorOponente);
