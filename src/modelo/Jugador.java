@@ -35,6 +35,10 @@ public class Jugador {
 		return this.nombre;
 	}
 	
+	public int obtenerSacrificios() {
+		return this.lado.obteneCantidadDeSacrificios();
+	}
+	
 	public Lado obtenerLado() {
 		return this.lado;
 	}

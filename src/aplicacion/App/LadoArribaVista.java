@@ -28,12 +28,14 @@ public class LadoArribaVista extends LadoVista {
 	private HBox mano;
 	private Lado lado;
 	private Jugador jugador;
+	private boolean seRoboCartaFlag;
 	private TableroVista tableroVista;
 	
 	public LadoArribaVista(Lado lado,TableroVista tableroVista) {
 		//dibuja el tablero inicial
 		this.tableroVista = tableroVista;
 		this.lado = lado;
+		this.seRoboCartaFlag = false;
 		this.jugador = lado.obtenerJugador();
 		this.mano = new HBox();
 		this.mano.setSpacing(10);
@@ -47,6 +49,14 @@ public class LadoArribaVista extends LadoVista {
         dibujarCementerio(); 
         dibujarManoOculta();
         dibujarMazoSoloVista();
+	}
+	
+	public boolean seRoboCarta() {
+		return this.seRoboCartaFlag;
+	}
+	
+	public void roboCarta() {
+		this.seRoboCartaFlag = true;
 	}
 	
 	public VBox getGrid() {
@@ -70,6 +80,7 @@ public class LadoArribaVista extends LadoVista {
 		dibujarCartasTrampaOcultas();
 		dibujarCartasMonstruoSoloVista();
 		dibujarMazoSoloVista();
+		this.seRoboCartaFlag = false;
 	}
 	
 	public void faseInicial() {

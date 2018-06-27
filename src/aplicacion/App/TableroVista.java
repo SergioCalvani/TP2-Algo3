@@ -8,6 +8,7 @@ import javafx.scene.layout.*;
 import aplicacion.App.Turno;
 import aplicacion.Eventos.AvanzarDeFaseEventHandler;
 import aplicacion.App.Fase;
+import modelo.CartaMonstruo;
 import modelo.Jugador;
 import modelo.Yugioh;
 
@@ -18,14 +19,17 @@ public class TableroVista {
 	private LadoArribaVista ladoArriba;
 	private LadoAbajoVista ladoAbajo;
 	private Scene escena;
-	private Label info;
+	private Label info; 
 	private Button botonAvanzar;
+
 	private int turnos = 1;
 	private Turno turno;
 	private Fase fase;
+	private CartaMonstruo carta;
 	
 	public TableroVista(Yugioh yugioh,Aplicacion app) {
 		this.app = app;
+		this.carta = null;
 		this.jugador1 = yugioh.obtenerJugadorDeTurno();
 		this.jugador2 = yugioh.obtenerJugadorOponente();
 		this.turno = Turno.TURNOABAJO;
@@ -81,7 +85,7 @@ public class TableroVista {
 				this.turno = Turno.TURNOARRIBA;
 				break;
 			case TURNOARRIBA:
-				this.turno = Turno.TURNOABAJO;
+				this.turno = Turno.TURNOABAJO;				
 				this.turnos++;
 				break;
 			default:
@@ -154,57 +158,34 @@ public class TableroVista {
 	    HBox.setHgrow(contenedor, Priority.ALWAYS);
 		this.escena = new Scene(hb);
 	}
-	
-	/*public void faseInicialAbajo() {
-		this.ladoArriba.dibujarSinTurno();
-		this.ladoAbajo.faseInicial() ;
-		
-		VBox pane1 = this.ladoArriba.getGrid();
-		VBox pane2 = this.ladoAbajo.getGrid();
-		VBox contenedor = new VBox(pane1,pane2);
-	    
-		HBox hb = new HBox(this.info, contenedor, this.botonAvanzar);
-		hb.setAlignment(Pos.CENTER);
-		contenedor.setSpacing(20);
-		
-		hb.setSpacing(20);
-	    hb.setStyle("-fx-padding: 0 10 0 10;");
-	    contenedor.setAlignment( Pos.CENTER);
-	    this.info.setAlignment( Pos.CENTER_LEFT);
-	    this.botonAvanzar.setAlignment( Pos.CENTER_RIGHT);
-	    HBox.setHgrow(contenedor, Priority.ALWAYS);
-		this.escena = new Scene(hb);
+
+	public void cartaMonstruoColocada(CartaMonstruo carta) {
+		this.carta = carta;
 	}
 	
-	public void faseInicialArriba() {
-		this.ladoArriba.faseInicial();
-		this.ladoAbajo.dibujarSinTurno() ;
-		
-		VBox pane1 = this.ladoArriba.getGrid();
-		VBox pane2 = this.ladoAbajo.getGrid();
-		VBox contenedor = new VBox(pane1,pane2);
-	    
-		HBox hb = new HBox(this.info, contenedor, this.botonAvanzar);
-		hb.setAlignment(Pos.CENTER);
-		contenedor.setSpacing(20);
-		
+	public void reiniciarCarta() {
+		this.carta = null;
+	}
+	
+	public CartaMonstruo obtenerCarta() {
+		return this.carta;
+	}
+	
+	public boolean hayCarta() {
+		return this.carta!=null;
+	}
 
-		hb.setSpacing(20);
-	    hb.setStyle("-fx-padding: 0 10 0 10;");
-	    contenedor.setAlignment( Pos.CENTER);
-	    this.info.setAlignment( Pos.CENTER_LEFT);
-	    this.botonAvanzar.setAlignment( Pos.CENTER_RIGHT);
-	    HBox.setHgrow(contenedor, Priority.ALWAYS);
-		this.escena = new Scene(hb);
-	}*/
+	
 	
 	public void obtenerInformacion() {
 		String info ="TURNO: "+String.valueOf(this.turnos)+"\n\n"
 				+this.jugador2.obtenerNombre() + "\n"
 				+"Vida:"+String.valueOf(this.jugador2.obtenerVida())+ "\n "
+				+"Sacrificios:"+String.valueOf(this.jugador2.obtenerSacrificios())+"\n"
 				+"                             \n"
 				+this.jugador1.obtenerNombre() +"\n"
 				+"Vida:" +String.valueOf(this.jugador1.obtenerVida())+ "\n"
+				+"Sacrificios:"+String.valueOf(this.jugador1.obtenerSacrificios())+"\n"
 				+"\n\n\n";
 		this.info.setText(info);
 				

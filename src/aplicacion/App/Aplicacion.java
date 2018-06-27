@@ -43,7 +43,7 @@ public class Aplicacion extends Application{
 		return this.stage;
 	}
 	
-	/*
+/*
 	@Override
 	public void start(Stage stage){	
 		this.stage = stage;
@@ -111,8 +111,8 @@ public class Aplicacion extends Application{
 		this.stage.show();
 		
 		comenzar.requestFocus();
-	}*/
-	
+	}
+	*/
 	
 	public void ingresarNombre() {
 		StackPane layout = new StackPane();
@@ -196,9 +196,9 @@ public class Aplicacion extends Application{
 		this.stage.setScene(escena);
 	}
                                                             
-	/*public void iniciarJuego(String nombre1,String nombre2) {
-		this.yugioh = new Yugioh(nombre1,nombre2);*/
-	@Override
+/*	public void iniciarJuego(String nombre1,String nombre2) {
+		this.yugioh = new Yugioh(nombre1,nombre2);
+	*/@Override
 	public void start(Stage stage) {
 		this.stage = stage;
 		this.yugioh = new Yugioh("Messi","Higuaín");
