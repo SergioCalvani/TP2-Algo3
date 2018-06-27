@@ -2,6 +2,7 @@ package aplicacion.App;
 
 import java.util.ArrayList;
 
+import aplicacion.Eventos.DestruirCartaEventHandler;
 import aplicacion.Eventos.InsertarEvent;
 import aplicacion.Eventos.MostrarCartaEventHandler;
 import aplicacion.Eventos.RobarCartaEventHandler;
@@ -274,7 +275,7 @@ public class LadoAbajoVista extends LadoVista {
 				button[i] =cv.obtenerBoton(80,100);
 				button[i].setMinSize(80,100);
 				button[i].setMaxSize(80,100);
-				MostrarCartaEventHandler eh = new MostrarCartaEventHandler(cartas[i]);
+				DestruirCartaEventHandler eh = new DestruirCartaEventHandler(cartas[i],this,this.lado);
 				button[i].setOnAction(eh);
 				this.campo.add(button[i], i+1,0);
 			}
