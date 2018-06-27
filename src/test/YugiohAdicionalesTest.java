@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import modelo.Jugador;
+import modelo.Mano;
 import modelo.Yugioh;
 
 class YugiohAdicionalesTest {
@@ -33,6 +34,24 @@ class YugiohAdicionalesTest {
 		yugioh.siguienteTurno();
 		yugioh.siguienteTurno();
 		Jugador jugadorDeTurno3 = yugioh.obtenerJugadorDeTurno();
+		
 		assertEquals(jugadorDeTurno1, jugadorDeTurno3);
+	}
+	
+	@Test
+	void testSeCreaYugiohYElJugadorDeTurnoCuentaConCincoCartasEnSuMano() {
+		Yugioh yugioh = new Yugioh("JugadorUno", "JugadorDos");
+		Jugador jugador = yugioh.obtenerJugadorDeTurno();
+		Mano mano = jugador.obtenerMano();
+		
+		assertEquals(5, mano.obtenerTamanio());	
+	}
+	
+	@Test
+	void testSeCreaYugiohYElJugadorOponenteCuentaConCincoCartasEnSuMano() {
+		Yugioh yugioh = new Yugioh("JugadorUno", "JugadorDos");
+		Jugador jugador = yugioh.obtenerJugadorOponente();
+		Mano mano = jugador.obtenerMano();
+		assertEquals(5, mano.obtenerTamanio());	
 	}
 }
