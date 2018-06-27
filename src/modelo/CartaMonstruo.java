@@ -93,4 +93,9 @@ public class CartaMonstruo extends Carta {
 		}
 	}
 
+	@Override
+	public void posicionarEn(Lado lado) {
+			lado.colocar(this);		
+	}
+
 }

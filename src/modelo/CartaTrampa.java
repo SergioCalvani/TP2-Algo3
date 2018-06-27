@@ -18,5 +18,10 @@ public class CartaTrampa extends Carta {
 		lado.destruir(this);
 	}
 	
-	public void activar(CartaMonstruo cartaAtacada, CartaMonstruo cartaParaAtacar) {};
+	public void activar(CartaMonstruo cartaAtacada, CartaMonstruo cartaParaAtacar) {}
+
+	@Override
+	public void posicionarEn(Lado lado) {
+		lado.colocar(this);		
+	}
 }

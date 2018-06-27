@@ -228,4 +228,32 @@ public class Lado {
 	public void aplicarEfectoCampoIndividualEnemigo(CartaMonstruo monstruo){
 		this.CartaCampo.aplicarEfectoCartaIndividualEnemigo(monstruo);
 	}
+	
+	public void colocar(Carta unaCarta) {
+		unaCarta.posicionarEn(this);
+	}
+	
+	public void colocar(CartaMonstruo monstruo) {
+		int pos = this.posicionDisponible(this.zonaDeMonstruos);
+		this.colocar(monstruo, pos);
+	}
+	
+	public void colocar(CartaMagica magica) {
+		int pos = this.posicionDisponible(this.zonaMagica);
+		this.colocar(magica, pos);
+	}
+	
+	public void colocar(CartaTrampa trampa) {
+		int pos = this.posicionDisponible(this.zonaMagica);
+		this.colocar(trampa, pos);
+	}
+	
+	private int posicionDisponible(Carta[] zona) {
+		for (int i = 0; i < this.tamanio; i++) {
+			if (zona[i] == null) {
+				return i;
+			}
+		}
+		return -1;
+	}
 }

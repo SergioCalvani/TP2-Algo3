@@ -13,4 +13,9 @@ public abstract class CartaMagica extends Carta {
 	
 	@Override
 	public abstract void activar();
+	
+	@Override
+	public void posicionarEn(Lado lado) {
+		lado.colocar(this);		
+	}
 }

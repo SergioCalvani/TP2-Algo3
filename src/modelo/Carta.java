@@ -85,4 +85,6 @@ public abstract class Carta {
 	public String obtenerNombre() {
 		return this.nombre;
 	}
+
+	public abstract void posicionarEn(Lado lado);
 }
