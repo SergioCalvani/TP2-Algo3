@@ -101,6 +101,7 @@ public class Lado {
 			this.tablero.verificarCartaDeCampoLadoContrario(this,monstruo);
 		}
 		monstruo.darSacrificios(this.sacrificios);
+		this.sacrificios = 0;
 		if(this.zonaDeMonstruos[i] != null){
 			throw new PosicionOcupadaException();
 		}
