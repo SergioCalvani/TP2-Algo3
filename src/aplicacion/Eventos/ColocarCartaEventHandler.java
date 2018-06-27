@@ -4,6 +4,7 @@ import aplicacion.App.LadoVista;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import modelo.CartaDeCampo;
 import modelo.Carta;
 import modelo.Lado;
 
@@ -22,8 +23,15 @@ public class ColocarCartaEventHandler implements EventHandler<ActionEvent>{
 
 	@Override
 	public void handle(ActionEvent event) {
-		this.lado.colocar(this.carta);
-		this.ladoVista.refresh();
-		this.ventana.close();
+		try{
+			this.lado.colocarCartaDeCampo((CartaDeCampo) this.carta);
+			this.ladoVista.refresh();
+			this.ventana.close();
+		}
+		catch(ClassCastException excepcionDeCarta){
+			this.lado.colocar(this.carta);
+			this.ladoVista.refresh();
+			this.ventana.close();
+		}
 	}
 }
