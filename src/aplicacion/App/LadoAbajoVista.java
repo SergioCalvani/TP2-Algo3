@@ -2,6 +2,7 @@ package aplicacion.App;
 
 import java.util.ArrayList;
 
+import aplicacion.Eventos.InsertarEvent;
 import aplicacion.Eventos.MostrarCartaEventHandler;
 import aplicacion.Eventos.RobarCartaEventHandler;
 import javafx.geometry.Pos;
@@ -175,7 +176,7 @@ public class LadoAbajoVista extends LadoVista {
 			button.setMaxSize(80,100);
 			
 			//CAMBIAR EH
-			MostrarCartaEventHandler eh = new MostrarCartaEventHandler(carta);
+			InsertarEvent eh = new InsertarEvent(cv.obtenerCarta(),this.lado,this);
 			button.setOnAction(eh);
 			
 			this.mano.getChildren().add(button);
@@ -340,12 +341,4 @@ public class LadoAbajoVista extends LadoVista {
 	    	this.campo.getRowConstraints().add(new RowConstraints(100));
 	    }
 	}
-
-
-	@Override
-	public void insertarMonstruo(CartaVista figura, int posicion) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

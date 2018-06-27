@@ -174,7 +174,7 @@ public class LadoArribaVista extends LadoVista {
 			button.setMaxSize(80,100);
 			
 			//CAMBIAR EH
-			InsertarEvent eh = new InsertarEvent(cv,this);
+			InsertarEvent eh = new InsertarEvent(cv.obtenerCarta(),this.lado,this);
 			button.setOnAction(eh);
 			
 			this.mano.getChildren().add(button);
@@ -339,12 +339,4 @@ public class LadoArribaVista extends LadoVista {
 	    	this.campo.getRowConstraints().add(new RowConstraints(100));
 	    }
 	}
-	
-	public void insertarMonstruo(CartaVista figura,int posicion){
-		Button boton = figura.obtenerBoton(80,100);
-		this.lado.colocar((CartaMonstruo) figura.obtenerCarta(),posicion-1);
-		//figura.seInserto(this);
-		this.campo.add(boton,posicion,1);	
-	}
-
 }
