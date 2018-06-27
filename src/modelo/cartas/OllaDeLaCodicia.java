@@ -19,5 +19,6 @@ public class OllaDeLaCodicia extends CartaMagica {
 		
 		mano.agregar(mazo.robar());
 		mano.agregar(mazo.robar());
+		this.destruir();
 	}
 }

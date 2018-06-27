@@ -16,5 +16,6 @@ public class AgujeroOscuro extends CartaMagica{
 		Lado lado = this.duenio.obtenerLado();
 		Tablero tablero = lado.obtenerTablero();
 		tablero.destruirTodosLosMonstruos();
+		this.destruir();
 	}
 }

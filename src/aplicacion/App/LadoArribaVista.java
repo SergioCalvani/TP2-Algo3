@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import aplicacion.Eventos.DestruirCartaEventHandler;
+import aplicacion.Eventos.FaseAtaqueMagicaEventHandler;
 import aplicacion.Eventos.FaseAtaqueMonstruoEventHandler;
 import aplicacion.Eventos.InsertarEvent;
 import aplicacion.Eventos.MostrarCartaEventHandler;
@@ -17,6 +18,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import modelo.Carta;
 import modelo.CartaDeCampo;
+import modelo.CartaMagica;
 import modelo.CartaMonstruo;
 import modelo.Jugador;
 import modelo.Lado;
@@ -263,9 +265,14 @@ public class LadoArribaVista extends LadoVista {
 				button.setMinSize(80,100);
 				button.setMaxSize(80,100);
 				
-				//HAY QUE CAMBIAR EL EVENTHANDELER
-				MostrarCartaEventHandler eh = new MostrarCartaEventHandler(cartas[i]);
-				button.setOnAction(eh);
+				if(cartas[i].getClass().getSuperclass() == CartaMagica.class){
+					FaseAtaqueMagicaEventHandler eh = new FaseAtaqueMagicaEventHandler(cartas[i],this);
+					button.setOnAction(eh);
+				}
+				else{
+					MostrarCartaEventHandler eh = new MostrarCartaEventHandler(cartas[i]);
+					button.setOnAction(eh);
+				}
 				this.campo.add(button, i+1,0);
 			}
 			

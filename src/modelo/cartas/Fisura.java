@@ -40,6 +40,7 @@ public class Fisura extends CartaMagica{
 		zonaMonstruoEnemiga = ladoEnemigo.obtenerZonaMonstruo();
 		cartaADestruir = this.devolverMenor(zonaMonstruoEnemiga);
 		ladoEnemigo.destruir(cartaADestruir);
+		this.destruir();
 	}
 	
 
