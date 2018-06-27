@@ -285,6 +285,9 @@ public class LadoAbajoVista extends LadoVista {
 				button[i] =cv.obtenerBoton(80,100);
 				button[i].setMinSize(80,100);
 				button[i].setMaxSize(80,100);
+				if(!cartas[i].estaEnPosicionDeAtaque()){
+					button[i].setRotate(270);
+				} 
 				DestruirCartaEventHandler eh = new DestruirCartaEventHandler(cartas[i],this,this.lado);
 				button[i].setOnAction(eh);
 				this.campo.add(button[i], i+1,0);
@@ -307,6 +310,9 @@ public class LadoAbajoVista extends LadoVista {
 				button[i] =cv.obtenerBoton(80,100);
 				button[i].setMinSize(80,100);
 				button[i].setMaxSize(80,100);
+				if(!cartas[i].estaEnPosicionDeAtaque()){
+					button[i].setRotate(270);
+				} 
 				FaseAtaqueMonstruoEventHandler eh = new FaseAtaqueMonstruoEventHandler(cartas[i],this.lado,this,i);
 				button[i].setOnAction(eh);
 				this.campo.add(button[i], i+1,0);

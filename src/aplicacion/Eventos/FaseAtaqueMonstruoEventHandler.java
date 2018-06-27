@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.Carta;
+import modelo.CartaMonstruo;
 import modelo.Lado;
 
 public class FaseAtaqueMonstruoEventHandler implements EventHandler<ActionEvent>{
@@ -41,10 +42,10 @@ public class FaseAtaqueMonstruoEventHandler implements EventHandler<ActionEvent>
 		
 		VBox contenedor = new VBox();
 		Button atacar = new Button("ATACAR");
-		Button defensa = new Button("DEFENSA");
+		Button estado = new Button("DEFENSA");
 		btn.setGraphic(new ImageView(img));
 		
-		contenedor.getChildren().addAll(btn,atacar,defensa);
+		contenedor.getChildren().addAll(btn,atacar,estado);
 		contenedor.setAlignment(Pos.CENTER);
 		contenedor.setSpacing(10);
 		contenedor.setPadding(new Insets(0,0,10,0));
@@ -56,11 +57,18 @@ public class FaseAtaqueMonstruoEventHandler implements EventHandler<ActionEvent>
 		AtacarEventHandler eh = new AtacarEventHandler(this.lado,this.carta,ventanaCarta,this.ladoVista,this.miPosicion);
 		atacar.setOnAction(eh);
 		
-		//DefensaEventHandler eh = new DefensaEventHandler(this.lado,this.carta,ventanaCarta,this.ladoVista);
-		//defensa.setOnAction(eh);
+		if(((CartaMonstruo) this.carta).estaEnPosicionDeAtaque()){
+			EstadoDefensaEventHandler ehd = new EstadoDefensaEventHandler(this.carta,this.ladoVista,ventanaCarta);
+			estado.setOnAction(ehd);
+		}
+		else{
+			EstadoAtaqueEventHandler eha = new EstadoAtaqueEventHandler(this.carta,this.ladoVista,ventanaCarta);
+			estado.setOnAction(eha);
+			estado.setText("ATAQUE");
+		}
 		
 		atacar.setId("UnBoton");
-		defensa.setId("UnBoton");
+		estado.setId("UnBoton");
 		escena.getStylesheets().add("aplicacion/css/card-window.css");
 		ventanaCarta.setScene(escena);		
 		ventanaCarta.initStyle(StageStyle.UNDECORATED);
