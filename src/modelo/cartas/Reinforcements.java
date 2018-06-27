@@ -17,6 +17,7 @@ public class Reinforcements extends CartaTrampa{
 	}
 	
 	public void activar(CartaMonstruo cartaAtacada,CartaMonstruo cartaParaAtacar){
+		this.bocaArriba = true;
 		this.cartaAyudada = cartaAtacada;
 		cartaAtacada.aumentarAtaque(500);
 		cartaAtacada.atacarA(cartaParaAtacar);
