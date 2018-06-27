@@ -25,8 +25,8 @@ public class Mano {
 			  
 	}
 	
-	public Carta obtenerCarta(int i) {
-		return this.coleccionDeCartas.get(i);
+	public Carta obtenerCarta(int i) {		
+		return this.coleccionDeCartas.remove(i);
 	}
 	
 	public ArrayList<Carta> obtenerCartas() {
