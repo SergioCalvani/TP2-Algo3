@@ -114,7 +114,7 @@ public class LadoAbajoVista extends LadoVista {
 		for (int i = 0; i <size; i++) {
 			Carta carta = coleccionDeCartas.get(i);
 			CartaVista cv = new CartaVista(carta);
-			Button button =cv.obtenerFigura();
+			Button button =cv.obtenerBoton(80,100);
 			button.setMinSize(80,100);
 			button.setMaxSize(80,100);
 			this.mano.getChildren().add(button);

@@ -10,35 +10,21 @@ public class CartaVista {
 
 
 	protected Carta carta;
-	protected Button figura;
 	protected Image imagenCarta;
+	protected String imagePath;
 	
 	public CartaVista(Carta unaCarta){
 		this.carta = unaCarta;
-		this.figura = new Button();
-		this.crearFigura();
+		this.imagePath ="aplicacion/Imagenes/cartas/"+String.valueOf(this.carta.obtenerId())+".png";
 	}
 	
-	public void crearFigura(){
-		
-		String imagePath ="aplicacion/Imagenes/cartas/"+String.valueOf(this.carta.obtenerId())+".png";
-		this.imagenCarta = new Image(imagePath,80, 100, false, false);
-		this.figura.setGraphic(new ImageView(imagenCarta));
-		this.inicializarEvento();
+	public Button obtenerBoton(int ancho, int largo){
+		Button btn = new Button();
+		btn.setGraphic(new ImageView(new Image(this.imagePath,ancho, largo, false, false)));
+		return btn;
 	}
 	
-	public void inicializarEvento() {}
-	
-	public void seInserto() {}
-	
-	/*public void efectoVoltear(){
-		if(this.carta.estaBocaAbajo()){
-			this.carta.voltear();
-			this.figura.setFill(new ImagePattern(this.imagenCarta));
-		}
-	}*/
-	
-	public Button obtenerFigura(){
-		return this.figura;
+	public Image obtenerImagen(int ancho, int largo){
+		return new Image(this.imagePath,ancho, largo, false, false);
 	}
 }
