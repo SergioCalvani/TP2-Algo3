@@ -47,6 +47,57 @@ public class LadoAbajoVista extends LadoVista {
 
 	}
 	
+
+	public void faseInicial() {
+		reiniciarGrid();
+        dibujarCartasMonstruoSoloVista();
+        dibujarCartasTrampaSoloVista();
+        dibujarCartaCampo();
+        dibujarCementerio(); 
+		dibujarMazo();
+		dibujarManoSoloVista();	
+	}
+
+	public void fasePreparacion() {
+		reiniciarGrid();
+        dibujarCartasMonstruoSoloVista();
+        dibujarCartasTrampaSoloVista();
+        dibujarCartaCampo();
+        dibujarCementerio(); 
+		dibujarMazoSoloVista();
+		dibujarMano();	
+	}
+	
+	public void faseAtaque() {
+		reiniciarGrid();
+        dibujarCartasMonstruo();
+        dibujarCartasTrampaSoloVista();
+        dibujarCartaCampo();
+        dibujarCementerio(); 
+		dibujarMazoSoloVista();
+		dibujarManoSoloVista();	
+	}
+	
+	public void faseFinal() {
+		reiniciarGrid();
+        dibujarCartasMonstruoSoloVista();
+        dibujarCartasTrampa();
+        dibujarCartaCampo();
+        dibujarCementerio(); 
+		dibujarMazoSoloVista();
+		dibujarManoSoloVista();	
+	}
+	
+	public void dibujarSinTurno() {
+		reiniciarGrid();
+		dibujarCartaCampo();
+		dibujarCementerio();
+		dibujarManoOculta();
+		dibujarCartasTrampaOcultas();
+		dibujarCartasMonstruoSoloVista();
+		dibujarMazoSoloVista();
+	}
+			
 	public VBox getGrid() {
 		VBox vb = new VBox(this.campo,this.mano);
 		this.campo.setAlignment(Pos.TOP_CENTER );
@@ -60,18 +111,6 @@ public class LadoAbajoVista extends LadoVista {
 		this.tableroVista.refresh();
 	}
 	
-	@Override
-	public void faseInicial() {
-		reiniciarGrid();
-        dibujarCartasMonstruoSoloVista();
-        dibujarCartasTrampaOcultas();
-        dibujarCartaCampo();
-        dibujarCementerio(); 
-		dibujarMazo();
-		dibujarManoSoloVista();
-		
-	}
-			
 	public void dibujarCementerio() {
         Button cementerio = new Button();      
         

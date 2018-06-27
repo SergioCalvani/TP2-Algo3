@@ -202,11 +202,9 @@ public class Aplicacion extends Application{
 	public void start(Stage stage) {
 		this.stage = stage;
 		this.yugioh = new Yugioh("Messi","Higuaín");
-		
 		this.tablero = new TableroVista(this.yugioh,this);
 				
 		refresh();
-
 	}
 	
 	public void refresh() {

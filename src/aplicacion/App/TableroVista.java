@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import aplicacion.App.Turno;
+import aplicacion.Eventos.AvanzarDeFaseEventHandler;
 import aplicacion.App.Fase;
 import modelo.Jugador;
 import modelo.Yugioh;
@@ -19,6 +20,7 @@ public class TableroVista {
 	private Scene escena;
 	private Label info;
 	private Button botonAvanzar;
+	private int turnos = 1;
 	private Turno turno;
 	private Fase fase;
 	
@@ -34,55 +36,126 @@ public class TableroVista {
 		this.info.setMaxWidth(150);
 		this.info.setId("INFO");
 		this.botonAvanzar = new Button("Pasar a \nFase De Preparación");
-		this.botonAvanzar.setMaxWidth(150);
+		//this.botonAvanzar.setMaxWidth(150);
 		this.botonAvanzar.setId("AVANZAR");
-	
+		
+		
+		AvanzarDeFaseEventHandler eh = new  AvanzarDeFaseEventHandler(this);
+		this.botonAvanzar.setOnAction(eh);
+		
 		obtenerInformacion();
 	}
 
 	public void refresh() {
+		obtenerInformacion();
 		this.app.refresh();
 	}
 	
-	public Scene getScene() {
-		return this.escena;
+	public void avanzarFase() {	
+		switch(this.fase) {
+			case INICIAL:
+				this.fase = Fase.PREPARACION;
+				this.botonAvanzar.setText("Pasar a \nFase De Ataque");
+				break;
+			case PREPARACION:
+				this.fase = Fase.ATAQUE;
+				this.botonAvanzar.setText("Pasar a \nFase Final");
+				break;
+			case ATAQUE:
+				this.fase = Fase.FINAL;
+				this.botonAvanzar.setText("Finalizar Turno");
+				break;
+			case FINAL:
+				this.fase = Fase.INICIAL;
+				this.botonAvanzar.setText("Pasar a \nFase De Preparacion");
+				avanzarTurno();
+				break;
+			default:
+				break;					
+			}
+	
+	}
+	
+	public void avanzarTurno() {
+		switch(this.turno) {
+			case TURNOABAJO:
+				this.turno = Turno.TURNOARRIBA;
+				break;
+			case TURNOARRIBA:
+				this.turno = Turno.TURNOABAJO;
+				this.turnos++;
+				break;
+			default:
+				break;		
+		}
 	}
 	
 	public Scene juego(){
-		switch (this.turno) {
-			case TURNOARRIBA: 
-				switch(this.fase) {
-				case INICIAL:
-					faseInicialArriba();
-				case PREPARACION:
-
-				case ATAQUE:
-
-				case FINAL:
-
-				default:
-					break;
-				}				
+		switch(this.turno) {
 			case TURNOABAJO:
+				this.ladoArriba.dibujarSinTurno();
 				switch(this.fase) {
-				case INICIAL:
-					faseInicialAbajo();
-				case PREPARACION:
-
-				case ATAQUE:
-
-				case FINAL:
-
-				default:
-					break;					
-				}	
+					case INICIAL:	
+						this.ladoAbajo.faseInicial();
+						break;
+					case PREPARACION:
+						this.ladoAbajo.fasePreparacion();
+						break;
+					case ATAQUE:
+						this.ladoAbajo.faseAtaque();
+						break;
+					case FINAL:
+						this.ladoAbajo.faseFinal();
+						break;
+					default:
+						break;					
+				}
+				break;
+			case TURNOARRIBA: 
+				this.ladoAbajo.dibujarSinTurno();
+				switch(this.fase) {
+					case INICIAL:	
+						this.ladoArriba.faseInicial();
+						break;
+					case PREPARACION:
+						this.ladoArriba.fasePreparacion();
+						break;
+					case ATAQUE:
+						this.ladoArriba.faseAtaque();
+						break;
+					case FINAL:
+						this.ladoArriba.faseFinal();
+						break;
+					default:
+						break;
+				}
+				break;
 			default:
 				break;
 		}
+		cargarFase();
 		return this.escena;
 	}
 	
-	public void faseInicialAbajo() {
+	public void cargarFase() {
+		VBox pane1 = this.ladoArriba.getGrid();
+		VBox pane2 = this.ladoAbajo.getGrid();
+		VBox contenedor = new VBox(pane1,pane2);
+	    
+		HBox hb = new HBox(this.info, contenedor, this.botonAvanzar);
+		hb.setAlignment(Pos.CENTER);
+		contenedor.setSpacing(20);
+		
+		hb.setSpacing(20);
+	    hb.setStyle("-fx-padding: 0 10 0 10;");
+	    contenedor.setAlignment( Pos.CENTER);
+	    this.info.setAlignment( Pos.CENTER);
+	    this.botonAvanzar.setAlignment( Pos.CENTER);
+	    HBox.setHgrow(contenedor, Priority.ALWAYS);
+		this.escena = new Scene(hb);
+	}
+	
+	/*public void faseInicialAbajo() {
 		this.ladoArriba.dibujarSinTurno();
 		this.ladoAbajo.faseInicial() ;
 		
@@ -105,7 +178,7 @@ public class TableroVista {
 	
 	public void faseInicialArriba() {
 		this.ladoArriba.faseInicial();
-		//this.ladoAbajo.dibujarSinTurno() ;
+		this.ladoAbajo.dibujarSinTurno() ;
 		
 		VBox pane1 = this.ladoArriba.getGrid();
 		VBox pane2 = this.ladoAbajo.getGrid();
@@ -123,14 +196,16 @@ public class TableroVista {
 	    this.botonAvanzar.setAlignment( Pos.CENTER_RIGHT);
 	    HBox.setHgrow(contenedor, Priority.ALWAYS);
 		this.escena = new Scene(hb);
-	}
+	}*/
 	
 	public void obtenerInformacion() {
-		String info = this.jugador2.obtenerNombre() + "\n"
+		String info ="TURNO: "+String.valueOf(this.turnos)+"\n\n"
+				+this.jugador2.obtenerNombre() + "\n"
 				+"Vida:"+String.valueOf(this.jugador2.obtenerVida())+ "\n "
 				+"                             \n"
 				+this.jugador1.obtenerNombre() +"\n"
-				+"Vida:" +String.valueOf(this.jugador1.obtenerVida())+ "\n";
+				+"Vida:" +String.valueOf(this.jugador1.obtenerVida())+ "\n"
+				+"\n\n\n";
 		this.info.setText(info);
 				
 	}	
