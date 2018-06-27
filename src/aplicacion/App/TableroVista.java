@@ -1,7 +1,6 @@
 package aplicacion.App;
 
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,65 +13,66 @@ public class TableroVista {
 	private LadoArribaVista ladoArriba;
 	private LadoAbajoVista ladoAbajo;
 	private Scene escena;
+	private Label info;
+	private Button botonAvanzar;
 	
 	public TableroVista(Yugioh yugioh) {
 		this.ladoArriba = new LadoArribaVista (yugioh.obtenerLadoDos());
 		this.ladoAbajo = new LadoAbajoVista (yugioh.obtenerLadoUno());
+		this.info = new Label("                                  ");
+		this.info.setMaxWidth(150);
+		this.botonAvanzar = new Button("Fase De Preparación");
+		this.botonAvanzar.setMaxWidth(150);
+		this.botonAvanzar.setId("BOTON");
 	}
 	
+	public Scene iniciarJuego() {
+		return turnoArriba();
+	}
 	
-	
-	public Scene dibujarTurnoAbajo() {
+	public Scene turnoAbajo() {
 		this.ladoArriba.dibujarSinTurno();
 		this.ladoAbajo.dibujarConTurno() ;
 		
 		VBox pane1 = this.ladoArriba.getGrid();
 		VBox pane2 = this.ladoAbajo.getGrid();
 		VBox contenedor = new VBox(pane1,pane2);
-
-		
-		Label info = new Label("HOLAAA");
-		Button avanzar = new Button("AVANZAR");
-		BorderPane border = new BorderPane();
 	    
+		HBox hb = new HBox(this.info, contenedor, this.botonAvanzar);
+		hb.setAlignment(Pos.CENTER);
 		contenedor.setSpacing(20);
-		border.setCenter(contenedor);
-	    border.setLeft(info);
-	    border.setRight(avanzar);
-
-	    border.setStyle("-fx-padding: 0 30 0 30;");
-	    BorderPane.setAlignment(info, Pos.CENTER);
-	    BorderPane.setAlignment(avanzar, Pos.CENTER);
-
 		
-		this.escena = new Scene(border);
+
+		hb.setSpacing(20);
+	    hb.setStyle("-fx-padding: 0 10 0 10;");
+	    contenedor.setAlignment( Pos.CENTER);
+	    this.info.setAlignment( Pos.CENTER_LEFT);
+	    this.botonAvanzar.setAlignment( Pos.CENTER_RIGHT);
+	    HBox.setHgrow(contenedor, Priority.ALWAYS);
+		this.escena = new Scene(hb);
 		return this.escena;
 	}
 	
-	public Scene dibujarTurnoArriba() {
-		this.ladoArriba.dibujarConTurno();
+	public Scene turnoArriba() {
+		this.ladoArriba.faseInicial();
 		this.ladoAbajo.dibujarSinTurno() ;
 		
 		VBox pane1 = this.ladoArriba.getGrid();
 		VBox pane2 = this.ladoAbajo.getGrid();
 		VBox contenedor = new VBox(pane1,pane2);
-
-		
-		Label info = new Label("HOLAAA");
-		Button avanzar = new Button("AVANZAR");
-		BorderPane border = new BorderPane();
 	    
+		HBox hb = new HBox(this.info, contenedor, this.botonAvanzar);
+		hb.setAlignment(Pos.CENTER);
 		contenedor.setSpacing(20);
-		border.setCenter(contenedor);
-	    border.setLeft(info);
-	    border.setRight(avanzar);
-
-	    border.setStyle("-fx-padding: 0 30 0 30;");
-	    BorderPane.setAlignment(info, Pos.CENTER);
-	    BorderPane.setAlignment(avanzar, Pos.CENTER);
-
 		
-		this.escena = new Scene(border);
+
+		hb.setSpacing(20);
+	    hb.setStyle("-fx-padding: 0 10 0 10;");
+	    contenedor.setAlignment( Pos.CENTER);
+	    this.info.setAlignment( Pos.CENTER_LEFT);
+	    this.botonAvanzar.setAlignment( Pos.CENTER_RIGHT);
+	    HBox.setHgrow(contenedor, Priority.ALWAYS);
+		this.escena = new Scene(hb);
 		return this.escena;
 	}
 	

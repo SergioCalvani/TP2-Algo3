@@ -81,4 +81,8 @@ public abstract class Carta {
 
 	public void permitirInvocador(InvocadorDeExodia invocadorDeExodia) {		
 	};
+	
+	public String obtenerNombre() {
+		return this.nombre;
+	}
 }
