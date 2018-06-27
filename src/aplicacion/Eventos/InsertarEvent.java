@@ -42,9 +42,6 @@ public class InsertarEvent implements EventHandler<ActionEvent>{
 		Button colocar= new Button("COLOCAR");
 		btn.setGraphic(new ImageView(img));
 		
-		//lbl.setText(this.carta.obtenerNombre());
-		
-		
 		contenedor.getChildren().addAll(btn,colocar);
 		contenedor.setAlignment(Pos.CENTER);
 		contenedor.setSpacing(10);
@@ -62,37 +59,5 @@ public class InsertarEvent implements EventHandler<ActionEvent>{
 		ventanaCarta.setScene(escena);		
 		ventanaCarta.initStyle(StageStyle.UNDECORATED);
 		ventanaCarta.show();	
-		/*Stage otroEscenario = new Stage();
-		otroEscenario.setTitle("Ingrese una Carta");
-		Button primero = new Button("Primero");
-		Button segundo = new Button("Segundo");
-		Button tercero = new Button("Tercero");
-		Button cuarto = new Button("Cuarto");
-		Button quinto = new Button("Quinto");
-		Label layout = new Label("Seleccione la Posicion para Insertar Carta");
-		VBox insertar = new VBox();
-		HBox botonera = new HBox();
-		layout.setFont(new Font("Arial",15));
-		botonera.setAlignment(Pos.CENTER);
-		botonera.setSpacing(10);
-		botonera.getChildren().addAll(primero,segundo,tercero,cuarto,quinto);
-		insertar.setAlignment(Pos.CENTER);
-		insertar.setSpacing(10);
-		insertar.getChildren().addAll(layout,botonera);
-		
-		CambiarEventMons cambio1 = new CambiarEventMons(this.carta,otroEscenario,this.lado,this.ladoVista,1);
-		primero.setOnAction(cambio1);
-		CambiarEventMons cambio2 = new CambiarEventMons(this.carta,otroEscenario,this.lado,this.ladoVista,2);
-		segundo.setOnAction(cambio2);
-		CambiarEventMons cambio3 = new CambiarEventMons(this.carta,otroEscenario,this.lado,this.ladoVista,3);
-		tercero.setOnAction(cambio3);
-		CambiarEventMons cambio4 = new CambiarEventMons(this.carta,otroEscenario,this.lado,this.ladoVista,4);
-		cuarto.setOnAction(cambio4);
-		CambiarEventMons cambio5 = new CambiarEventMons(this.carta,otroEscenario,this.lado,this.ladoVista,5);
-		quinto.setOnAction(cambio5);
-		
-		Scene escena = new Scene(insertar,350,250);
-		otroEscenario.setScene(escena);
-		otroEscenario.show();*/
 	}
 }
