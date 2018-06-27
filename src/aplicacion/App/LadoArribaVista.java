@@ -31,11 +31,7 @@ public class LadoArribaVista extends LadoVista {
 		this.ladoArriba.setHgap(20); 
 		this.ladoArriba.setVgap(20);
 		
-		//roba 5 cartas del mazo al iniciar el juego
-		for(int i = 0; i < 5; i++ ) {
-			this.lado.robarCartaDelMazo();
-		}
-		
+
 		for(int i= 0;i<7;i++ ) {
 		      this.ladoArriba.getColumnConstraints().add(new ColumnConstraints(80));
 		    }
