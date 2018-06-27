@@ -297,9 +297,10 @@ class YugiohTest {
 		Yugioh yugioh = new Yugioh("Jugador 1", "Jugador 2");
 		Jugador jugador = yugioh.obtenerJugadorDeTurno();
 		Lado lado = jugador.obtenerLado();
+		CartaMonstruo carta = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
 
-		lado.colocar(new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4));
-		lado.sacrificar(0);
+		lado.colocar(carta);
+		lado.sacrificar(carta);
 		
 		boolean colocada = true;
 		try { 

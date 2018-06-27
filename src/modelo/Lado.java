@@ -185,8 +185,8 @@ public class Lado {
 		monstruo.voltear();
 	}
 	
-	public void sacrificar(int i) {
-		this.destruirCartaMonstruo(i);
+	public void sacrificar(CartaMonstruo cartaMonstruo) {
+		this.destruir(cartaMonstruo);
 		(this.sacrificios)++;
 	}
 	

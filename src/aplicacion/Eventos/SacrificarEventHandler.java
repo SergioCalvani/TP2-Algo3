@@ -24,7 +24,7 @@ public class SacrificarEventHandler implements EventHandler<ActionEvent>{
 
 	@Override
 	public void handle(ActionEvent event) {
-		this.lado.destruir((CartaMonstruo) this.carta);
+		this.lado.sacrificar((CartaMonstruo) this.carta);
 		this.ladoVista.refresh();
 		this.ventanaCarta.close();
 	}
