@@ -28,7 +28,14 @@ public class Lado {
 		this.tablero = tablero;
 		this.sacrificios = 0;
 		this.mazo = new Mazo();
-		
+	}
+	
+	public void apagarFlags() {
+		for(int i=0;i<5;i++) {
+			if(this.zonaDeMonstruos[i]!=null) {
+				this.zonaDeMonstruos[i].apagarFlag();
+			}
+		}
 	}
 	
 	public int cantidadDeCartasEnCementerio() {
@@ -266,6 +273,7 @@ public class Lado {
 	}
 	
 	public void colocar(CartaMonstruo monstruo) {
+		monstruo.encenderFlag();
 		int pos = this.posicionDisponible(this.zonaDeMonstruos);
 		this.colocar(monstruo, pos);
 		sacarCartaDeMano(monstruo);

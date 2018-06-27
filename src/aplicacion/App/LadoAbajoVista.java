@@ -108,6 +108,7 @@ public class LadoAbajoVista extends LadoVista {
 		dibujarCartasMonstruoSoloVista();
 		dibujarMazoSoloVista();
 		this.seRoboCartaFlag = false;
+		this.lado.apagarFlags();
 	}
 			
 	public VBox getGrid() {

@@ -2,6 +2,7 @@ package modelo;
 
 public class CartaTrampa extends Carta {
 
+	
 	public CartaTrampa(String nombre) {
 		super(nombre);
 	}
@@ -12,6 +13,8 @@ public class CartaTrampa extends Carta {
 		}
 		return false;
 	}
+	
+
 	
 	public void destruir() {
 		Lado lado = this.duenio.obtenerLado();

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class CartaMonstruo extends Carta {
-
+	private boolean flag;
 	protected int ataque;
 	protected int defensa;
 	protected Estado estado;
@@ -13,6 +13,7 @@ public class CartaMonstruo extends Carta {
 	
 	public CartaMonstruo(String nombre, int ataque, int defensa, int nivel) {
 		super(nombre);
+		this.flag = false;
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.nivel = Nivel.crearNivel(nivel);
@@ -22,6 +23,17 @@ public class CartaMonstruo extends Carta {
 
 	public void asignarEstado(Estado estado) {
 		this.estado = estado;
+	}
+	
+	public void encenderFlag() {
+		this.flag=true;
+	}
+	
+	public void apagarFlag() {
+		this.flag=false;
+	}
+	public boolean obtenerFlag() {
+		return this.flag;
 	}
 	
 	public void destruir() {

@@ -81,6 +81,7 @@ public class LadoArribaVista extends LadoVista {
 		dibujarCartasMonstruoSoloVista();
 		dibujarMazoSoloVista();
 		this.seRoboCartaFlag = false;
+		this.lado.apagarFlags();
 	}
 	
 	public void faseInicial() {
