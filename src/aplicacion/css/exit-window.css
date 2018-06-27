@@ -3,6 +3,8 @@
     -fx-background-repeat: stretch;   
     -fx-background-size: 250 150;
     -fx-background-position: center center;
+    -fx-border-color: "grey";
+    -fx-border-width: 3;
  	-fx-effect: innershadow(  three-pass-box, rgba(0,0,0,0.5) , 1,1,0,0 );   
 }
 

@@ -93,26 +93,27 @@ public class Aplicacion extends Application{
 			this.stage.initStyle(StageStyle.UTILITY);
 			this.stage.resizableProperty().setValue(Boolean.FALSE);
 			this.firstRun = false;
+			Random rand = new Random();
+			int i = rand.nextInt(2);
+			File song; 
+			if(i==0) {
+				song= new File( "src/vista/sonidos/main_song1.mp3");
+			}
+			else {
+				song = new File( "src/vista/sonidos/main_song2.mp3");
+			}
+	        Media media = new Media(song.toURI().toString());
+	        MediaPlayer player = new MediaPlayer(media);
+	        player.setAutoPlay(true);
 		}
-		Random rand = new Random();
-		int i = rand.nextInt(2);
-		File song; 
-		if(i==0) {
-			song= new File( "src/vista/sonidos/main_song1.mp3");
-		}
-		else {
-			song = new File( "src/vista/sonidos/main_song2.mp3");
-		}
-        Media media = new Media(song.toURI().toString());
-        MediaPlayer player = new MediaPlayer(media);
-        player.setAutoPlay(true);
+		
 		
 		this.stage.show();
 		
 		comenzar.requestFocus();
-	}
+	}*/
 	
-	*/
+	
 	public void ingresarNombre() {
 		StackPane layout = new StackPane();
 		Button botonAceptar = new Button();
@@ -202,14 +203,17 @@ public class Aplicacion extends Application{
 		this.stage = stage;
 		this.yugioh = new Yugioh("Messi","Higuaín");
 		
-		this.tablero = new TableroVista(this.yugioh);
-		
-		
-		
+		this.tablero = new TableroVista(this.yugioh,this);
+				
+		refresh();
+
+	}
+	
+	public void refresh() {
 		Scene escena = this.tablero.juego();
 		
 		escena.getStylesheets().add("aplicacion/css/game-screen.css");
 		this.stage.setScene(escena);
 		this.stage.show();
-	}	
+	}
 }

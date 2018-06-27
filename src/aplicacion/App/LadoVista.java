@@ -6,5 +6,7 @@ public abstract class LadoVista {
 		
 		
 	} 
-
+	public void refresh() {
+		
+	}
 }

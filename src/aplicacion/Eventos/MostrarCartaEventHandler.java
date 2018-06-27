@@ -27,25 +27,29 @@ public class MostrarCartaEventHandler implements EventHandler<ActionEvent>{
 
 	@Override
 	public void handle(ActionEvent arg0) {
-		Image img = this.cartaVista.obtenerImagen(220,250);
+		Image img = this.cartaVista.obtenerImagen(270,300);
 		Stage ventanaCarta = new Stage();
-		Button salir = new Button("Salir");
+		Button btn = new Button();
+		
 		VBox contenedor = new VBox();
 		Label lbl = new Label();
-		lbl.setGraphic(new ImageView(img));
-	
+		btn.setGraphic(new ImageView(img));
 		
-		contenedor.getChildren().addAll(lbl,salir);
+		lbl.setText(this.carta.obtenerNombre());
+		
+		
+		contenedor.getChildren().addAll(btn,lbl);
 		contenedor.setAlignment(Pos.CENTER);
 		contenedor.setSpacing(10);
 		contenedor.setPadding(new Insets(0,0,10,0));
 		Scene escena = new Scene(contenedor);
 		
 		BotonCancelarEventHandler botonCancelarEventHandler = new BotonCancelarEventHandler(ventanaCarta);
-		salir.setOnAction(botonCancelarEventHandler);
+		btn.setOnAction(botonCancelarEventHandler);
 		
+		escena.getStylesheets().add("aplicacion/css/card-window.css");
 		ventanaCarta.setTitle(this.carta.obtenerNombre());
-		ventanaCarta.setScene(escena);
+		ventanaCarta.setScene(escena);		
 		ventanaCarta.initStyle(StageStyle.UNDECORATED);
 		ventanaCarta.show();	
 	}

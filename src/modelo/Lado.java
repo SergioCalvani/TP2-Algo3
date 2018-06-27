@@ -7,7 +7,7 @@ import excepciones.PosicionOcupadaException;
 public class Lado {
 
 	private int tamanio;
-	private CartaDeCampo CartaCampo;
+	private CartaDeCampo cartaCampo;
 	private CartaMonstruo[] zonaDeMonstruos;
 	private Carta[] zonaMagica;
 	private ArrayList<Carta> cementerio;
@@ -22,7 +22,7 @@ public class Lado {
 		this.zonaDeMonstruos = new CartaMonstruo[tamanio];
 		this.zonaMagica = new Carta[tamanio];
 		this.cementerio = new ArrayList<Carta>();
-		this.CartaCampo = null;
+		this.cartaCampo = null;
 		this.duenio = jugador;
 		this.duenio.asignarLado(this);
 		this.tablero = tablero;
@@ -30,9 +30,18 @@ public class Lado {
 		this.mazo = new Mazo();
 		
 	}
+	
+	public int cantidadDeCartasEnCementerio() {
+		return this.cementerio.size();
+	
+	}
 
 	public int cantitadDeCartasEnMano() {
 		return this.duenio.cantidadDeCartasEnMano();
+	}
+	
+	public int cantidadDeCartasEnMazo() {
+		return this.mazo.obtenerTamanio();
 	}
 	
 	public void robarCartaDelMazo() {
@@ -42,6 +51,15 @@ public class Lado {
 	public Mano obtenerMano() {
 		return this.duenio.obtenerMano();
 	}
+	
+	public CartaMonstruo[] obtenerCartasMonstruo() {
+		return this.zonaDeMonstruos;
+	}
+	
+	public Carta[] obtenerCartasMagicas() {
+		return this.zonaMagica;
+	}
+	
 	public boolean esDuenio(Jugador jugador) {
 		return this.duenio == jugador;
 	}
@@ -51,10 +69,14 @@ public class Lado {
 	}
 	
 	public void colocarCartaDeCampo(CartaDeCampo campo){
-		CartaCampo = campo;
+		this.cartaCampo = campo;
 		this.tablero.seAgregoCartaDeCampo();
 		campo.asignarTableroYDuenio(this.tablero,this.duenio);
 		campo.activar();
+	}
+	
+	public CartaDeCampo obtenerCartaCampo() {
+		return this.cartaCampo;
 	}
 
 	public boolean estaEnCampoMonstruo(CartaMonstruo monstruo) {
@@ -67,8 +89,8 @@ public class Lado {
 	}
 	
 	public void colocar(CartaMonstruo monstruo, int i) {
-		if(this.CartaCampo != null){
-			CartaCampo.aplicarEfectoCartaIndividualDuenio(monstruo);
+		if(this.cartaCampo != null){
+			this.cartaCampo.aplicarEfectoCartaIndividualDuenio(monstruo);
 		}
 		else{
 			this.tablero.verificarCartaDeCampoLadoContrario(this,monstruo);
@@ -226,7 +248,7 @@ public class Lado {
 	}
 	
 	public void aplicarEfectoCampoIndividualEnemigo(CartaMonstruo monstruo){
-		this.CartaCampo.aplicarEfectoCartaIndividualEnemigo(monstruo);
+		this.cartaCampo.aplicarEfectoCartaIndividualEnemigo(monstruo);
 	}
 	
 	public void colocar(Carta unaCarta) {

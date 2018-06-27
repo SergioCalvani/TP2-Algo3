@@ -16,12 +16,12 @@ public class RobarCartaEventHandler  implements EventHandler<ActionEvent>{
 	@Override
 	public void handle(ActionEvent arg0) {
 		
-		if( this.lado.cantitadDeCartasEnMano() < 10) {
+		if( this.lado.cantitadDeCartasEnMano() < 10 && this.lado.cantidadDeCartasEnMazo() > 0) {
 			this.lado.robarCartaDelMazo();
-			this.ladoVista.faseInicial();
+			this.ladoVista.refresh();
 		}
 		else {
-			
+			this.ladoVista.refresh();
 		}
 	}
 	

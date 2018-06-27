@@ -11,6 +11,7 @@ import modelo.Jugador;
 import modelo.Yugioh;
 
 public class TableroVista {
+	private Aplicacion app;
 	private Jugador jugador1;
 	private Jugador jugador2;
 	private LadoArribaVista ladoArriba;
@@ -21,23 +22,31 @@ public class TableroVista {
 	private Turno turno;
 	private Fase fase;
 	
-	public TableroVista(Yugioh yugioh) {
+	public TableroVista(Yugioh yugioh,Aplicacion app) {
+		this.app = app;
 		this.jugador1 = yugioh.obtenerJugadorDeTurno();
 		this.jugador2 = yugioh.obtenerJugadorOponente();
 		this.turno = Turno.TURNOABAJO;
 		this.fase = Fase.INICIAL;
-		this.ladoArriba = new LadoArribaVista (yugioh.obtenerLadoDos());
-		this.ladoAbajo = new LadoAbajoVista (yugioh.obtenerLadoUno());
+		this.ladoArriba = new LadoArribaVista (yugioh.obtenerLadoDos(),this);
+		this.ladoAbajo = new LadoAbajoVista (yugioh.obtenerLadoUno(),this);
 		this.info = new Label("                                  ");
 		this.info.setMaxWidth(150);
 		this.info.setId("INFO");
-		this.botonAvanzar = new Button("Fase De Preparación");
+		this.botonAvanzar = new Button("Pasar a \nFase De Preparación");
 		this.botonAvanzar.setMaxWidth(150);
-		this.botonAvanzar.setId("BOTON");
-		
+		this.botonAvanzar.setId("AVANZAR");
+	
 		obtenerInformacion();
 	}
 
+	public void refresh() {
+		this.app.refresh();
+	}
+	
+	public Scene getScene() {
+		return this.escena;
+	}
 	
 	public Scene juego(){
 		switch (this.turno) {
@@ -48,8 +57,6 @@ public class TableroVista {
 				case PREPARACION:
 
 				case ATAQUE:
-
-				case TRAMPAS:
 
 				case FINAL:
 
@@ -63,8 +70,6 @@ public class TableroVista {
 				case PREPARACION:
 
 				case ATAQUE:
-
-				case TRAMPAS:
 
 				case FINAL:
 
@@ -89,7 +94,6 @@ public class TableroVista {
 		hb.setAlignment(Pos.CENTER);
 		contenedor.setSpacing(20);
 		
-
 		hb.setSpacing(20);
 	    hb.setStyle("-fx-padding: 0 10 0 10;");
 	    contenedor.setAlignment( Pos.CENTER);
@@ -101,7 +105,7 @@ public class TableroVista {
 	
 	public void faseInicialArriba() {
 		this.ladoArriba.faseInicial();
-		this.ladoAbajo.dibujarSinTurno() ;
+		//this.ladoAbajo.dibujarSinTurno() ;
 		
 		VBox pane1 = this.ladoArriba.getGrid();
 		VBox pane2 = this.ladoAbajo.getGrid();

@@ -18,25 +18,27 @@ import modelo.Mano;
 
 
 public class LadoArribaVista extends LadoVista {
-	private GridPane ladoArriba;
+	private GridPane campo;
 	private HBox mano;
 	private Lado lado;
+	private TableroVista tableroVista;
 	
-	public LadoArribaVista(Lado lado) {
+	public LadoArribaVista(Lado lado,TableroVista tableroVista) {
 		//dibuja el tablero inicial
+		this.tableroVista = tableroVista;
 		this.lado = lado;
 		this.mano = new HBox();
 		this.mano.setSpacing(10);
-		this.ladoArriba = new GridPane();
-		this.ladoArriba.setHgap(20); 
-		this.ladoArriba.setVgap(20);
+		this.campo = new GridPane();
+		this.campo.setHgap(20); 
+		this.campo.setVgap(20);
 		
 
 		for(int i= 0;i<7;i++ ) {
-		      this.ladoArriba.getColumnConstraints().add(new ColumnConstraints(80));
+		      this.campo.getColumnConstraints().add(new ColumnConstraints(80));
 		    }
 		for(int i = 0;i<2;i++) {
-		    	this.ladoArriba.getRowConstraints().add(new RowConstraints(100));
+		    	this.campo.getRowConstraints().add(new RowConstraints(100));
 		    }
         
         //trampasMagia
@@ -44,7 +46,7 @@ public class LadoArribaVista extends LadoVista {
         for(int i = 0; i < cartasTrampa.length; i++) {
         	cartasTrampa[i] = new Button();
         	cartasTrampa[i].setId("cartaMagicaTrampaVacia");
-        	this.ladoArriba.add(cartasTrampa[i],i+1,0);
+        	this.campo.add(cartasTrampa[i],i+1,0);
         }
         
         //monstruos
@@ -52,29 +54,29 @@ public class LadoArribaVista extends LadoVista {
         for(int i = 0; i < cartasmonstruo.length; i++) {
         	cartasmonstruo[i] = new Button();
         	cartasmonstruo[i].setId("cartaMonstruoVacia");
-        	this.ladoArriba.add(cartasmonstruo[i],i+1,1);
+        	this.campo.add(cartasmonstruo[i],i+1,1);
         }
                
         //campo
         Button campo = new Button();
         campo.setId("cartaCampoVacia");
-        this.ladoArriba.add(campo,6,1);
+        this.campo.add(campo,6,1);
         
         //CEMENTERIO
         Button cementerio = new Button();
         cementerio.setId("cartaCementerioVacia");
-        this.ladoArriba.add(cementerio,0,1);
+        this.campo.add(cementerio,0,1);
         
         //mazo
         Button mazo = new Button();
         mazo.setId("cartaMazo");
-        this.ladoArriba.add(mazo, 0,0);
+        this.campo.add(mazo, 0,0);
 	}
 	
 
 	public VBox getGrid() {
-		VBox vb = new VBox(this.mano,this.ladoArriba);
-		this.ladoArriba.setAlignment(Pos.TOP_CENTER );
+		VBox vb = new VBox(this.mano,this.campo);
+		this.campo.setAlignment(Pos.TOP_CENTER );
 	    this.mano.setAlignment( Pos.TOP_CENTER );
 	    vb.setSpacing(10);
 		return vb;
@@ -85,7 +87,7 @@ public class LadoArribaVista extends LadoVista {
 	    //mazo
         Button mazo = new Button("ROBAR");
         mazo.setId("cartaMazo");
-        this.ladoArriba.add(mazo, 0,0);
+        this.campo.add(mazo, 0,0);
         RobarCartaEventHandler robarCartaEH = new RobarCartaEventHandler(this.lado,this);
         mazo.setOnAction(robarCartaEH);
 		dibujarMano();

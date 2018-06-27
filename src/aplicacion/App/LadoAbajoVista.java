@@ -12,82 +12,100 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.RowConstraints;
 import modelo.Carta;
+import modelo.CartaDeCampo;
+import modelo.CartaMonstruo;
+import modelo.Jugador;
 import modelo.Lado;
 import modelo.Mano;
 
+
 public class LadoAbajoVista extends LadoVista {
-	private GridPane ladoAbajo;
+	private GridPane campo;
 	private HBox mano;
 	private Lado lado;
+	private Jugador jugador;
+	private TableroVista tableroVista;
 	
-	public LadoAbajoVista(Lado lado) {
+	public LadoAbajoVista(Lado lado,TableroVista tableroVista) {
 		//dibuja el tablero inicial
+		this.tableroVista = tableroVista;
 		this.lado = lado;
+		this.jugador = lado.obtenerJugador();
 		this.mano = new HBox();
 		this.mano.setSpacing(10);
-		this.ladoAbajo = new GridPane();
-		this.ladoAbajo.setHgap(20); 
-		this.ladoAbajo.setVgap(20);
-
 		
-		for(int i= 0;i<7;i++ ) {
-		      this.ladoAbajo.getColumnConstraints().add(new ColumnConstraints(80));
-		    }
-		for(int i = 0;i<2;i++) {
-	    	this.ladoAbajo.getRowConstraints().add(new RowConstraints(100));
-	    }
+		reiniciarGrid();
         
-        //trampasMagia
-        Button[] cartasTrampa = new Button[5];
-        for(int i = 0; i < cartasTrampa.length; i++) {
-        	cartasTrampa[i] = new Button();
-        	cartasTrampa[i].setId("cartaMagicaTrampaVacia");
-        	this.ladoAbajo.add(cartasTrampa[i],i+1,1);
-        }
-        
-        //monstruos
-        Button[] cartasmonstruo = new Button[5];
-        for(int i = 0; i < cartasmonstruo.length; i++) {
-        	cartasmonstruo[i] = new Button();
-        	cartasmonstruo[i].setId("cartaMonstruoVacia");
-        	this.ladoAbajo.add(cartasmonstruo[i],i+1,0);
-        }
-        
-        //campo
-        Button campo = new Button();
-        campo.setId("cartaCampoVacia");
-        this.ladoAbajo.add(campo,0,0);
-        
-        //cementerio
-        Button cementerio = new Button();
-        cementerio.setId("cartaCementerioVacia");
-        this.ladoAbajo.add(cementerio,6,0);
-        
+ 
+        dibujarCartasMonstruoSoloVista();
+        dibujarCartasTrampaOcultas();
+        dibujarCartaCampo();
+        dibujarCementerio(); 
+        dibujarManoOculta();
+        dibujarMazoSoloVista();
         //mazo
-        Button mazo = new Button();
-        mazo.setId("cartaMazo");
-        this.ladoAbajo.add(mazo, 6,1);
+
 	}
 	
 	public VBox getGrid() {
-		VBox vb = new VBox(this.ladoAbajo,this.mano);
-		this.ladoAbajo.setAlignment(Pos.TOP_CENTER );
+		VBox vb = new VBox(this.campo,this.mano);
+		this.campo.setAlignment(Pos.TOP_CENTER );
 	    this.mano.setAlignment( Pos.TOP_CENTER );
 	    vb.setSpacing(10);
 		return vb;
 	}
 	
+	@Override
+	public void refresh() {
+		this.tableroVista.refresh();
+	}
+	
+	@Override
 	public void faseInicial() {
-	    //mazo
-        Button mazo = new Button("ROBAR");
-        mazo.setId("cartaMazo");
-        this.ladoAbajo.add(mazo, 6,1);
-        RobarCartaEventHandler robarCartaEH = new RobarCartaEventHandler(this.lado,this);
-        mazo.setOnAction(robarCartaEH);
-		dibujarMano();
-		this.mano.getChildren().clear();
+		reiniciarGrid();
+        dibujarCartasMonstruoSoloVista();
+        dibujarCartasTrampaOcultas();
+        dibujarCartaCampo();
+        dibujarCementerio(); 
+		dibujarMazo();
+		dibujarManoSoloVista();
 		
-		//dibuja mano
+	}
+			
+	public void dibujarCementerio() {
+        Button cementerio = new Button();      
+        
+		if(this.lado.cantidadDeCartasEnCementerio() == 0) {
+			cementerio.setId("cartaCementerioVacia");
+		}
+		else {
+			cementerio.setId("cartaCementerio");
+		}
+		this.campo.add(cementerio,6,0);
+	}
+	
+	public void dibujarCartaCampo() {       
+		CartaDeCampo carta = this.lado.obtenerCartaCampo();
+		if(carta != null) {
+			CartaVista cv = new CartaVista(carta);
+			Button button =cv.obtenerBoton(80,100);
+			button.setMinSize(80,100);
+			button.setMaxSize(80,100);
+			
+			MostrarCartaEventHandler eh = new MostrarCartaEventHandler(carta);
+			button.setOnAction(eh);
+			this.campo.add(button,0,0);
+		}
+		else {
+	        Button campo = new Button();
+	        campo.setId("cartaCampoVacia");
+	        this.campo.add(campo,0,0);
+		}
+		
+	}
+	
+	public void dibujarManoSoloVista() {
+		this.mano.getChildren().clear();
 		Mano mano = this.lado.obtenerJugador().obtenerMano();
 		ArrayList<Carta> coleccionDeCartas = mano.obtenerCartas();
 		int size = mano.obtenerTamanio();
@@ -105,45 +123,183 @@ public class LadoAbajoVista extends LadoVista {
 		}
 	}
 	
-	public void dibujarConTurno() {
-	    //mazo
-        Button mazo = new Button("ROBAR");
-        mazo.setId("cartaMazo");
-        this.ladoAbajo.add(mazo, 6,1);
-        RobarCartaEventHandler robarCartaEH = new RobarCartaEventHandler(this.lado,this);
-        mazo.setOnAction(robarCartaEH);
-		dibujarMano();
-	}
-	
-	public void dibujarSinTurno() {
-		dibujarManoOculta();
-	}
-	
-	public void dibujarManoOculta() {
-		//dibuja dorso de cartas
-		this.mano.getChildren().clear();
-		Button[] cartasMano = new Button[5];
-        for(int i = 0; i < cartasMano.length; i++) {
-        	cartasMano[i] = new Button();
-        	cartasMano[i].setId("cartaMonstruo");
-        	this.mano.getChildren().add(cartasMano[i]);
-        }
-	}
-	
-	
 	public void dibujarMano() {
-		Mano mano = this.lado.obtenerMano();
+		this.mano.getChildren().clear();
+		Mano mano = this.lado.obtenerJugador().obtenerMano();
 		ArrayList<Carta> coleccionDeCartas = mano.obtenerCartas();
 		int size = mano.obtenerTamanio();
-		this.mano.getChildren().clear();
 		for (int i = 0; i <size; i++) {
 			Carta carta = coleccionDeCartas.get(i);
 			CartaVista cv = new CartaVista(carta);
 			Button button =cv.obtenerBoton(80,100);
 			button.setMinSize(80,100);
 			button.setMaxSize(80,100);
+			
+			//CAMBIAR EH
+			MostrarCartaEventHandler eh = new MostrarCartaEventHandler(carta);
+			button.setOnAction(eh);
+			
 			this.mano.getChildren().add(button);
+		}
+	}
+
+	public void dibujarManoOculta() {
+		//dibuja dorso de cartas
+		this.mano.getChildren().clear();
+		Button[] cartasMano = new Button[jugador.cantidadDeCartasEnMano()];
+	    for(int i = 0; i < cartasMano.length; i++) {
+	    	cartasMano[i] = new Button();
+	    	cartasMano[i].setId("cartaMonstruo");
+	    	this.mano.getChildren().add(cartasMano[i]);
+	   	}
+    }
+
+	public void dibujarCartasTrampaOcultas() {
+		Carta[] cartas = lado.obtenerCartasMagicas();
+		Button[] cartasTrampa = new Button[5];
+     
+		for(int i = 0; i < 5 ; i++) {
+			cartasTrampa[i] = new Button();
+			if(cartas[i] == null) {
+				cartasTrampa[i].setId("cartaMagicaTrampaVacia");
+			}
+			else {
+				cartasTrampa[i].setId("cartaMagicaTrampa");
+			}
+			this.campo.add(cartasTrampa[i],i+1,1);
+		}
+	}
+	
+	public void dibujarCartasTrampaSoloVista() {
+		Carta[] cartas = lado.obtenerCartasMagicas();
+		Button[] cartasTrampa = new Button[5];
+     
+		for(int i = 0; i < 5 ; i++) {
+			cartasTrampa[i] = new Button();
+			if(cartas[i] == null) {
+				cartasTrampa[i].setId("cartaMagicaTrampaVacia");
+				this.campo.add(cartasTrampa[i],i+1,1);
+			}
+			else {
+				CartaVista cv = new CartaVista(cartas[i]);
+				Button button =cv.obtenerBoton(80,100);
+				button.setMinSize(80,100);
+				button.setMaxSize(80,100);
+				MostrarCartaEventHandler eh = new MostrarCartaEventHandler(cartas[i]);
+				button.setOnAction(eh);
+				this.campo.add(button, i+1,1);
+			}
 			
 		}
 	}
+	
+	public void dibujarCartasTrampa() {
+		Carta[] cartas = lado.obtenerCartasMagicas();
+		Button[] cartasTrampa = new Button[5];
+
+     
+		for(int i = 0; i < 5 ; i++) {
+			cartasTrampa[i] = new Button();
+			if(cartas[i] == null) {
+				cartasTrampa[i].setId("cartaMagicaTrampaVacia");
+				this.campo.add(cartasTrampa[i],i+1,1);
+			}
+			else {
+				CartaVista cv = new CartaVista(cartas[i]);
+				Button button =cv.obtenerBoton(80,100);
+				button.setMinSize(80,100);
+				button.setMaxSize(80,100);
+				
+				//HAY QUE CAMBIAR EL EVENTHANDELER
+				MostrarCartaEventHandler eh = new MostrarCartaEventHandler(cartas[i]);
+				button.setOnAction(eh);
+				this.campo.add(button, i+1,1);
+			}
+			
+		}
+	}
+
+	public void dibujarCartasMonstruoSoloVista() {
+		CartaMonstruo[] cartas = lado.obtenerCartasMonstruo();
+		Button[] button = new Button[5];
+		for(int i = 0; i < 5 ; i++) {
+			button[i] = new Button();
+			if(cartas[i] == null) {
+				button[i].setId("cartaMonstruoVacia");
+				this.campo.add(button[i],i+1,0);
+			}
+			else {
+				//VER EL TEMA DE LA POSICION Y EL ESTADO!!!!!!!
+				CartaVista cv = new CartaVista(cartas[i]);
+				button[i] =cv.obtenerBoton(80,100);
+				button[i].setMinSize(80,100);
+				button[i].setMaxSize(80,100);
+				MostrarCartaEventHandler eh = new MostrarCartaEventHandler(cartas[i]);
+				button[i].setOnAction(eh);
+				this.campo.add(button[i], i+1,0);
+			}
+		}
+	}
+	
+	public void dibujarCartasMonstruo() {
+		CartaMonstruo[] cartas = lado.obtenerCartasMonstruo();
+		Button[] button = new Button[5];
+		for(int i = 0; i < 5 ; i++) {
+			button[i] = new Button();
+			if(cartas[i] == null) {
+				button[i].setId("cartaMonstruoVacia");
+				this.campo.add(button[i],i+1,0);
+			}
+			else {
+				//VER EL TEMA DE LA POSICION Y EL ESTADO, CAMBIAR EVENTHANDLER!!!!!!!
+				CartaVista cv = new CartaVista(cartas[i]);
+				button[i] =cv.obtenerBoton(80,100);
+				button[i].setMinSize(80,100);
+				button[i].setMaxSize(80,100);
+				MostrarCartaEventHandler eh = new MostrarCartaEventHandler(cartas[i]);
+				button[i].setOnAction(eh);
+				this.campo.add(button[i], i+1,0);
+			}
+		}
+	}
+
+	public void dibujarMazoSoloVista() {
+        Button mazo = new Button();
+        if(this.lado.cantidadDeCartasEnMazo()==0 ) {
+        	mazo.setId("cartaMazoVacia");
+        }
+        else {
+        	mazo.setId("cartaMazo");
+        }
+        this.campo.add(mazo, 6,1);
+	}
+	
+	public void dibujarMazo() {
+        Button mazo = new Button();
+        if(this.lado.cantidadDeCartasEnMazo()==0 ) {
+        	mazo.setId("cartaMazoVacia");
+            this.campo.add(mazo, 6,1);
+        }
+        else {
+        	mazo.setId("cartaMazo");
+        	mazo.setText("ROBAR");
+            RobarCartaEventHandler robarCartaEH = new RobarCartaEventHandler(this.lado,this);
+            mazo.setOnAction(robarCartaEH);
+            this.campo.add(mazo, 6,1);
+        }
+	}
+
+	public void reiniciarGrid() {
+		this.campo = new GridPane();
+		this.campo.setHgap(20); 
+		this.campo.setVgap(20);
+		
+		for(int i= 0;i<7;i++ ) {
+		      this.campo.getColumnConstraints().add(new ColumnConstraints(80));
+		    }
+		for(int i = 0;i<2;i++) {
+	    	this.campo.getRowConstraints().add(new RowConstraints(100));
+	    }
+	}
+
 }
