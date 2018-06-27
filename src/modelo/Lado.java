@@ -38,6 +38,17 @@ public class Lado {
 		}
 	}
 	
+	public void verificarReinforcements(){
+		for (int i = 0; i < this.tamanio; i++) {
+			if (this.zonaMagica[i] != null) {
+				if((this.zonaMagica[i].esReinforcements()) & (!this.zonaMagica[i].estaBocaAbajo())){
+					((CartaTrampa)this.zonaMagica[i]).destruir();
+				}
+
+			}
+		}
+	}
+	
 	public int cantidadDeCartasEnCementerio() {
 		return this.cementerio.size();
 	
@@ -247,11 +258,13 @@ public class Lado {
 		cartaAtacada = this.zonaDeMonstruos[posicionMonstruoAtacado];
 		for(int i = 0; i < this.tamanio; i++){
 			if(this.zonaMagica[i] != null){
-				cartaMagica = (CartaTrampa) this.zonaMagica[i];
-				if(cartaMagica.verificarCarta()){
-					cartaMagica.activar(cartaAtacada,cartaParaAtacar);
-					activoTrampa = true;
-				} 
+				try{
+					cartaMagica = (CartaTrampa) this.zonaMagica[i];
+					if(cartaMagica.verificarCarta()){
+						cartaMagica.activar(cartaAtacada,cartaParaAtacar);
+						activoTrampa = true;
+					} 	
+				}catch(ClassCastException e) {}
 			}
 		}
 		if(!activoTrampa){

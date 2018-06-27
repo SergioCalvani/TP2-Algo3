@@ -62,6 +62,7 @@ public class LadoAbajoVista extends LadoVista {
 	}
 
 	public void faseInicial() {
+		this.lado.verificarReinforcements();
 		reiniciarGrid();
         dibujarCartasMonstruoSoloVista();
         dibujarCartasTrampaSoloVista();

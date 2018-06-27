@@ -20,6 +20,7 @@ public class CilindroMagico extends CartaTrampa {
 		tablero = ladoDuenio.obtenerTablero();
 		enemigo = tablero.obtenerJugadorEnemigo(this.duenio);
 		enemigo.disminuirVidaEn(cartaParaAtacar.extraerPuntosAtaque());
+		this.destruir();
 	}
 	
 }

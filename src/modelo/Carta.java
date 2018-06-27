@@ -85,6 +85,13 @@ public abstract class Carta {
 	public String obtenerNombre() {
 		return this.nombre;
 	}
+	
+	public boolean esReinforcements(){
+		if(this.nombre == "Reinforcements"){
+			return true;
+		}
+		return false;
+	}
 
 	public abstract void posicionarEn(Lado lado);
 }
