@@ -20,14 +20,16 @@ public class InsertarEvent implements EventHandler<ActionEvent>{
 	
 	private Carta carta;
 	private Lado lado;
-	private CartaVista cartaVista;
 	private LadoVista ladoVista;
+	private CartaVista cartaVista;
 	
-	public InsertarEvent(Carta carta,Lado unLado,LadoVista ladoVista){
-		this.cartaVista = new CartaVista(carta);
-		this.carta = carta;
+
+	public InsertarEvent(Carta unaCarta,Lado unLado,LadoVista ladoVista){
+		this.carta = unaCarta;
+		this.cartaVista = new CartaVista(unaCarta);
 		this.lado = unLado;
 		this.ladoVista = ladoVista;
+
 	}
 
 	@Override
@@ -78,15 +80,15 @@ public class InsertarEvent implements EventHandler<ActionEvent>{
 		insertar.setSpacing(10);
 		insertar.getChildren().addAll(layout,botonera);
 		
-		CambiarEventMons cambio1 = new CambiarEventMons(this.figura,otroEscenario,this.lado,1);
+		CambiarEventMons cambio1 = new CambiarEventMons(this.carta,otroEscenario,this.lado,this.ladoVista,1);
 		primero.setOnAction(cambio1);
-		CambiarEventMons cambio2 = new CambiarEventMons(this.figura,otroEscenario,this.lado,2);
+		CambiarEventMons cambio2 = new CambiarEventMons(this.carta,otroEscenario,this.lado,this.ladoVista,2);
 		segundo.setOnAction(cambio2);
-		CambiarEventMons cambio3 = new CambiarEventMons(this.figura,otroEscenario,this.lado,3);
+		CambiarEventMons cambio3 = new CambiarEventMons(this.carta,otroEscenario,this.lado,this.ladoVista,3);
 		tercero.setOnAction(cambio3);
-		CambiarEventMons cambio4 = new CambiarEventMons(this.figura,otroEscenario,this.lado,4);
+		CambiarEventMons cambio4 = new CambiarEventMons(this.carta,otroEscenario,this.lado,this.ladoVista,4);
 		cuarto.setOnAction(cambio4);
-		CambiarEventMons cambio5 = new CambiarEventMons(this.figura,otroEscenario,this.lado,5);
+		CambiarEventMons cambio5 = new CambiarEventMons(this.carta,otroEscenario,this.lado,this.ladoVista,5);
 		quinto.setOnAction(cambio5);
 		
 		Scene escena = new Scene(insertar,350,250);

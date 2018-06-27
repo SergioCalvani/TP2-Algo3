@@ -175,6 +175,7 @@ public class LadoAbajoVista extends LadoVista {
 			button.setMinSize(80,100);
 			button.setMaxSize(80,100);
 			
+
 			InsertarEvent eh = new InsertarEvent(carta,this.lado,this);
 			button.setOnAction(eh);
 			
@@ -340,12 +341,4 @@ public class LadoAbajoVista extends LadoVista {
 	    	this.campo.getRowConstraints().add(new RowConstraints(100));
 	    }
 	}
-
-
-	@Override
-	public void insertarMonstruo(CartaVista figura, int posicion) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
