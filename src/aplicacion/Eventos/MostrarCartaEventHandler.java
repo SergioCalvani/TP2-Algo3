@@ -4,7 +4,6 @@ package aplicacion.Eventos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Labeled;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -18,7 +17,6 @@ import javafx.stage.StageStyle;
 import modelo.Carta;
 
 public class MostrarCartaEventHandler implements EventHandler<ActionEvent>{
-	private static final Labeled HBox = null;
 	private CartaVista cartaVista;
 	private Carta carta;
 	
@@ -46,14 +44,10 @@ public class MostrarCartaEventHandler implements EventHandler<ActionEvent>{
 		BotonCancelarEventHandler botonCancelarEventHandler = new BotonCancelarEventHandler(ventanaCarta);
 		salir.setOnAction(botonCancelarEventHandler);
 		
-		
 		ventanaCarta.setTitle(this.carta.obtenerNombre());
 		ventanaCarta.setScene(escena);
 		ventanaCarta.initStyle(StageStyle.UNDECORATED);
-		ventanaCarta.show();
-		
-		
-		
+		ventanaCarta.show();	
 	}
 
 }
