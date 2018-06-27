@@ -100,13 +100,17 @@ public class Lado {
 		else{
 			this.tablero.verificarCartaDeCampoLadoContrario(this,monstruo);
 		}
-		monstruo.sacrificarSacricios();
+		monstruo.darSacrificios(this.sacrificios);
 		if(this.zonaDeMonstruos[i] != null){
 			throw new PosicionOcupadaException();
 		}
 		this.zonaDeMonstruos[i] = monstruo;
 		monstruo.cambiarAPosicionDeAtaque();
 		monstruo.asignarDuenio(this.duenio);
+	}
+	
+	public int obteneCantidadDeSacrificios() {
+		return this.sacrificios;
 	}
 
 	public void cambiarAPosicionDeDefensaMonstruo(int i) {

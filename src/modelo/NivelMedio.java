@@ -14,4 +14,11 @@ public class NivelMedio extends Nivel {
 		this.destruir(sacrificios);
 	}
 
+	@Override
+	public void sacrificar(int sacrificios) {
+		if (sacrificios < 1) {
+			throw new CantidadDeSacrificiosInvalidaException();
+		}
+	}
+
 }

@@ -8,4 +8,7 @@ public class NivelBajo extends Nivel {
 	public void sacrificar(Collection<CartaMonstruo> sacrificios) {
 		this.destruir(sacrificios);
 	}
+
+	@Override
+	public void sacrificar(int sacrificios) {}
 }

@@ -27,4 +27,6 @@ public abstract class Nivel {
 			monstruo.destruir();
 		}
 	}
+
+	public abstract void sacrificar(int sacrificios);
 }

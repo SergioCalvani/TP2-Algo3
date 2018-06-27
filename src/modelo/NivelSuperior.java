@@ -14,4 +14,11 @@ public class NivelSuperior extends Nivel {
 		this.destruir(sacrificios);
 	}
 
+	@Override
+	public void sacrificar(int sacrificios) {
+		if (sacrificios < 2) {
+			throw new CantidadDeSacrificiosInvalidaException();
+		}
+	}
+
 }

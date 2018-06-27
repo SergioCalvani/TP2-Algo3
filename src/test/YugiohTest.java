@@ -3,6 +3,7 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+import excepciones.CantidadDeSacrificiosInvalidaException;
 import modelo.CartaDeCampo;
 import modelo.CartaMagica;
 import modelo.CartaMonstruo;
@@ -267,6 +268,7 @@ class YugiohTest {
 		assertEquals(8000, jugadorOponente.obtenerVida());
 	}
 
+	/*
 	@Test
 	public void testSeBajaUnMonstruoDe5EstrellasAlCampoYTomaUnSacrificio() {
 		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
@@ -287,7 +289,28 @@ class YugiohTest {
 		// verifico que beautiful fue sacrificada
 		assertTrue(ladoDeTurno.cementerioContiene(beautiful));
 	}
+	*/
 	
+	
+	@Test
+	public void testSeBajaUnMonstruoDe5EstrellasAlCampoYTomaUnSacrificio() {
+		Yugioh yugioh = new Yugioh("Jugador 1", "Jugador 2");
+		Jugador jugador = yugioh.obtenerJugadorDeTurno();
+		Lado lado = jugador.obtenerLado();
+
+		lado.colocar(new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4));
+		lado.sacrificar(0);
+		
+		boolean colocada = true;
+		try { 
+			lado.colocar(new CartaMonstruo("Dark Witch", 1800, 1700, 5));
+		} catch (CantidadDeSacrificiosInvalidaException e) {
+			colocada = false;
+		}
+		assertTrue(colocada);
+	}
+	
+	/*
 	@Test
 	public void testSeBajaUnMonstruoDe7EstrellasAlCampoYTomaDosSacrificio() {
 		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
@@ -313,7 +336,7 @@ class YugiohTest {
 		assertTrue(ladoDeTurno.cementerioContiene(beautiful));
 		assertTrue(ladoDeTurno.cementerioContiene(amazon));
 	}
-	
+	*/
 	
 	@Test
 	void testAgregoyActivoCartaDeCampoWasteland(){
@@ -509,6 +532,7 @@ class YugiohTest {
 		assertTrue(ladoOponente.estaMonstruo(huevo,1));
 	}
 	
+	/*
 	@Test
 	void testSeSacrificarTresDragonesBlancosParaBajarADragonDefinitivo() {
 		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
@@ -534,6 +558,7 @@ class YugiohTest {
 		//Verifico que se haya podido bajar.
 		assertTrue(lado.estaMonstruo(dragonDefinitivo,0));
 	}
+	*/
 	
 	@Test
 	void testColocoCilindroMagicoYAlAtacarActivoTrampa(){

@@ -98,4 +98,9 @@ public class CartaMonstruo extends Carta {
 			lado.colocar(this);		
 	}
 
+	public void darSacrificios(int sacrificios) {
+		this.nivel.sacrificar(sacrificios);
+	}
+
+
 }
