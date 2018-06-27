@@ -22,7 +22,7 @@ import modelo.cartas.Wasteland;
 
 public abstract class FabricaDeCartas {
 
-	public Carta crearCarta(int codigo) {
+	public static Carta crearCarta(int codigo) {
 	
 		switch (codigo) {
 			case 0: return new AgujeroOscuro(); 
@@ -51,8 +51,8 @@ public abstract class FabricaDeCartas {
 		throw new CodigoDeCartaInvalidoException();
 	}
 	
-	public Carta crearCartaAleatoria() {
+	public static Carta crearCartaAleatoria() {
 		Random rand = new Random();
-		return this.crearCarta(rand.nextInt(22));
+		return crearCarta(rand.nextInt(22));
 	}
 }
