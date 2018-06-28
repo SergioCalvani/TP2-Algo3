@@ -14,8 +14,6 @@ public class CartaTrampa extends Carta {
 		return false;
 	}
 	
-
-	
 	public void destruir() {
 		Lado lado = this.duenio.obtenerLado();
 		lado.destruir(this);

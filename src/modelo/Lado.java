@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import excepciones.CantidadDeSacrificiosDeDragonesBlancosDeOjosAzulesInvalidaException;
 import excepciones.NoSePuedeAtacarDirectamenteException;
 import excepciones.PosicionOcupadaException;
+import modelo.cartas.DragonBlancoDeOjosAzules;
 import modelo.cartas.DragonDefinitivoDeOjosAzules;
 
 public class Lado {
@@ -222,6 +223,12 @@ public class Lado {
 	public void sacrificar(CartaMonstruo cartaMonstruo) {
 		this.destruir(cartaMonstruo);
 		(this.sacrificios)++;
+	}
+	
+	public void sacrificar(DragonBlancoDeOjosAzules cartaMonstruo) {
+		this.destruir(cartaMonstruo);
+		(this.sacrificiosDragones)++;
+		this.sacrificios++;
 	}
 	
 	public Tablero obtenerTablero() {
