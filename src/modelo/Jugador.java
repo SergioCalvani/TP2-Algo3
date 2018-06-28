@@ -9,7 +9,7 @@ public class Jugador {
 	private String nombre;
 	
 	public Jugador(String nombre) {
-		this.puntosDeVida = 80; 
+		this.puntosDeVida = 8000; 
 		this.mano = new Mano();
 		this.perdedor = false;
 		this.nombre = nombre;
