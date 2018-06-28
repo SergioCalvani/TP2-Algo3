@@ -76,6 +76,16 @@ public class Tablero {
 		}
 	}
 	
+	public void atacarJugadorEnemigo(Lado ladoQueAtaca,CartaMonstruo cartaParaAtacar){
+		if(ladoQueAtaca == ladoUno){
+			this.ladoDos.atacarJugador(cartaParaAtacar);
+		}
+		else{
+			this.ladoUno.atacarJugador(cartaParaAtacar);
+		}
+	}
+	
+	
 	public void verificarCartaDeCampoLadoContrario(Lado ladoDuenio,CartaMonstruo monstruo){
 		if(this.hayCartaDeCampo){
 			if(this.ladoUno == ladoDuenio){

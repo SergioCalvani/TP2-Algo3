@@ -1,8 +1,13 @@
 package aplicacion.Eventos;
 
+import java.io.File;
+
 import aplicacion.App.LadoVista;
+import excepciones.CantidadDeSacrificiosInvalidaException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import modelo.CartaDeCampo;
 import modelo.Carta;
@@ -29,9 +34,19 @@ public class ColocarCartaEventHandler implements EventHandler<ActionEvent>{
 			this.ventana.close();
 		}
 		catch(ClassCastException excepcionDeCarta){
-			this.lado.colocar(this.carta);
-			this.ladoVista.refresh();
-			this.ventana.close();
+			try{
+				this.lado.colocar(this.carta);
+				this.ladoVista.refresh();
+				this.ventana.close();
+			}
+			catch(CantidadDeSacrificiosInvalidaException e){
+				File song = new File( "src/vista/sonidos/error.mp3");
+				Media media = new Media(song.toURI().toString());
+			    MediaPlayer player = new MediaPlayer(media);
+			    player.setAutoPlay(true);
+				this.ladoVista.refresh();
+				this.ventana.close();
+			}
 		}
 	}
 }

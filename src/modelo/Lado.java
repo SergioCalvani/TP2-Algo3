@@ -253,6 +253,12 @@ public class Lado {
 		return this.mazo;
 	}
 	
+	public void atacarConMonstruoEnPosicionAJugadorEnemigo(int posicionDeMiZona){
+		CartaMonstruo cartaParaAtacar;
+		cartaParaAtacar = this.zonaDeMonstruos[posicionDeMiZona];
+		this.tablero.atacarJugadorEnemigo(this,cartaParaAtacar);
+	}
+	
 	public void atacarConMonstruoEnPosicionAMonstruoEnPosicion(int posicionDeMiZona,int posicionZonaContrario){
 		CartaMonstruo cartaParaAtacar;
 		cartaParaAtacar = this.zonaDeMonstruos[posicionDeMiZona];
@@ -319,5 +325,20 @@ public class Lado {
 			}
 		}
 		return -1;
+	}
+	
+	public void atacarJugador(CartaMonstruo cartaParaAtacar){
+		boolean hayMonstruos = false;
+		for (int i = 0; i < this.tamanio; i++) {
+			if (this.zonaDeMonstruos[i] != null){
+				hayMonstruos = true;
+			}
+		}
+		if(!hayMonstruos){
+			this.duenio.disminuirVidaEn(cartaParaAtacar.extraerPuntosAtaque());
+		}
+		else{
+			throw new NoSePuedeAtacarDirectamenteException();
+		}
 	}
 }
