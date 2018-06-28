@@ -46,4 +46,22 @@ class JugadoTest {
 		assertEquals(6, jugador.obtenerMano().obtenerTamanio());
 		
 	}
+	
+	@Test
+	void testJugadorTieneMenosDeCeroPuntosDeVidaYPierdeElJuego() {
+		Yugioh yugioh = new Yugioh("Jugador 1", "Jugador 2");
+		Jugador jugador = yugioh.obtenerJugadorDeTurno();
+		jugador.disminuirVidaEn(9000);
+		assertTrue(jugador.esPerdedor());
+	}
+	
+	@Test
+	void testJugadorDeTurnoTieneMenosDeCeroPuntosDeVidaYElOponenteGanaElJuego() {
+		Yugioh yugioh = new Yugioh("Jugador 1", "Jugador 2");
+		Jugador jugador = yugioh.obtenerJugadorDeTurno();
+		Jugador oponente = yugioh.obtenerJugadorOponente();
+		jugador.disminuirVidaEn(9000);
+		assertTrue(oponente.esGanador());
+	}
+	
 }

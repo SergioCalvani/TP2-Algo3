@@ -104,7 +104,7 @@ class YugiohAdicionalesTest {
 	}
 	
 	@Test
-	void atacoDirectamenteAlJugadorSinMonstruosEnLaZona(){
+	void testAtacoDirectamenteAlJugadorSinMonstruosEnLaZona(){
 		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
 		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
@@ -120,7 +120,7 @@ class YugiohAdicionalesTest {
 	}
 	
 	@Test
-	void atacoDirectamenteAlJugadorConMonstruosEnLaZona(){
+	void testAtacoDirectamenteAlJugadorConMonstruosEnLaZona(){
 		boolean seLanzoExcepcion = false;
 		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
 		Tablero tablero = yugioh.obtenerTablero();
@@ -145,6 +145,22 @@ class YugiohAdicionalesTest {
 		assertTrue(seLanzoExcepcion);
 		assertTrue(ladoOponente.estaEnCampoMonstruo(beautiful));
 	}	
+	
+	@Test
+	void testJugadorDeTurnoTieneMenosDeCeroPuntosDeVidaYTerminaElJuego() {
+		Yugioh yugioh = new Yugioh("Jugador 1", "Jugador 2");
+		Jugador jugador = yugioh.obtenerJugadorDeTurno();
+		jugador.disminuirVidaEn(9000);
+		assertTrue(yugioh.estaTerminado());
+	}
+	
+	@Test
+	void testJugadorOponenteTieneMenosDeCeroPuntosDeVidaYTerminaElJuego() {
+		Yugioh yugioh = new Yugioh("Jugador 1", "Jugador 2");
+		Jugador jugador = yugioh.obtenerJugadorOponente();
+		jugador.disminuirVidaEn(9000);
+		assertTrue(yugioh.estaTerminado());
+	}
 
 }
 

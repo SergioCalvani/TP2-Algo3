@@ -56,7 +56,8 @@ public class Jugador {
 	}
 
 	public boolean esGanador() {
-		return this.mano.contieneExodia();
+		Jugador oponente = this.lado.obtenerTablero().obtenerJugadorEnemigo(this);
+		return this.mano.contieneExodia() || oponente.esPerdedor();
 	}
 	
 	public void agregarCartaAMano(Carta carta) {
