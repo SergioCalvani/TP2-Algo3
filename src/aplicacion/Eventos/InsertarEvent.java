@@ -39,10 +39,8 @@ public class InsertarEvent implements EventHandler<ActionEvent>{
 		Button btn = new Button();
 		
 		VBox contenedor = new VBox();
-		Button colocar= new Button("COLOCAR");
 		btn.setGraphic(new ImageView(img));
 		
-		contenedor.getChildren().addAll(btn,colocar);
 		contenedor.setAlignment(Pos.CENTER);
 		contenedor.setSpacing(10);
 		contenedor.setPadding(new Insets(0,0,10,0));
@@ -51,10 +49,18 @@ public class InsertarEvent implements EventHandler<ActionEvent>{
 		BotonCancelarEventHandler botonCancelarEventHandler = new BotonCancelarEventHandler(ventanaCarta);
 		btn.setOnAction(botonCancelarEventHandler);
 		
-		ColocarCartaEventHandler eh = new ColocarCartaEventHandler(this.lado,this.carta,ventanaCarta,this.ladoVista);
-		colocar.setOnAction(eh);
+		if(!this.lado.seInsertoMonstruo()){
+			Button colocar= new Button("COLOCAR");
+			colocar.setId("UnBoton");
+			contenedor.getChildren().addAll(btn,colocar);
+			
+			ColocarCartaEventHandler eh = new ColocarCartaEventHandler(this.lado,this.carta,ventanaCarta,this.ladoVista);
+			colocar.setOnAction(eh);
+		}
+		else{
+			contenedor.getChildren().addAll(btn);
+		}
 		
-		colocar.setId("UnBoton");
 		escena.getStylesheets().add("aplicacion/css/card-window.css");
 		ventanaCarta.setScene(escena);		
 		ventanaCarta.initStyle(StageStyle.UNDECORATED);

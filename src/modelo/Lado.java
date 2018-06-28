@@ -7,6 +7,7 @@ import excepciones.PosicionOcupadaException;
 public class Lado {
 
 	private int tamanio;
+	private boolean seColocoMonstruo;
 	private CartaDeCampo cartaCampo;
 	private CartaMonstruo[] zonaDeMonstruos;
 	private Carta[] zonaMagica;
@@ -17,7 +18,7 @@ public class Lado {
 	private Mazo mazo;
 	
 	public Lado(Jugador jugador, Tablero tablero) {
-		
+		this.seColocoMonstruo = false;
 		this.tamanio = 5;
 		this.zonaDeMonstruos = new CartaMonstruo[tamanio];
 		this.zonaMagica = new Carta[tamanio];
@@ -31,12 +32,17 @@ public class Lado {
 	}
 	
 	public void apagarFlags() {
+		this.seColocoMonstruo = false;
 		for(int i=0;i<5;i++) {
 			if(this.zonaDeMonstruos[i]!=null) {
 				this.zonaDeMonstruos[i].apagarFlag();
 				this.zonaDeMonstruos[i].reiniciarAtaque();
 			}
 		}
+	}
+	
+	public boolean seInsertoMonstruo(){
+		return this.seColocoMonstruo;
 	}
 	
 	public void verificarReinforcements(){
@@ -124,6 +130,7 @@ public class Lado {
 		if(this.zonaDeMonstruos[i] != null){
 			throw new PosicionOcupadaException();
 		}
+		this.seColocoMonstruo = true;
 		this.zonaDeMonstruos[i] = monstruo;
 		monstruo.cambiarAPosicionDeAtaque();
 		monstruo.asignarDuenio(this.duenio);
