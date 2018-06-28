@@ -177,10 +177,10 @@ public class TableroVista {
 	}
 
 	public void verificarGanador(){
-		if(this.jugador1.esPerdedor()){
+		if(this.jugador1.esPerdedor() | this.jugador2.esGanador()){
 			this.app.juegoTerminadoConGanador(this.jugador2);
 		}
-		else if(this.jugador2.esPerdedor()){
+		else if(this.jugador2.esPerdedor() | this.jugador1.esGanador()){
 			this.app.juegoTerminadoConGanador(this.jugador1);
 		}
 	}
