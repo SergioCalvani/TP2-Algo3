@@ -208,6 +208,7 @@ public class Aplicacion extends Application{
 		this.yugioh = new Yugioh("Messi","Higuaín");
 		this.tablero = new TableroVista(this.yugioh,this);
 				
+		this.stage.setTitle("AlgoOH");
 		refresh();
 	}
 	

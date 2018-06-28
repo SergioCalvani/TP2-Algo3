@@ -46,14 +46,13 @@ public abstract class FabricaDeCartas {
 			case 18: return new CartaMonstruo("Crowned by the world chalice", 0, 2100, 2);
 			case 19: return new CartaMonstruo("Harpie girl", 500, 500, 2);
 			case 20: return new CartaMonstruo("Maiden of the moonlight", 1500, 1300, 4);
-			case 21: return new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
 		}
 		throw new CodigoDeCartaInvalidoException();
 	}
 	
 	public static Carta crearCartaAleatoria() {
 		Random rand = new Random();
-		return crearCarta(rand.nextInt(22));
+		return crearCarta(rand.nextInt(21));
 	}
 
 }
