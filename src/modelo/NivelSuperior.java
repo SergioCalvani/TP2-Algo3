@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.Collection;
-
 import excepciones.CantidadDeSacrificiosInvalidaException;
 
 public class NivelSuperior extends Nivel {

@@ -28,5 +28,4 @@ public class SacrificarEventHandler implements EventHandler<ActionEvent>{
 		this.ladoVista.refresh();
 		this.ventanaCarta.close();
 	}
-
 }

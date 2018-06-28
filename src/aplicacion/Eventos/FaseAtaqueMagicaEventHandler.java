@@ -3,10 +3,7 @@ package aplicacion.Eventos;
 import aplicacion.App.CartaVista;
 import aplicacion.App.LadoVista;
 import aplicacion.Eventos.ActivarCartaMagicaEventHandler;
-import aplicacion.Eventos.AtacarEventHandler;
 import aplicacion.Eventos.BotonCancelarEventHandler;
-import aplicacion.Eventos.EstadoAtaqueEventHandler;
-import aplicacion.Eventos.EstadoDefensaEventHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -19,7 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.Carta;
-import modelo.CartaMonstruo;
 
 public class FaseAtaqueMagicaEventHandler implements EventHandler<ActionEvent>{
 	

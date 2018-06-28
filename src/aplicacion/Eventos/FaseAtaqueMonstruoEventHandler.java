@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import modelo.Carta;
 import modelo.CartaMonstruo;
 import modelo.Lado;
 

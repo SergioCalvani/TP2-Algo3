@@ -1,7 +1,5 @@
 package aplicacion.Eventos;
 
-import aplicacion.App.CartaVista;
-import aplicacion.App.LadoArribaVista;
 import aplicacion.App.LadoVista;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

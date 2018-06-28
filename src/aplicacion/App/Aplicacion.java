@@ -42,7 +42,7 @@ public class Aplicacion extends Application{
 		launch(args);
 	}
 	
-	/*@Override
+	@Override
 	public void start(Stage stage){	
 		this.stage = stage;
 		
@@ -95,10 +95,10 @@ public class Aplicacion extends Application{
 			int i = rand.nextInt(2);
 			File song; 
 			if(i==0) {
-				song= new File( "src/vista/sonidos/main_song1.mp3");
+				song= new File( "src/aplicacion/Sonidos/main_song1.mp3");
 			}
 			else {
-				song = new File( "src/vista/sonidos/main_song2.mp3");
+				song = new File( "src/aplicacion/Sonidos/main_song2.mp3");
 			}
 	        Media media = new Media(song.toURI().toString());
 	        MediaPlayer player = new MediaPlayer(media);
@@ -111,6 +111,9 @@ public class Aplicacion extends Application{
 		comenzar.requestFocus();
 	}
 	
+	public Stage getStage() {
+		return this.stage;
+	}
 	
 	public void ingresarNombre() {
 		StackPane layout = new StackPane();
@@ -196,12 +199,6 @@ public class Aplicacion extends Application{
                                                             
 	public void iniciarJuego(String nombre1,String nombre2) {
 		this.yugioh = new Yugioh(nombre1,nombre2);
-	*/	
-	@Override
-	public void start(Stage stage) {
-		this.stage = stage;
-		this.yugioh = new Yugioh("Messi","Higuaín");
-		
 		this.tablero = new TableroVista(this.yugioh,this);		
 		this.stage.setTitle("AlgoOH");
 		refresh();
@@ -231,7 +228,7 @@ public class Aplicacion extends Application{
 		contenedor.setAlignment(Pos.BOTTOM_CENTER);
 		contenedor.setSpacing(50);
 		contenedor.setPadding(new Insets(0,0,60,0));
-		song= new File( "src/vista/sonidos/ganador.mp3");
+		song= new File( "src/aplicacion/Sonidos/ganador.mp3");
 		Media media = new Media(song.toURI().toString());
 	    MediaPlayer player = new MediaPlayer(media);
 	    player.setAutoPlay(true);

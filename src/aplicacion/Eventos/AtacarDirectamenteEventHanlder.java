@@ -1,8 +1,6 @@
 package aplicacion.Eventos;
 
 import java.io.File;
-
-import aplicacion.App.CartaVista;
 import aplicacion.App.LadoVista;
 import excepciones.NoSePuedeAtacarDirectamenteException;
 import javafx.event.ActionEvent;
@@ -17,14 +15,12 @@ public class AtacarDirectamenteEventHanlder implements EventHandler<ActionEvent>
 	
 	private Lado lado;
 	private CartaMonstruo carta;
-	private CartaVista cartaVista;
 	private Stage ventana;
 	private LadoVista ladoVista;
 	private int miPosicion;
 
 	public AtacarDirectamenteEventHanlder(Lado unLado,CartaMonstruo unaCarta,Stage ventana,LadoVista unLadoVista,int unaPosicion){
 		this.lado = unLado;
-		this.cartaVista = new CartaVista(unaCarta);
 		this.carta = unaCarta;
 		this.ventana = ventana;
 		this.ladoVista = unLadoVista;

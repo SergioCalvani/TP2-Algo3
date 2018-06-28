@@ -31,7 +31,7 @@ public class ActivarCartaMonstruoEventHandler implements EventHandler<ActionEven
 			this.lado.refresh();
 		}
 		else{
-			File song = new File( "src/vista/sonidos/error.mp3");
+			File song = new File( "src/aplicacion/Sonidos/error.mp3");
 			Media media = new Media(song.toURI().toString());
 		    MediaPlayer player = new MediaPlayer(media);
 		    player.setAutoPlay(true);
