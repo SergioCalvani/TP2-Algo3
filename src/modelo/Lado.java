@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 
+import excepciones.NoSePuedeAtacarDirectamenteException;
 import excepciones.PosicionOcupadaException;
 
 public class Lado {
