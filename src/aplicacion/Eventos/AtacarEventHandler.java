@@ -15,18 +15,19 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.Carta;
+import modelo.CartaMonstruo;
 import modelo.Lado;
 
 public class AtacarEventHandler implements EventHandler<ActionEvent>{
 	
 	private Lado lado;
-	private Carta carta;
+	private CartaMonstruo carta;
 	private CartaVista cartaVista;
 	private Stage ventana;
 	private LadoVista ladoVista;
 	private int miPosicion;
 
-	public AtacarEventHandler(Lado unLado,Carta unaCarta,Stage ventana,LadoVista unLadoVista,int unaPosicion){
+	public AtacarEventHandler(Lado unLado,CartaMonstruo unaCarta,Stage ventana,LadoVista unLadoVista,int unaPosicion){
 		this.lado = unLado;
 		this.cartaVista = new CartaVista(unaCarta);
 		this.carta = unaCarta;
@@ -37,6 +38,8 @@ public class AtacarEventHandler implements EventHandler<ActionEvent>{
 	
 	@Override
 	public void handle(ActionEvent event) {
+		this.carta.ataco();
+		this.ventana.close();
 		Image img = this.cartaVista.obtenerImagen(270,300);
 		Stage ventanaCarta = new Stage();
 		Button btn = new Button();

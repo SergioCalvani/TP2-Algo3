@@ -50,7 +50,7 @@ public class FaseAtaqueMonstruoEventHandler implements EventHandler<ActionEvent>
 		btn.setOnAction(botonCancelarEventHandler);
 		
 		
-		if(this.carta.obtenerFlag() ==false ) {
+		if((!this.carta.obtenerFlag()) & (!this.carta.obtenerSiAtaco())) {
 			
 			Button atacar = new Button("ATACAR");
 			Button estado = new Button("DEFENSA");

@@ -34,6 +34,7 @@ public class Lado {
 		for(int i=0;i<5;i++) {
 			if(this.zonaDeMonstruos[i]!=null) {
 				this.zonaDeMonstruos[i].apagarFlag();
+				this.zonaDeMonstruos[i].reiniciarAtaque();
 			}
 		}
 	}
