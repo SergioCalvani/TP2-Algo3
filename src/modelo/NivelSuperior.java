@@ -7,14 +7,6 @@ import excepciones.CantidadDeSacrificiosInvalidaException;
 public class NivelSuperior extends Nivel {
 
 	@Override
-	public void sacrificar(Collection<CartaMonstruo> sacrificios) {
-		if (sacrificios.size() < 2) {
-			throw new CantidadDeSacrificiosInvalidaException();
-		}
-		this.destruir(sacrificios);
-	}
-
-	@Override
 	public void sacrificar(int sacrificios) {
 		if (sacrificios < 2) {
 			throw new CantidadDeSacrificiosInvalidaException();

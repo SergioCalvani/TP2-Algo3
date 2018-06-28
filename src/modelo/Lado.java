@@ -2,8 +2,10 @@ package modelo;
 
 import java.util.ArrayList;
 
+import excepciones.CantidadDeSacrificiosDeDragonesBlancosDeOjosAzulesInvalidaException;
 import excepciones.NoSePuedeAtacarDirectamenteException;
 import excepciones.PosicionOcupadaException;
+import modelo.cartas.DragonDefinitivoDeOjosAzules;
 
 public class Lado {
 
@@ -16,6 +18,7 @@ public class Lado {
 	private Jugador duenio;
 	private Tablero tablero;
 	private int sacrificios;
+	private int sacrificiosDragones;
 	private Mazo mazo;
 	
 	public Lado(Jugador jugador, Tablero tablero) {
@@ -29,6 +32,7 @@ public class Lado {
 		this.duenio.asignarLado(this);
 		this.tablero = tablero;
 		this.sacrificios = 0;
+		this.sacrificiosDragones = 0;
 		this.mazo = new Mazo();
 	}
 	
@@ -120,14 +124,25 @@ public class Lado {
 	}
 	
 	public void colocar(CartaMonstruo monstruo, int i) {
+		
+		monstruo.darSacrificios(this.sacrificios);
+		this.sacrificios = 0;
+		colocarEn(monstruo, i);
+	}
+	
+	public void colocar(DragonDefinitivoDeOjosAzules dragon, int i) {
+		dragon.darSacrificios(sacrificiosDragones);
+		this.sacrificiosDragones = 0;
+		colocarEn(dragon, i);
+	}
+	
+	private void colocarEn(CartaMonstruo monstruo, int i) {
 		if(this.cartaCampo != null){
 			this.cartaCampo.aplicarEfectoCartaIndividualDuenio(monstruo);
 		}
 		else{
 			this.tablero.verificarCartaDeCampoLadoContrario(this,monstruo);
 		}
-		monstruo.darSacrificios(this.sacrificios);
-		this.sacrificios = 0;
 		if(this.zonaDeMonstruos[i] != null){
 			throw new PosicionOcupadaException();
 		}
@@ -171,32 +186,24 @@ public class Lado {
 	public boolean cementerioContiene(Carta unaCarta) {
 		return this.cementerio.contains(unaCarta);
 	}
-
+	
 	public void destruir(CartaMonstruo cartaMonstruo) {
-		for (int i = 0; i < this.tamanio; i++) {
-			if (this.zonaDeMonstruos[i] == cartaMonstruo) {
-				this.zonaDeMonstruos[i] = null;
-				this.cementerio.add(cartaMonstruo);
-				return;
-			}
-		}
+		destruirEn(zonaDeMonstruos, cartaMonstruo);
 	}
 	
 	public void destruir(CartaMagica cartaMagica) {
-		for (int i = 0; i < this.tamanio; i++) {
-			if (this.zonaMagica[i] == cartaMagica) {
-				this.zonaMagica[i] = null;
-				this.cementerio.add(cartaMagica);
-				return;
-			}
-		}
+		destruirEn(zonaMagica, cartaMagica);
 	}
 	
 	public void destruir(CartaTrampa cartaTrampa) {
+		destruirEn(zonaMagica, cartaTrampa);
+	}
+	
+	private void destruirEn(Carta[] zona, Carta unaCarta) {
 		for (int i = 0; i < this.tamanio; i++) {
-			if (this.zonaMagica[i] == cartaTrampa) {
-				this.zonaMagica[i] = null;
-				this.cementerio.add(cartaTrampa);
+			if (zona[i] == unaCarta) {
+				zona[i] = null;
+				this.cementerio.add(unaCarta);
 				return;
 			}
 		}

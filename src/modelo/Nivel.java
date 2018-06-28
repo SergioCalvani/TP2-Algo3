@@ -19,14 +19,6 @@ public abstract class Nivel {
 		}
 		
 	}
-	
-	public abstract void sacrificar(Collection<CartaMonstruo> sacrificios);
-
-	protected void destruir(Collection<CartaMonstruo> sacrificios) {
-		for (CartaMonstruo monstruo: sacrificios) {
-			monstruo.destruir();
-		}
-	}
 
 	public abstract void sacrificar(int sacrificios);
 }

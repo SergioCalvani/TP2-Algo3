@@ -1,5 +1,6 @@
 package modelo.cartas;
 
+import excepciones.CantidadDeSacrificiosDeDragonesBlancosDeOjosAzulesInvalidaException;
 import modelo.CartaMonstruo;
 
 public class DragonDefinitivoDeOjosAzules extends CartaMonstruo {
@@ -9,9 +10,9 @@ public class DragonDefinitivoDeOjosAzules extends CartaMonstruo {
 	}
 
 	@Override
-	public void agregarSacrificio(CartaMonstruo monstruo) {}
-	
-	public void agregarSacrificio(DragonBlancoDeOjosAzules dragon) {
-		super.agregarSacrificio(dragon);
+	public void darSacrificios(int sacrificios) {
+		if (sacrificios < 3) {
+			throw new CantidadDeSacrificiosDeDragonesBlancosDeOjosAzulesInvalidaException();
+		}
 	}
 }

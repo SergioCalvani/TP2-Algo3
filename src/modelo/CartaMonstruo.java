@@ -76,15 +76,6 @@ public class CartaMonstruo extends Carta {
 		this.estado.atacarA(monstruoAtacado, this);
 	}
 	
-	public void agregarSacrificio(CartaMonstruo monstruo) {
-		this.sacrificios.add(monstruo);
-	}
-
-	public void sacrificarSacricios() {
-		this.nivel.sacrificar(this.sacrificios);
-		this.sacrificios = new ArrayList<CartaMonstruo>();
-	}
-	
 	public void aumentarAtaque(int aumento){
 		this.ataque = this.ataque + aumento;
 	}
@@ -122,7 +113,7 @@ public class CartaMonstruo extends Carta {
 
 	@Override
 	public void posicionarEn(Lado lado) {
-			lado.colocar(this);		
+		lado.colocar(this);		
 	}
 
 	public void darSacrificios(int sacrificios) {

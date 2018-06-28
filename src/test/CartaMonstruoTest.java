@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import excepciones.ImposibleAtacarEnEstadoDeDefensaException;
 import modelo.CartaMonstruo;
+import modelo.Jugador;
+import modelo.Lado;
+import modelo.Yugioh;
 
 class CartaMonstruoTest {
 
@@ -25,4 +28,41 @@ class CartaMonstruoTest {
 		assertTrue(atrapada);
 	}
 	
+	@Test void testAumentarAtaqueEn100AumentaElAtaqueEn100(){
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		amazon.aumentarAtaque(100);
+		assertEquals(1400, amazon.extraerPuntosAtaque());
+	}
+	
+	@Test void testAumentarDefensaEn100AumentaElDefensaEn100(){
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		amazon.aumentarDefensa(100);
+		assertEquals(1500, amazon.extraerPuntosDefensa());
+	}
+	
+	@Test 
+	void testMonstruoRecibeFuerteAtaqueASusPuntosDeAtaqueYDestruye() {
+		Yugioh yugioh = new Yugioh("Jugador 1", "Jugador 2");
+		Jugador jugador = yugioh.obtenerJugadorDeTurno();
+		Lado lado = jugador.obtenerLado();
+		
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		lado.colocar(amazon);
+		
+		amazon.recibirDanioAPuntosDeAtaque(2000);
+		assertTrue(lado.cementerioContiene(amazon));
+	}
+	
+	@Test 
+	void testMonstruoRecibeFuerteAtaqueASusPuntosDeDefensaYDestruye() {
+		Yugioh yugioh = new Yugioh("Jugador 1", "Jugador 2");
+		Jugador jugador = yugioh.obtenerJugadorDeTurno();
+		Lado lado = jugador.obtenerLado();
+		
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		lado.colocar(amazon);
+		
+		amazon.recibirDanioAPuntosDeDefensa(2000);
+		assertTrue(lado.cementerioContiene(amazon));
+	}
 }
