@@ -2,7 +2,6 @@ package modelo;
 
 import java.util.ArrayList;
 
-import excepciones.CantidadDeSacrificiosDeDragonesBlancosDeOjosAzulesInvalidaException;
 import excepciones.NoHayEspecioEnElCampoException;
 import excepciones.NoSePuedeAtacarDirectamenteException;
 import excepciones.PosicionOcupadaException;

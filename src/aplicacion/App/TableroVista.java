@@ -39,7 +39,7 @@ public class TableroVista {
 		this.info = new Label("                                  ");
 		this.info.setMaxWidth(150);
 		this.info.setId("INFO");
-		this.botonAvanzar = new Button("Pasar a \nFase De Preparaci�n");
+		this.botonAvanzar = new Button("Pasar a \nFase De Preparacion");
 		this.botonAvanzar.requestFocus(); 
 		this.botonAvanzar.setId("AVANZAR");
 				

@@ -64,7 +64,7 @@ public class LadoAbajoVista extends LadoVista {
 
 	public void fasePreparacion() {
 		reiniciarGrid();
-        dibujarCartasMonstruoSoloVista();
+        dibujarCartasMonstruoSoloSacrificio();
         dibujarCartasTrampaSoloVista();
         dibujarCartaCampo();
         dibujarCementerio(); 
@@ -270,6 +270,31 @@ public class LadoAbajoVista extends LadoVista {
 	}
 
 	public void dibujarCartasMonstruoSoloVista() {
+		CartaMonstruo[] cartas = lado.obtenerCartasMonstruo();
+		Button[] button = new Button[5];
+		for(int i = 0; i < 5 ; i++) {
+			button[i] = new Button();
+			if(cartas[i] == null) {
+				button[i].setId("cartaMonstruoVacia");
+				this.campo.add(button[i],i+1,0);
+			}
+			else {
+				//VER EL TEMA DE LA POSICION Y EL ESTADO!!!!!!!
+				CartaVista cv = new CartaVista(cartas[i]);
+				button[i] =cv.obtenerBoton(80,100);
+				button[i].setMinSize(80,100);
+				button[i].setMaxSize(80,100);
+				if(!cartas[i].estaEnPosicionDeAtaque()){
+					button[i].setRotate(270);
+				} 
+				MostrarCartaEventHandler eh = new MostrarCartaEventHandler(cartas[i]);
+				button[i].setOnAction(eh);
+				this.campo.add(button[i], i+1,0);
+			}
+		}
+	}
+	
+	public void dibujarCartasMonstruoSoloSacrificio() {
 		CartaMonstruo[] cartas = lado.obtenerCartasMonstruo();
 		Button[] button = new Button[5];
 		for(int i = 0; i < 5 ; i++) {
