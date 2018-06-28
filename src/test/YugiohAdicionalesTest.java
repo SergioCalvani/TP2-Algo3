@@ -81,9 +81,8 @@ class YugiohAdicionalesTest {
 		
 		// Fase de preparacion: Se puede bajar solo 1 carta monstruo.
 		// pero no hay limite de magicas o trampa.
-		mano.agregar(new Jinzo());
-		Carta carta = mano.obtenerCarta(5);
-		lado.colocar(carta);
+		//Carta carta = mano.obtenerCarta(5);
+		lado.colocar(new Jinzo());
 		// termino la fase "presionando el boton siguiente fase"
 		yugioh.siguienteFase();
 		
@@ -145,6 +144,7 @@ class YugiohAdicionalesTest {
 		
 		assertTrue(seLanzoExcepcion);
 		assertTrue(ladoOponente.estaEnCampoMonstruo(beautiful));
-	}
-	
+	}	
+
 }
+

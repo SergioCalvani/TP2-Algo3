@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 
 import excepciones.CantidadDeSacrificiosDeDragonesBlancosDeOjosAzulesInvalidaException;
+import excepciones.NoHayEspecioEnElCampoException;
 import excepciones.NoSePuedeAtacarDirectamenteException;
 import excepciones.PosicionOcupadaException;
 import modelo.cartas.DragonBlancoDeOjosAzules;
@@ -339,7 +340,7 @@ public class Lado {
 				return i;
 			}
 		}
-		return -1;
+		throw new NoHayEspecioEnElCampoException();
 	}
 	
 	public void atacarJugador(CartaMonstruo cartaParaAtacar){

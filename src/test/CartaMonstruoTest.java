@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import excepciones.ImposibleAtacarEnEstadoDeDefensaException;
+import excepciones.NivelInvalidoException;
 import modelo.CartaMonstruo;
 import modelo.Jugador;
 import modelo.Lado;
@@ -64,5 +65,16 @@ class CartaMonstruoTest {
 		
 		amazon.recibirDanioAPuntosDeDefensa(2000);
 		assertTrue(lado.cementerioContiene(amazon));
+	}
+	
+	@Test
+	void testSeCreaUnaCartaMonstruoDeNivelCeroYLanzaException() {
+		boolean atrapada = false;
+		try {
+			CartaMonstruo invalido = new CartaMonstruo("Invalido", 400, 300, 0);
+		} catch (NivelInvalidoException e) {
+			atrapada = true;
+		}
+		assertTrue(atrapada);
 	}
 }
