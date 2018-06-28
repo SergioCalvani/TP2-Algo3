@@ -311,7 +311,7 @@ class YugiohTest {
 		assertTrue(colocada);
 	}
 	
-	/*
+
 	@Test
 	public void testSeBajaUnMonstruoDe7EstrellasAlCampoYTomaDosSacrificio() {
 		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
@@ -320,14 +320,16 @@ class YugiohTest {
 		Lado ladoDeTurno = tablero.obtenerLadoDe(jugadorDeTurno);
 		
 		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
-		ladoDeTurno.colocar(beautiful, 0);
+		ladoDeTurno.colocar(beautiful);
 		
 		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
-		ladoDeTurno.colocar(amazon, 1);
+		ladoDeTurno.colocar(amazon);
 		
 		CartaMonstruo darkMagician = new CartaMonstruo("Dark Magician", 2500, 2100, 7);
-		darkMagician.agregarSacrificio(beautiful);
-		darkMagician.agregarSacrificio(amazon);
+		
+		ladoDeTurno.sacrificar(beautiful);
+		ladoDeTurno.sacrificar(amazon);
+		
 		ladoDeTurno.colocar(darkMagician, 2);
 		
 		// verifico que esta darkWitch en la posicion 0
@@ -337,7 +339,7 @@ class YugiohTest {
 		assertTrue(ladoDeTurno.cementerioContiene(beautiful));
 		assertTrue(ladoDeTurno.cementerioContiene(amazon));
 	}
-	*/
+
 	
 	@Test
 	void testAgregoyActivoCartaDeCampoWasteland(){
@@ -533,7 +535,7 @@ class YugiohTest {
 		assertTrue(ladoOponente.estaMonstruo(huevo,1));
 	}
 	
-	/*
+	
 	@Test
 	void testSeSacrificarTresDragonesBlancosParaBajarADragonDefinitivo() {
 		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
@@ -546,20 +548,19 @@ class YugiohTest {
 			DragonBlancoDeOjosAzules dragon = new DragonBlancoDeOjosAzules();
 			CartaMonstruo harpie1 = new CartaMonstruo("Harpie Girl", 500, 500, 2);
 			CartaMonstruo harpie2 = new CartaMonstruo("Harpie Girl", 500, 500, 2);
-			lado.colocar(harpie1, i);
-			lado.colocar(harpie2, i + 1);
-			dragon.agregarSacrificio(harpie1);
-			dragon.agregarSacrificio(harpie2);
-			lado.colocar(dragon, i);
-			dragonDefinitivo.agregarSacrificio(dragon);
+			lado.colocar(harpie1);
+			lado.colocar(harpie2);
+			lado.sacrificar(harpie1);
+			lado.sacrificar(harpie2);
+			lado.colocar(dragon);
+			lado.sacrificar(dragon);
 		}
-
-		lado.colocar(dragonDefinitivo, 0);
+		lado.colocar(dragonDefinitivo, 4);
 		
 		//Verifico que se haya podido bajar.
-		assertTrue(lado.estaMonstruo(dragonDefinitivo,0));
+		assertTrue(lado.estaMonstruo(dragonDefinitivo, 4));
 	}
-	*/
+	
 	
 	@Test
 	void testColocoCilindroMagicoYAlAtacarActivoTrampa(){

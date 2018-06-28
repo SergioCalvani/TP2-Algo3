@@ -76,4 +76,6 @@ public class Yugioh {
 	public void asignarFase(Fase unaFase) {
 		this.fase = unaFase;
 	}
+	
+	
 }

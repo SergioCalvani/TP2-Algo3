@@ -13,6 +13,7 @@ import modelo.Mano;
 import modelo.Mazo;
 import modelo.Tablero;
 import modelo.Yugioh;
+import modelo.cartas.Jinzo;
 
 class YugiohAdicionalesTest {
 
@@ -80,7 +81,8 @@ class YugiohAdicionalesTest {
 		
 		// Fase de preparacion: Se puede bajar solo 1 carta monstruo.
 		// pero no hay limite de magicas o trampa.
-		Carta carta = mano.obtenerCarta(0);
+		mano.agregar(new Jinzo());
+		Carta carta = mano.obtenerCarta(5);
 		lado.colocar(carta);
 		// termino la fase "presionando el boton siguiente fase"
 		yugioh.siguienteFase();
