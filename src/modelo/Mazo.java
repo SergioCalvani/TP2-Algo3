@@ -10,6 +10,8 @@ public class Mazo {
 	public Mazo() {
 		this.pila = new Stack<Carta>();
 		
+
+		
 		for (int i = 0; i < 40; i++) {
 			this.pila.push(FabricaDeCartas.crearCartaAleatoria());
 		}

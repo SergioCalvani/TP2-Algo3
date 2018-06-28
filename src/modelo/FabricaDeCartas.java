@@ -55,4 +55,5 @@ public abstract class FabricaDeCartas {
 		Random rand = new Random();
 		return crearCarta(rand.nextInt(22));
 	}
+
 }

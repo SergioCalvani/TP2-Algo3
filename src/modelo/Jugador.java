@@ -9,7 +9,7 @@ public class Jugador {
 	private String nombre;
 	
 	public Jugador(String nombre) {
-		this.puntosDeVida = 8000; 
+		this.puntosDeVida = 80; 
 		this.mano = new Mano();
 		this.perdedor = false;
 		this.nombre = nombre;
@@ -25,6 +25,9 @@ public class Jugador {
 	
 	public void disminuirVidaEn(int danio) {
 		this.puntosDeVida -= danio;
+		if(this.puntosDeVida < 0) {
+			this.puntosDeVida = 0;
+		}
 	}
 
 	public void asignarLado(Lado lado) {

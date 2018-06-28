@@ -201,10 +201,11 @@ public class Aplicacion extends Application{
                                                             
 /*	public void iniciarJuego(String nombre1,String nombre2) {
 		this.yugioh = new Yugioh(nombre1,nombre2);
-	*/@Override
+		*/
+	@Override
 	public void start(Stage stage) {
 		this.stage = stage;
-		this.yugioh = new Yugioh("Messi","Higuaï¿½n");
+		this.yugioh = new Yugioh("Messi","Higuaín");
 		this.tablero = new TableroVista(this.yugioh,this);
 				
 		refresh();
@@ -223,23 +224,28 @@ public class Aplicacion extends Application{
 		File song;
 		Button aceptar = new Button("Aceptar");
 		Label mensaje = new Label();
-		mensaje.setText("Â¡Felicitaciones " + ganador.obtenerNombre() + " sos el ganador!");
+		mensaje.setText("¡Felicitaciones " + ganador.obtenerNombre() + " sos el ganador!");
 		
 		BotonAceptarEventHandler salir = new BotonAceptarEventHandler();
 		aceptar.setOnAction(salir);
 		
+		
+		mensaje.setAlignment(Pos.CENTER);
 		VBox contenedor = new VBox(mensaje,aceptar);
-		HBox layout = new HBox(contenedor);
-		layout.setAlignment(Pos.CENTER);
-		layout.setSpacing(10);
-		contenedor.setAlignment(Pos.CENTER);
-		contenedor.setSpacing(10);
+		contenedor.setAlignment(Pos.BOTTOM_CENTER);
+		contenedor.setSpacing(50);
+		contenedor.setPadding(new Insets(0,0,60,0));
 		song= new File( "src/vista/sonidos/ganador.mp3");
 		Media media = new Media(song.toURI().toString());
 	    MediaPlayer player = new MediaPlayer(media);
 	    player.setAutoPlay(true);
-		Scene escena = new Scene(layout,300,300); 
+		Scene escena = new Scene(contenedor,300,350);
+		escena.getStylesheets().add("aplicacion/css/winner-window.css");
+		ultimoEscenario.initStyle(StageStyle.UNDECORATED);
 		ultimoEscenario.setScene(escena);
-		ultimoEscenario.showAndWait();
+		ultimoEscenario.show();
+		aceptar.requestFocus();
+		ultimoEscenario.setAlwaysOnTop(true);
+		
 	}
 }
