@@ -4,11 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import excepciones.NoSePuedeAtacarDirectamenteException;
 import modelo.Carta;
+import modelo.CartaMonstruo;
 import modelo.Jugador;
 import modelo.Lado;
 import modelo.Mano;
 import modelo.Mazo;
+import modelo.Tablero;
 import modelo.Yugioh;
 
 class YugiohAdicionalesTest {
@@ -98,4 +101,48 @@ class YugiohAdicionalesTest {
 		// Verifico que no se termino el juego.
 		assertFalse(yugioh.estaTerminado());
 	}
+	
+	@Test
+	void atacoDirectamenteAlJugadorSinMonstruosEnLaZona(){
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
+		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
+		Lado ladoDeTurno = tablero.obtenerLadoDe(jugadorDeTurno);
+		
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		ladoDeTurno.colocar(amazon, 0);
+		
+		ladoDeTurno.atacarConMonstruoEnPosicionAJugadorEnemigo(0);
+		
+		assertEquals(6700,jugadorOponente.obtenerVida());
+	}
+	
+	@Test
+	void atacoDirectamenteAlJugadorConMonstruosEnLaZona(){
+		boolean seLanzoExcepcion = false;
+		Yugioh yugioh = new Yugioh("JugadorUno","JugadorDos");
+		Tablero tablero = yugioh.obtenerTablero();
+		Jugador jugadorDeTurno = yugioh.obtenerJugadorDeTurno();
+		Jugador jugadorOponente = yugioh.obtenerJugadorOponente();
+		Lado ladoDeTurno = tablero.obtenerLadoDe(jugadorDeTurno);
+		Lado ladoOponente = tablero.obtenerLadoDe(jugadorOponente);
+		
+		CartaMonstruo amazon = new CartaMonstruo("Amazon of the Seas", 1300, 1400, 4);
+		ladoDeTurno.colocar(amazon, 0);
+		
+		CartaMonstruo beautiful = new CartaMonstruo("Beautiful Headhuntress", 1600, 800, 4);
+		ladoOponente.colocar(beautiful, 0);
+		
+		try{
+			ladoDeTurno.atacarConMonstruoEnPosicionAJugadorEnemigo(0);
+		}
+		catch(NoSePuedeAtacarDirectamenteException e){
+			seLanzoExcepcion = true;
+		}
+		
+		assertTrue(seLanzoExcepcion);
+		assertTrue(ladoOponente.estaEnCampoMonstruo(beautiful));
+	}
+	
 }
