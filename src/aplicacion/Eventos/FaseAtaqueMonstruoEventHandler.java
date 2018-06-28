@@ -54,18 +54,23 @@ public class FaseAtaqueMonstruoEventHandler implements EventHandler<ActionEvent>
 			
 			Button atacar = new Button("ATACAR");
 			Button estado = new Button("DEFENSA");
+			Button voltear = new Button("VOLTEAR");
 			Button ataqueDirecto = new Button("ATAQUE JUGADOR");
 			atacar.setId("UnBoton");
 			estado.setId("UnBoton");
+			voltear.setId("UnBoton");
 			ataqueDirecto.setId("UnBoton");
 			
-			contenedor.getChildren().addAll(btn,atacar,ataqueDirecto,estado);
+			contenedor.getChildren().addAll(btn,atacar,ataqueDirecto,voltear,estado);
 
 			AtacarEventHandler eh = new AtacarEventHandler(this.lado,this.carta,ventanaCarta,this.ladoVista,this.miPosicion);
 			atacar.setOnAction(eh);
 			
 			AtacarDirectamenteEventHanlder ehDirec = new AtacarDirectamenteEventHanlder(this.lado,this.carta,ventanaCarta,this.ladoVista,this.miPosicion);
 			ataqueDirecto.setOnAction(ehDirec);
+			
+			ActivarCartaMonstruoEventHandler ehV = new ActivarCartaMonstruoEventHandler(this.carta,this.ladoVista,ventanaCarta);
+			voltear.setOnAction(ehV);
 			
 			if(((CartaMonstruo) this.carta).estaEnPosicionDeAtaque()){
 				EstadoDefensaEventHandler ehd = new EstadoDefensaEventHandler(this.carta,this.ladoVista,ventanaCarta);
