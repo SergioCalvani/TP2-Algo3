@@ -53,6 +53,7 @@ public class BotonSalirEventHandler implements EventHandler<ActionEvent> {
 		ventanaSalida.setScene(salir);
 		ventanaSalida.initStyle(StageStyle.UNDECORATED);
 		ventanaSalida.show();
+		ventanaSalida.setAlwaysOnTop(true);
 		aceptar.requestFocus();
 	}
 }

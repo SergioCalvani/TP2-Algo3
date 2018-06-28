@@ -59,7 +59,8 @@ public class FaseAtaqueMagicaEventHandler implements EventHandler<ActionEvent>{
 		escena.getStylesheets().add("aplicacion/css/card-window.css");
 		ventanaCarta.setScene(escena);		
 		ventanaCarta.initStyle(StageStyle.UNDECORATED);
-		ventanaCarta.show();	
+		ventanaCarta.show();
+		ventanaCarta.setAlwaysOnTop(true);
 	}
 	
 }

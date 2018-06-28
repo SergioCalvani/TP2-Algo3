@@ -50,6 +50,7 @@ public class TableroVista {
 	}
 
 	public void refresh() {
+		verificarGanador();
 		obtenerInformacion();
 		this.app.refresh();
 	}
@@ -71,7 +72,6 @@ public class TableroVista {
 			case FINAL:
 				this.fase = Fase.INICIAL;
 				this.botonAvanzar.setText("Pasar a \nFase De Preparacion");
-				verificarGanador();
 				avanzarTurno();
 				break;
 			default:

@@ -41,17 +41,7 @@ public class LadoAbajoVista extends LadoVista {
 		this.mano = new HBox();
 		this.mano.setSpacing(10);
 		
-		reiniciarGrid();
-        
- 
-        dibujarCartasMonstruoSoloVista();
-        dibujarCartasTrampaOcultas();
-        dibujarCartaCampo();
-        dibujarCementerio(); 
-        dibujarManoOculta();
-        dibujarMazoSoloVista();
-        //mazo
-
+		dibujarSinTurno();
 	}
 	public boolean seRoboCarta() {
 		return this.seRoboCartaFlag;

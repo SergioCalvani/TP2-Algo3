@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.Carta;
+import modelo.CartaMonstruo;
 import modelo.Lado;
 
 public class InsertarEvent implements EventHandler<ActionEvent>{
@@ -43,27 +44,30 @@ public class InsertarEvent implements EventHandler<ActionEvent>{
 		
 		contenedor.setAlignment(Pos.CENTER);
 		contenedor.setSpacing(10);
-		contenedor.setPadding(new Insets(0,0,10,0));
+		
 		Scene escena = new Scene(contenedor);
 		
 		BotonCancelarEventHandler botonCancelarEventHandler = new BotonCancelarEventHandler(ventanaCarta);
 		btn.setOnAction(botonCancelarEventHandler);
 		
-		if(!this.lado.seInsertoMonstruo()){
+		if((this.lado.seInsertoMonstruo() ) && (this.carta instanceof CartaMonstruo)){
+			contenedor.getChildren().addAll(btn);
+			
+		}
+		else{
 			Button colocar= new Button("COLOCAR");
 			colocar.setId("UnBoton");
 			contenedor.getChildren().addAll(btn,colocar);
 			
 			ColocarCartaEventHandler eh = new ColocarCartaEventHandler(this.lado,this.carta,ventanaCarta,this.ladoVista);
 			colocar.setOnAction(eh);
-		}
-		else{
-			contenedor.getChildren().addAll(btn);
+			contenedor.setPadding(new Insets(0,0,10,0));			
 		}
 		
 		escena.getStylesheets().add("aplicacion/css/card-window.css");
 		ventanaCarta.setScene(escena);		
 		ventanaCarta.initStyle(StageStyle.UNDECORATED);
 		ventanaCarta.show();	
+		ventanaCarta.setAlwaysOnTop(true);
 	}
 }
