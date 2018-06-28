@@ -1,9 +1,14 @@
 package aplicacion.Eventos;
 
+import java.io.File;
+
 import aplicacion.App.CartaVista;
 import aplicacion.App.LadoVista;
+import excepciones.AtacarMonstruoVacioException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import modelo.Carta;
 import modelo.Lado;
@@ -30,9 +35,18 @@ public class AtacarContrarioEventHandler implements EventHandler<ActionEvent>{
 
 	@Override
 	public void handle(ActionEvent event) {
-		this.lado.atacarConMonstruoEnPosicionAMonstruoEnPosicion(this.miPosicion,this.posicionContrario);
-		this.ladoVista.refresh();
-		this.ventana.close();
+		try{
+			this.lado.atacarConMonstruoEnPosicionAMonstruoEnPosicion(this.miPosicion,this.posicionContrario);
+			this.ladoVista.refresh();
+			this.ventana.close();
+		}catch(AtacarMonstruoVacioException e){
+			File song = new File( "src/vista/sonidos/error.mp3");
+			Media media = new Media(song.toURI().toString());
+		    MediaPlayer player = new MediaPlayer(media);
+		    player.setAutoPlay(true);
+			this.ladoVista.refresh();
+			this.ventana.close();
+		}
 	}
 	
 }

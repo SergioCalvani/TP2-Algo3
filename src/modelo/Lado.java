@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 
+import excepciones.AtacarMonstruoVacioException;
 import excepciones.NoHayEspecioEnElCampoException;
 import excepciones.NoSePuedeAtacarDirectamenteException;
 import excepciones.PosicionOcupadaException;
@@ -284,6 +285,9 @@ public class Lado {
 		boolean activoTrampa = false;
 		CartaTrampa cartaMagica;
 		CartaMonstruo cartaAtacada;
+		if(this.zonaDeMonstruos[posicionMonstruoAtacado] == null){
+			throw new AtacarMonstruoVacioException();
+		}
 		cartaAtacada = this.zonaDeMonstruos[posicionMonstruoAtacado];
 		for(int i = 0; i < this.tamanio; i++){
 			if(this.zonaMagica[i] != null){
