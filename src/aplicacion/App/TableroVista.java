@@ -39,7 +39,7 @@ public class TableroVista {
 		this.info = new Label("                                  ");
 		this.info.setMaxWidth(150);
 		this.info.setId("INFO");
-		this.botonAvanzar = new Button("Pasar a \nFase De Preparación");
+		this.botonAvanzar = new Button("Pasar a \nFase De Preparaciï¿½n");
 		this.botonAvanzar.requestFocus(); 
 		this.botonAvanzar.setId("AVANZAR");
 				
@@ -71,6 +71,7 @@ public class TableroVista {
 			case FINAL:
 				this.fase = Fase.INICIAL;
 				this.botonAvanzar.setText("Pasar a \nFase De Preparacion");
+				verificarGanador();
 				avanzarTurno();
 				break;
 			default:
@@ -175,7 +176,14 @@ public class TableroVista {
 		return this.carta!=null;
 	}
 
-	
+	public void verificarGanador(){
+		if(this.jugador1.esPerdedor()){
+			this.app.juegoTerminadoConGanador(this.jugador2);
+		}
+		else if(this.jugador2.esPerdedor()){
+			this.app.juegoTerminadoConGanador(this.jugador1);
+		}
+	}
 	
 	public void obtenerInformacion() {
 		String info ="TURNO: "+String.valueOf(this.turnos)+"\n\n"

@@ -52,7 +52,7 @@ public class Jugador {
 	}
 
 	public boolean esPerdedor() {
-		return this.puntosDeVida == 0 || this.lado.obtenerMazo().estaVacio();
+		return this.puntosDeVida <= 0 || this.lado.obtenerMazo().estaVacio();
 	}
 
 	public boolean esGanador() {

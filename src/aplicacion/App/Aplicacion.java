@@ -6,6 +6,8 @@ import aplicacion.Eventos.PantallaNombresEnterEventHandler;
 
 import java.io.File;
 import java.util.Random;
+
+import aplicacion.Eventos.BotonAceptarEventHandler;
 import aplicacion.Eventos.BotonAceptarNombresEventHandler;
 import aplicacion.Eventos.BotonComenzarEventHandler;
 import javafx.application.Application;
@@ -23,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import modelo.Jugador;
 import modelo.Yugioh;
 import javafx.stage.StageStyle;
 
@@ -201,7 +204,7 @@ public class Aplicacion extends Application{
 	*/@Override
 	public void start(Stage stage) {
 		this.stage = stage;
-		this.yugioh = new Yugioh("Messi","Higuaín");
+		this.yugioh = new Yugioh("Messi","Higuaï¿½n");
 		this.tablero = new TableroVista(this.yugioh,this);
 				
 		refresh();
@@ -213,5 +216,30 @@ public class Aplicacion extends Application{
 		escena.getStylesheets().add("aplicacion/css/game-screen.css");
 		this.stage.setScene(escena);
 		this.stage.show();
+	}
+	
+	public void juegoTerminadoConGanador(Jugador ganador){
+		Stage ultimoEscenario = new Stage();
+		File song;
+		Button aceptar = new Button("Aceptar");
+		Label mensaje = new Label();
+		mensaje.setText("Â¡Felicitaciones " + ganador.obtenerNombre() + " sos el ganador!");
+		
+		BotonAceptarEventHandler salir = new BotonAceptarEventHandler();
+		aceptar.setOnAction(salir);
+		
+		VBox contenedor = new VBox(mensaje,aceptar);
+		HBox layout = new HBox(contenedor);
+		layout.setAlignment(Pos.CENTER);
+		layout.setSpacing(10);
+		contenedor.setAlignment(Pos.CENTER);
+		contenedor.setSpacing(10);
+		song= new File( "src/vista/sonidos/ganador.mp3");
+		Media media = new Media(song.toURI().toString());
+	    MediaPlayer player = new MediaPlayer(media);
+	    player.setAutoPlay(true);
+		Scene escena = new Scene(layout,300,300); 
+		ultimoEscenario.setScene(escena);
+		ultimoEscenario.showAndWait();
 	}
 }
